@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Winchester Graphics — Winchester Shop</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div class="brand-mark">WG</div>
+      <div class="brand-text">
+        <div class="brand-name">Winchester Graphics</div>
+        <div class="brand-tagline">Design Without Limits</div>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <a class="btn btn-ghost" id="whatsappHeaderBtn" href="#" target="_blank" rel="noreferrer">WhatsApp</a>
+      <button class="btn btn-primary" id="openCartBtn" type="button">
+        Cart <span class="pill" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-left">
+        <h1>Winchester Shop</h1>
+        <p>Browse all products, filter by sport, size and color, then add to cart and checkout via WhatsApp.</p>
+        <div class="hero-cta">
+          <button class="btn btn-primary" id="scrollToProductsBtn" type="button">View Products</button>
+          <a class="btn btn-ghost" href="#order" id="contactLink">Order Help</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-card">
+          <div class="hero-card-title">Quick prices</div>
+          <div class="hero-card-row"><span>Football Jersey</span><span>Kshs. 1200</span></div>
+          <div class="hero-card-row"><span>Basketball Jersey</span><span>Kshs. 1500</span></div>
+          <div class="hero-card-row"><span>T-Shirt</span><span>Kshs. 1200</span></div>
+          <div class="hero-card-row"><span>Laawah</span><span>Kshs. 2500</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="filters" id="products">
+      <div class="filters-row">
+        <div class="field">
+          <label for="filterCategory">Category</label>
+          <select id="filterCategory">
+            <option value="all">All</option>
+            <option value="Football Jersey">Football Jerseys</option>
+            <option value="Basketball Jersey">Basketball Jerseys</option>
+            <option value="T-Shirt">T-Shirts</option>
+            <option value="Laawah">Laawah</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="filterColor">Color</label>
+          <select id="filterColor">
+            <option value="all">All</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="filterSize">Size</label>
+          <select id="filterSize">
+            <option value="all">All</option>
+          </select>
+        </div>
+
+        <div class="field field-grow">
+          <label for="searchInput">Search</label>
+          <input id="searchInput" type="search" placeholder="Search e.g. football, black, 001..." />
+        </div>
+      </div>
+    </section>
+
+    <section class="grid" id="productGrid"></section>
+
+    <section class="order" id="order">
+      <div class="order-card">
+        <h2>Need help ordering?</h2>
+        <p>Checkout sends your cart summary to WhatsApp. If you want to ask a question first, message us here.</p>
+        <a class="btn btn-primary" id="whatsappOrderBtn" href="#" target="_blank" rel="noreferrer">Message on WhatsApp</a>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="cartModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="true"></div>
+    <div class="modal-panel" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title">Your Cart</div>
+          <div class="modal-subtitle">Review items, then checkout via WhatsApp</div>
+        </div>
+        <button class="icon-btn" id="closeCartBtn" type="button" aria-label="Close">×</button>
+      </div>
+
+      <div class="modal-body">
+        <div id="cartItems" class="cart-items"></div>
+
+        <div class="cart-footer">
+          <div class="cart-total">
+            <span>Total</span>
+            <span id="cartTotal">Kshs. 0</span>
+          </div>
+          <button class="btn btn-primary btn-full" id="checkoutBtn" type="button">Checkout on WhatsApp</button>
+          <button class="btn btn-ghost btn-full" id="clearCartBtn" type="button">Clear cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Winchester Graphics</div>
+      <div class="footer-note">WhatsApp orders only: +254793669941</div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
