@@ -41,7 +41,7 @@ body{
   margin-bottom:14px;
   width:100%;
   max-width:520px;
-  margin:0 auto 14px;
+  margin:0 auto;
   text-align:center;
 }
 .hero-logo{
@@ -296,6 +296,7 @@ body{
 @media (max-width: 460px){
   .grid{grid-template-columns: 1fr}
 }
+
 
 
 
