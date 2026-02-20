@@ -135,9 +135,10 @@ const renderProducts = () => {
     const sizeOptions = p.sizes.map(s => `<option value="${s}">${s}</option>`).join("");
     return `
       <article class="card">
-        <div class="thumb">
-        ${p.images && p.images.length?`<img src="${p.images[0]}" alt="${p.name}"/>`:
-          `<span>${p.category}</span>`}
+        <div class="thumb">${thumbHtml}</div>
+        const thumbHtml = (p.images && p.images.length)
+      ? `<img src="${p.images[0]}" alt="${p.name}">`
+      : `<span>${p.category}</span>`;
         </div>
         <div class="card-body">
           <div class="title">${p.name}</div>
@@ -269,6 +270,7 @@ populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
