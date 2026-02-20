@@ -8,9 +8,9 @@ const PRODUCTS = [
 
   { id:"BJ001", name:"Basketball Jersey 001", category:"Basketball Jersey", color:"White", price:1500, sizes:["L","XL","XXL"],
   images:[
-    "images/basketball-001-white-1.jpeg",
-    "images/basketball-001-white-2.jpeg",
-    "images/basketball-001-white-3.jpeg"
+    "images/basketball-001-white-1.jpg",
+    "images/basketball-001-white-2.jpg",
+    "images/basketball-001-white-3.jpg"
     ]
   },
  
@@ -269,6 +269,7 @@ populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
