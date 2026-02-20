@@ -136,8 +136,8 @@ const renderProducts = () => {
     return `
       <article class="card">
         <div class="thumb">
-        ${p.images && p.images.length?'<img src="${p.images[0]}" alt="${p.name}"/>':
-          '<span>${p.category}</span>'}
+        ${p.images && p.images.length?`<img src="${p.images[0]}" alt="${p.name}"/>`:
+          `<span>${p.category}</span>`}
         </div>
         <div class="card-body">
           <div class="title">${p.name}</div>
@@ -269,6 +269,7 @@ populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
