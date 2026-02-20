@@ -191,6 +191,9 @@ body{
     linear-gradient(135deg, #ffffff, #eef2ff);
   border-bottom:1px solid var(--border);
   display:flex; align-items:center; justify-content:center;
+  position:relative;
+padding:0;
+overflow:hidden;
 }
 .thumb span{
   font-weight:800;
@@ -304,6 +307,7 @@ body{
 @media (max-width: 460px){
   .grid{grid-template-columns: 1fr}
 }
+
 
 
 
