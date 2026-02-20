@@ -184,20 +184,25 @@ body{
   flex-direction:column;
 }
 .thumb{
-  height:150px;
-  background:
-    radial-gradient(120px 120px at 30% 30%, rgba(31,75,214,.22), transparent 60%),
-    radial-gradient(120px 120px at 70% 40%, rgba(198,40,40,.18), transparent 60%),
-    linear-gradient(135deg, #ffffff, #eef2ff);
-  border-bottom:1px solid var(--border);
-  display:flex; align-items:center; justify-content:center;
-  position:relative;
+height:150px;
+background:
+radial-gradient(120px 120px at 30% 30%, rgba(31,75,214,.22), transparent 60%),
+radial-gradient(120px 120px at 70% 40%, rgba(198,40,40,.18), transparent 60%),
+linear-gradient(135deg, #ffffff, #eef2ff);
+border-bottom:1px solid var(--border);
+position:relative;
 padding:0;
 overflow:hidden;
 }
+
 .thumb span{
-  font-weight:800;
-  color:rgba(14,23,38,.55);
+position:absolute;
+inset:0;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:800;
+color:rgba(14,23,38,.55);
 }
 .card-body{padding:12px; display:flex; flex-direction:column; gap:10px}
 .title{font-weight:900}
@@ -307,6 +312,7 @@ overflow:hidden;
 @media (max-width: 460px){
   .grid{grid-template-columns: 1fr}
 }
+
 
 
 
