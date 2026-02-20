@@ -129,33 +129,34 @@ const matchesFilters = (p) => {
 };
 
 const renderProducts = () => {
-  const list = PRODUCTS.filter(matchesFilters);
+const list = PRODUCTS.filter(matchesFilters);
 
-  els.grid.innerHTML = list.map(p => {
-    const sizeOptions = p.sizes.map(s => `<option value="${s}">${s}</option>`).join("");
-    return `
-      <article class="card">
-        <div class="thumb">${thumbHtml}</div>
-        const thumbHtml = (p.images && p.images.length)
-      ? `<img src="${p.images[0]}" alt="${p.name}">`
-      : `<span>${p.category}</span>`;
-        </div>
-        <div class="card-body">
-          <div class="title">${p.name}</div>
-          <div class="meta">
-            <span class="badge">${p.color}</span>
-            <span class="price">${formatKsh(p.price)}</span>
-          </div>
-          <div class="row">
-            <select data-size-for="${p.id}">
-              ${sizeOptions}
-            </select>
-            <button class="btn btn-primary" data-add="${p.id}" type="button">Add</button>
-          </div>
-        </div>
-      </article>
-    `;
-  }).join("");
+els.grid.innerHTML = list.map(p => {
+const sizeOptions = p.sizes.map(s => `<option value="${s}">${s}</option>`).join("");
+
+const thumbHtml = (p.images && p.images.length)
+? `<img src="${p.images[0]}" alt="${p.name}">`
+: `<span>${p.category}</span>`;
+
+return `
+<article class="card">
+<div class="thumb">${thumbHtml}</div>
+<div class="card-body">
+<div class="title">${p.name}</div>
+<div class="meta">
+<span class="badge">${p.color}</span>
+<span class="price">${formatKsh(p.price)}</span>
+</div>
+<div class="row">
+<select data-size-for="${p.id}">
+${sizeOptions}
+</select>
+<button class="btn btn-primary" data-add="${p.id}" type="button">Add</button>
+</div>
+</div>
+</article>
+`;
+}).join("");
 
   els.grid.querySelectorAll("[data-add]").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -270,6 +271,7 @@ populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
