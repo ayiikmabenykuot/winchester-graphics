@@ -6,7 +6,14 @@ const PRODUCTS = [
   { id:"FJ001", name:"Football Jersey 001", category:"Football Jersey", color:"Green", price:1200, sizes:["M","L","XL"] },
   { id:"FJ002", name:"Football Jersey 002", category:"Football Jersey", color:"White", price:1200, sizes:["M","L","XL"] },
 
-  { id:"BJ001", name:"Basketball Jersey 001", category:"Basketball Jersey", color:"White", price:1500, sizes:["L","XL","XXL"] },
+  { id:"BJ001", name:"Basketball Jersey 001", category:"Basketball Jersey", color:"White", price:1500, sizes:["L","XL","XXL"],
+  images:[
+    "images/basketball-001-white-1.jpeg",
+    "images/basketball-001-white-2.jpeg",
+    "images/basketball-001-white-3.jpeg"
+    ]
+  },
+ 
   { id:"BJ002", name:"Basketball Jersey 002", category:"Basketball Jersey", color:"Black", price:1500, sizes:["L","XL","XXL"] },
 
   { id:"TS001", name:"T-Shirt 001", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"] },
@@ -257,4 +264,5 @@ els.checkoutBtn.addEventListener("click", () => {
 
 populateFilterOptions();
 renderProducts();
+
 updateCartUi();
