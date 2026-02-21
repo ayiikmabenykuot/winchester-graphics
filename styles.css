@@ -70,15 +70,14 @@ display:block;
 }
 
 .brand-logo{
-  background:#fff;
-  border:1px solid var(--border);
-  padding:6px;
+width:54px;
+height:54px;
 }
 .brand-logo img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  display:block;
+width:100%;
+height:100%;
+object-fit:contain;
+display:block;
 }
 .thumb img{
   width:100%;
@@ -493,6 +492,7 @@ border-radius:14px;
   border-color:transparent;
   opacity:1;
 }
+
 
 
 
