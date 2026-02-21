@@ -164,7 +164,7 @@ transform: translateY(0px) scale(.98);
 }
 
 .hero-cta .btn{
-animation: btnFloat 3.2s ease-in-out infinite;
+animation: btnFloat 1.6s ease-in-out infinite;
 will-change: transform;
 }
 
@@ -493,6 +493,7 @@ border-radius:14px;
   border-color:transparent;
   opacity:1;
 }
+
 
 
 
