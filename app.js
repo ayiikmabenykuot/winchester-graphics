@@ -41,8 +41,16 @@ images:[
   { id:"TS005", name:"T-Shirt 005", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"] },
   { id:"TS006", name:"T-Shirt 006", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"] },
 
-  { id:"LW001", name:"Laawah 001", category:"Laawah", color:"Mixed", price:2500, sizes:["Standard"] },
-  { id:"LW002", name:"Laawah 002", category:"Laawah", color:"Mixed", price:2500, sizes:["Standard"] },
+  { id:"LW001", name:"Laawah 001", category:"Laawah", color:"Mixed", price:2500, sizes:["Standard"],
+  images:[
+    "assets/laawah-01.jpeg"
+   ]
+  },
+  { id:"LW002", name:"Laawah 002", category:"Laawah", color:"Mixed", price:2500, sizes:["Standard"],
+  images:[
+    "assets/laawah-02.jpeg"
+   ]
+  },
   { id:"LW003", name:"Laawah 003", category:"Laawah", color:"Mixed", price:2500, sizes:["Standard"] },
   { id:"LW004", name:"Laawah 004", category:"Laawah", color:"Mixed", price:2500, sizes:["Standard"] },
 ];
@@ -370,6 +378,7 @@ populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
