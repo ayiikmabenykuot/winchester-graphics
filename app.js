@@ -34,12 +34,40 @@ images:[
   ]
 },
 
-  { id:"TS001", name:"T-Shirt 001", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"] },
-  { id:"TS002", name:"T-Shirt 002", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"] },
-  { id:"TS003", name:"T-Shirt 003", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"] },
-  { id:"TS004", name:"T-Shirt 004", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"] },
-  { id:"TS005", name:"T-Shirt 005", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"] },
-  { id:"TS006", name:"T-Shirt 006", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"] },
+  { id:"TS001", name:"T-Shirt 001", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"],
+  images:[
+    "assets/ts001-black-1.jpeg",
+    "assets/ts001-black-2.jpeg"
+  ]
+  },
+  { id:"TS002", name:"T-Shirt 002", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"]
+  images:[
+    "assets/ts002-black-1.jpeg"
+  ]
+},
+  { id:"TS003", name:"T-Shirt 003", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"],
+    images:[
+    "assets/ts001-white-1.jpeg",
+    "assets/ts001-white-2.jpeg"
+  ]
+  },
+  { id:"TS004", name:"T-Shirt 004", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"],
+    images:[
+    "assets/ts002-white-1.jpeg"
+  ]
+  },
+  { id:"TS005", name:"T-Shirt 005", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"],
+    images:[
+    "assets/ts004-white-1.jpeg",
+    "assets/ts004-white-2.jpeg"
+  ]
+  },
+  { id:"TS006", name:"T-Shirt 006", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"],
+    images:[
+    "assets/ts003-white-1.jpeg",
+    "assets/ts003-white-2.jpeg"
+  ]
+  },
 
   { id:"LW001", name:"Laawah 001", category:"Laawah", color:"Mixed", price:2500, sizes:["Standard"],
   images:[
@@ -383,6 +411,7 @@ populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
