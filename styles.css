@@ -60,6 +60,41 @@ animation: waWiggle 1.6s ease-in-out infinite;
 80%{ transform: rotate(6deg) scale(1.02); }
 }
 
+.icon-cart{
+border:none;
+background:transparent;
+width:44px;
+height:44px;
+border-radius:12px;
+position:relative;
+}
+.icon-cart:hover{ background:rgba(31,75,214,.06); }
+.icon-cart:active{ background:rgba(31,75,214,.10); }
+
+.ico{
+width:26px;
+height:26px;
+color:var(--text);
+}
+
+.cart-badge{
+position:absolute;
+top:6px;
+right:6px;
+min-width:18px;
+height:18px;
+padding:0 5px;
+border-radius:999px;
+background:linear-gradient(135deg, var(--blue), var(--red));
+color:#fff;
+font-size:11px;
+font-weight:900;
+display:flex;
+align-items:center;
+justify-content:center;
+border:2px solid #fff;
+}
+
 .hero-logo-wrap{
   background:#fff;
   border:1px solid var(--border);
@@ -149,14 +184,6 @@ display:block;
   color:var(--text);
 }
 .btn-full{width:100%}
-
-.pill{
-  background:rgba(255,255,255,.2);
-  border:1px solid rgba(255,255,255,.35);
-  padding:2px 8px;
-  border-radius:999px;
-  font-size:12px;
-}
 
 .hero-banner img{
 animation: heroKenBurns 15s ease-in-out infinite;
@@ -519,6 +546,7 @@ border-radius:14px;
   border-color:transparent;
   opacity:1;
 }
+
 
 
 
