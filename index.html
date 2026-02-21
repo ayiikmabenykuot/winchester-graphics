@@ -110,6 +110,27 @@
     </div>
   </div>
 
+  <div class="modal" id="viewerModal" aria-hidden="true">
+    <div class="modal-backdrop" data-viewer-close="true"></div>
+    <div class="modal-panel viewer-panel" role="dialog" aria-modal="true">
+      <div class="modal-header">
+        <div>
+          <div class="modal-title" id="viewerTitle">Product</div>
+          <div class="modal-subtitle" id="viewerSubtitle">Photos</div>
+        </div>
+        <button class="icon-btn" id="closeViewerBtn" type="button" aria-label="Close">×</button>
+      </div>
+
+      <div class="viewer-body">
+        <button class="viewer-nav" id="viewerPrev" type="button">‹</button>
+        <img id="viewerImg" class="viewer-img" src="" alt="" />
+        <button class="viewer-nav" id="viewerNext" type="button">›</button>
+      </div>
+
+      <div class="viewer-dots" id="viewerDots"></div>
+    </div>
+  </div>
+  
   <footer class="site-footer">
     <div class="container footer-inner">
       <div>© <span id="year"></span> Winchester Graphics</div>
@@ -121,6 +142,7 @@
 </body>
 
 </html>
+
 
 
 
