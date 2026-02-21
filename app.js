@@ -40,7 +40,7 @@ images:[
     "assets/ts001-black-2.jpeg"
   ]
   },
-  { id:"TS002", name:"T-Shirt 002", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"]
+  { id:"TS002", name:"T-Shirt 002", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"],
   images:[
     "assets/ts002-black-1.jpeg"
   ]
@@ -411,6 +411,7 @@ populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
