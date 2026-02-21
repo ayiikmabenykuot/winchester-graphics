@@ -32,6 +32,34 @@ body{
   padding:14px 18px;
 }
 
+.wa-float{
+position:fixed;
+right:18px;
+bottom:18px;
+z-index:50;
+text-decoration:none;
+}
+.wa-circle{
+width:58px;
+height:58px;
+border-radius:999px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:900;
+color:#fff;
+background:#25D366;
+box-shadow:0 12px 28px rgba(0,0,0,.22);
+animation: waWiggle 1.6s ease-in-out infinite;
+}
+@keyframes waWiggle{
+0%,100%{ transform: rotate(0deg) scale(1); }
+20%{ transform: rotate(-8deg) scale(1.03); }
+40%{ transform: rotate(8deg) scale(1.03); }
+60%{ transform: rotate(-6deg) scale(1.02); }
+80%{ transform: rotate(6deg) scale(1.02); }
+}
+
 .hero-logo-wrap{
   background:#fff;
   border:1px solid var(--border);
@@ -491,6 +519,7 @@ border-radius:14px;
   border-color:transparent;
   opacity:1;
 }
+
 
 
 
