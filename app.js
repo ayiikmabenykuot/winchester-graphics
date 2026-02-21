@@ -3,8 +3,20 @@ const WHATSAPP_NUMBER = "254793669941";
 const formatKsh = (n) => `Kshs. ${n.toLocaleString("en-KE")}`;
 
 const PRODUCTS = [
-  { id:"FJ001", name:"Football Jersey 001", category:"Football Jersey", color:"Green", price:1200, sizes:["M","L","XL"] },
-  { id:"FJ002", name:"Football Jersey 002", category:"Football Jersey", color:"White", price:1200, sizes:["M","L","XL"] },
+{ id:"FJ001", name:"Football Jersey 001", category:"Football Jersey", color:"Green", price:1200, sizes:["M","L","XL"],
+images:[
+"assets/fj001-green-1.jpeg",
+"assets/fj001-green-2.jpeg",
+"assets/fj001-green-3.jpeg"
+]
+},
+{ id:"FJ002", name:"Football Jersey 002", category:"Football Jersey", color:"White", price:1200, sizes:["M","L","XL"],
+images:[
+"assets/fj002-white-1.jpeg",
+"assets/fj002-white-2.jpeg",
+"assets/fj002-white-3.jpeg"
+]
+},
 
   { id:"BJ001", name:"Basketball Jersey 001", category:"Basketball Jersey", color:"White", price:1500, sizes:["L","XL","XXL"],
   images:[
@@ -14,7 +26,13 @@ const PRODUCTS = [
     ]
   },
  
-  { id:"BJ002", name:"Basketball Jersey 002", category:"Basketball Jersey", color:"Black", price:1500, sizes:["L","XL","XXL"] },
+  { id:"BJ002", name:"Basketball Jersey 002", category:"Basketball Jersey", color:"Black", price:1500, sizes:["L","XL","XXL"],
+  images:[
+    "assets/bj002-black-1.jpeg",
+    "assets/bj002-black-2.jpeg",
+    "assets/bj002-black-3.jpeg"
+  ]
+},
 
   { id:"TS001", name:"T-Shirt 001", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"] },
   { id:"TS002", name:"T-Shirt 002", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"] },
@@ -336,6 +354,7 @@ populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
