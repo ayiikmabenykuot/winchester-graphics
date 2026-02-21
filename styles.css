@@ -163,6 +163,25 @@ filter: brightness(1.02);
 transform: translateY(0px) scale(.98);
 }
 
+.hero-cta .btn{
+animation: btnFloat 3.2s ease-in-out infinite;
+will-change: transform;
+}
+
+.hero-cta .btn:nth-child(2){
+animation-delay: .25s;
+}
+
+@keyframes btnFloat{
+0%,100%{ transform: translateY(0); }
+50%{ transform: translateY(-3px); }
+}
+
+.hero-cta .btn:active{
+transform: translateY(0) scale(.98);
+animation-play-state: paused;
+}
+
 .hero-banner{
 position:relative;
 width:100%;
@@ -474,6 +493,7 @@ border-radius:14px;
   border-color:transparent;
   opacity:1;
 }
+
 
 
 
