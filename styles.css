@@ -211,6 +211,18 @@ border-color:transparent;
 }
 .hero-card-row:first-of-type{border-top:none}
 
+.info-strip{
+margin-top:12px;
+}
+.info-strip-inner{
+background:var(--card);
+border:1px solid var(--border);
+border-radius: var(--radius);
+box-shadow: var(--shadow);
+padding:12px 14px;
+color:var(--muted);
+line-height:1.5;
+}
 .filters{
   margin-top:10px;
   background:var(--card);
@@ -435,6 +447,7 @@ border-radius:14px;
   border-color:transparent;
   opacity:1;
 }
+
 
 
 
