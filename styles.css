@@ -150,6 +150,19 @@ transition: opacity .6s ease;
 padding:20px 0 6px;
 }
 
+.btn{
+transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+
+.btn:hover{
+transform: translateY(-2px);
+filter: brightness(1.02);
+}
+
+.btn:active{
+transform: translateY(0px) scale(.98);
+}
+
 .hero-banner{
 position:relative;
 width:100%;
@@ -461,6 +474,7 @@ border-radius:14px;
   border-color:transparent;
   opacity:1;
 }
+
 
 
 
