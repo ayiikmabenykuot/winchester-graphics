@@ -184,7 +184,8 @@ body{
   flex-direction:column;
 }
 .thumb{
-height:150px;
+aspect-ratio: 3 / 4;
+height:auto;
 background:
 radial-gradient(120px 120px at 30% 30%, rgba(31,75,214,.22), transparent 60%),
 radial-gradient(120px 120px at 70% 40%, rgba(198,40,40,.18), transparent 60%),
@@ -365,6 +366,7 @@ border-radius:14px;
   border-color:transparent;
   opacity:1;
 }
+
 
 
 
