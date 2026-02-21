@@ -88,7 +88,6 @@ display:block;
 .brand{display:flex; align-items:center; gap:12px}
 .brand-mark{
   width:44px; height:44px; border-radius:12px;
-  background:linear-gradient(135deg, var(--blue), var(--red));
   color:#fff; display:flex; align-items:center; justify-content:center;
   font-weight:800; letter-spacing:.5px;
 }
@@ -492,6 +491,7 @@ border-radius:14px;
   border-color:transparent;
   opacity:1;
 }
+
 
 
 
