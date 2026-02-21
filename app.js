@@ -119,8 +119,13 @@ const makeWaLink = (text) => {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`;
 };
 
+if (els.whatsappHeaderBtn){
 els.whatsappHeaderBtn.href = makeWaLink("Hi Winchester Graphics, I’d like to place an order.");
+}
+
+if (els.whatsappOrderBtn){
 els.whatsappOrderBtn.href = makeWaLink("Hi Winchester Graphics, I’d like to ask about your products.");
+}
 
 const CART_KEY = "wg_cart_v1";
 
@@ -416,6 +421,7 @@ populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
