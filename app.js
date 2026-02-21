@@ -368,9 +368,14 @@ let heroIndex = 0;
 const heroImgEl = document.getElementById("heroSlideImg");
 
 if (heroImgEl){
+heroImgEl.classList.add("fade-swap");
 setInterval(() => {
+heroImgEl.style.opacity = "0";
+setTimeout(() => {
 heroIndex = (heroIndex + 1) % heroSlides.length;
 heroImgEl.src = heroSlides[heroIndex];
+heroImgEl.style.opacity = "1";
+}, 350);
 }, 5000);
 }
 
@@ -378,6 +383,7 @@ populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
