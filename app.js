@@ -350,10 +350,27 @@ els.checkoutBtn.addEventListener("click", () => {
   els.search.addEventListener(evt, renderProducts);
 });
 
+const heroSlides = [
+"assets/hero-1.jpeg",
+"assets/hero-2.jpeg",
+"assets/hero-3.jpeg"
+];
+
+let heroIndex = 0;
+const heroImgEl = document.getElementById("heroSlideImg");
+
+if (heroImgEl){
+setInterval(() => {
+heroIndex = (heroIndex + 1) % heroSlides.length;
+heroImgEl.src = heroSlides[heroIndex];
+}, 5000);
+}
+
 populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
