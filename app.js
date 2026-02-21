@@ -47,6 +47,15 @@ const els = {
   whatsappHeaderBtn: document.getElementById("whatsappHeaderBtn"),
   whatsappOrderBtn: document.getElementById("whatsappOrderBtn"),
   scrollBtn: document.getElementById("scrollToProductsBtn"),
+
+  viewerModal: document.getElementById("viewerModal"),
+viewerImg: document.getElementById("viewerImg"),
+viewerTitle: document.getElementById("viewerTitle"),
+viewerSubtitle: document.getElementById("viewerSubtitle"),
+closeViewerBtn: document.getElementById("closeViewerBtn"),
+viewerPrev: document.getElementById("viewerPrev"),
+viewerNext: document.getElementById("viewerNext"),
+viewerDots: document.getElementById("viewerDots"),
 };
 
 els.year.textContent = new Date().getFullYear();
@@ -100,6 +109,52 @@ const updateCartUi = () => {
   els.cartTotal.textContent = formatKsh(cartTotal());
 };
 
+let viewer = { images: [], index: 0, title: "" };
+
+const openViewer = (product) => {
+const imgs = (product.images && product.images.length) ? product.images : [];
+if (!imgs.length) return;
+
+viewer = { images: imgs, index: 0, title: product.name };
+
+els.viewerTitle.textContent = product.name;
+els.viewerSubtitle.textContent = `${product.category} • ${product.color}`;
+els.viewerModal.setAttribute("aria-hidden", "false");
+renderViewer();
+};
+
+const closeViewer = () => els.viewerModal.setAttribute("aria-hidden", "true");
+
+const renderViewer = () => {
+const src = viewer.images[viewer.index];
+els.viewerImg.src = src;
+els.viewerImg.alt = viewer.title;
+
+els.viewerDots.innerHTML = viewer.images.map((_, i) =>
+`<button class="viewer-dot ${i===viewer.index ? "active":""}" data-dot="${i}" type="button"></button>`
+).join("");
+
+els.viewerDots.querySelectorAll("[data-dot]").forEach(b => {
+b.addEventListener("click", () => {
+viewer.index = Number(b.dataset.dot);
+renderViewer();
+});
+});
+};
+
+els.closeViewerBtn.addEventListener("click", closeViewer);
+els.viewerModal.addEventListener("click", (e) => {
+if (e.target?.dataset?.viewerClose === "true") closeViewer();
+});
+els.viewerPrev.addEventListener("click", () => {
+viewer.index = (viewer.index - 1 + viewer.images.length) % viewer.images.length;
+renderViewer();
+});
+els.viewerNext.addEventListener("click", () => {
+viewer.index = (viewer.index + 1) % viewer.images.length;
+renderViewer();
+});
+
 const unique = (arr) => Array.from(new Set(arr));
 
 const populateFilterOptions = () => {
@@ -139,7 +194,7 @@ const thumbHtml = (p.images && p.images.length)
 : `<span>${p.category}</span>`;
 
 return `
-<article class="card">
+<article class="card" data-view="${p.id}" role="button" tabindex="0">
 <div class="thumb">${thumbHtml}</div>
 <div class="card-body">
 <div class="title">${p.name}</div>
@@ -158,6 +213,16 @@ ${sizeOptions}
 `;
 }).join("");
 
+  els.grid.querySelectorAll("[data-view]").forEach(card => {
+const id = card.getAttribute("data-view");
+const p = PRODUCTS.find(x => x.id === id);
+card.addEventListener("click", (e) => {
+if (e.target.closest("[data-add]")) return;
+if (e.target.closest("select")) return;
+openViewer(p);
+});
+});
+  
   els.grid.querySelectorAll("[data-add]").forEach(btn => {
     btn.addEventListener("click", () => {
       const id = btn.getAttribute("data-add");
@@ -271,6 +336,7 @@ populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
