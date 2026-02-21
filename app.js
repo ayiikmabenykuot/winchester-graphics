@@ -142,6 +142,11 @@ const openCart = () => {
 };
 const closeCart = () => els.cartModal.setAttribute("aria-hidden","true");
 
+const waFloat = document.getElementById("waFloat");
+if (waFloat){
+waFloat.href = makeWaLink("Hi Winchester Graphics, I’d like to place an order.");
+}
+
 els.openCartBtn.addEventListener("click", openCart);
 els.closeCartBtn.addEventListener("click", closeCart);
 els.cartModal.addEventListener("click", (e) => {
@@ -411,6 +416,7 @@ populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
