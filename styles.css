@@ -133,7 +133,7 @@ display:block;
 }
 
 .hero-banner img{
-animation: heroKenBurns 10s ease-in-out infinite;
+animation: heroKenBurns 15s ease-in-out infinite;
 transform-origin:center;
 }
 
@@ -143,7 +143,7 @@ transform-origin:center;
 }
 
 .fade-swap{
-transition: opacity .6s ease;
+transition: opacity .5s ease;
 }
 
 .hero{
@@ -493,6 +493,7 @@ border-radius:14px;
   border-color:transparent;
   opacity:1;
 }
+
 
 
 
