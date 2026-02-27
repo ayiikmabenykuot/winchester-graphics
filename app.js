@@ -421,31 +421,139 @@ els.checkoutBtn.addEventListener("click", () => {
   els.search.addEventListener(evt, renderProducts);
 });
 
-const heroSlides = [
-"assets/hero-1.jpeg",
-"assets/hero-2.jpeg",
-"assets/hero-3.jpeg"
-];
-
 let heroIndex = 0;
-const heroImgEl = document.getElementById("heroSlideImg");
+const track = document.getElementById("heroTrack");
 
-if (heroImgEl){
-heroImgEl.classList.add("fade-swap");
-setInterval(() => {
-heroImgEl.style.opacity = "0";
-setTimeout(() => {
-heroIndex = (heroIndex + 1) % heroSlides.length;
-heroImgEl.src = heroSlides[heroIndex];
-heroImgEl.style.opacity = "1";
-}, 350);
-}, 5000);
+const updateHero = () => {
+if (!track) return;
+const slides = track.querySelectorAll(".hero-slide");
+if (!slides.length) return;
+
+const slideWidth = slides[0].getBoundingClientRect().width;
+const gap = 14;
+const offset = (slideWidth + gap) * heroIndex;
+
+track.style.transform = `translateX(-${offset}px)`;
+};
+
+const nextHero = () => {
+if (!track) return;
+const slides = track.querySelectorAll(".hero-slide");
+heroIndex = (heroIndex + 1) % slides.length;
+updateHero();
+};
+
+window.addEventListener("resize", updateHero);
+setTimeout(updateHero, 100);
+setInterval(nextHero, 6000);
+
+let startX = 0;
+let currentX = 0;
+let isDown = false;
+
+const getX = (e) => (e.touches ? e.touches[0].clientX : e.clientX);
+
+const prevHero = () => {
+if (!track) return;
+const slides = track.querySelectorAll(".hero-slide");
+heroIndex = (heroIndex - 1 + slides.length) % slides.length;
+updateHero();
+};
+
+const onDown = (e) => {
+if (!track) return;
+isDown = true;
+startX = getX(e);
+currentX = startX;
+track.style.transition = "none";
+};
+
+const onMove = (e) => {
+if (!isDown || !track) return;
+currentX = getX(e);
+const dx = currentX - startX;
+const slides = track.querySelectorAll(".hero-slide");
+const slideWidth = slides[0].getBoundingClientRect().width;
+const gap = 14;
+const offset = (slideWidth + gap) * heroIndex;
+
+track.style.transform = `translateX(${dx - offset}px)`;
+};
+
+const onUp = () => {
+if (!isDown || !track) return;
+isDown = false;
+track.style.transition = "transform .55s ease";
+
+const dx = currentX - startX;
+const threshold = 50;
+
+if (dx > threshold) prevHero();
+else if (dx < -threshold) nextHero();
+else updateHero();
+};
+
+let startX = 0;
+let currentX = 0;
+let isDown = false;
+
+const getX = (e) => (e.touches ? e.touches[0].clientX : e.clientX);
+
+const prevHero = () => {
+if (!track) return;
+const slides = track.querySelectorAll(".hero-slide");
+heroIndex = (heroIndex - 1 + slides.length) % slides.length;
+updateHero();
+};
+
+const onDown = (e) => {
+if (!track) return;
+isDown = true;
+startX = getX(e);
+currentX = startX;
+track.style.transition = "none";
+};
+
+const onMove = (e) => {
+if (!isDown || !track) return;
+currentX = getX(e);
+const dx = currentX - startX;
+const slides = track.querySelectorAll(".hero-slide");
+const slideWidth = slides[0].getBoundingClientRect().width;
+const gap = 14;
+const offset = (slideWidth + gap) * heroIndex;
+
+track.style.transform = `translateX(${dx - offset}px)`;
+};
+
+const onUp = () => {
+if (!isDown || !track) return;
+isDown = false;
+track.style.transition = "transform .55s ease";
+
+const dx = currentX - startX;
+const threshold = 50;
+
+if (dx > threshold) prevHero();
+else if (dx < -threshold) nextHero();
+else updateHero();
+};
+
+if (track){
+track.addEventListener("touchstart", onDown, {passive:true});
+track.addEventListener("touchmove", onMove, {passive:true});
+track.addEventListener("touchend", onUp);
+
+track.addEventListener("mousedown", onDown);
+window.addEventListener("mousemove", onMove);
+window.addEventListener("mouseup", onUp);
 }
 
 populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
