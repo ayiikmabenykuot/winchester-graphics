@@ -268,7 +268,7 @@ box-shadow:0 0 0 4px rgba(31,75,214,.12);
 @media (min-width: 900px){
 .hero-row{
 display:grid;
-grid-template-columns: 1fr 340px;
+grid-template-columns: 1fr 380px;
 gap:16px;
 align-items:stretch;
 }
@@ -302,7 +302,7 @@ aspect-ratio: 21 / 9;
 }
 
 @media (min-width: 900px){
-.hero-slide{ flex-basis: 78%; }
+.hero-slide{ aspect-ratio: 20 / 9; }
 }
 
 .hero-slide img{
@@ -314,7 +314,7 @@ display:block;
 
 .hero-sidecard{
 height:100%;
-min-height:240px;
+min-height:360px;
 background:var(--card);
 border:1px solid var(--border);
 border-radius:18px;
@@ -713,6 +713,7 @@ display:block;
 border-color: #fff;
 opacity:1;
 }
+
 
 
 
