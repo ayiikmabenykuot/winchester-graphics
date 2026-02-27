@@ -51,18 +51,18 @@ images:[
     "assets/ts001-white-2.jpeg"
   ]
   },
-  { id:"TS004", name:"Twic East Girls Association T-shirt", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"],
+  { id:"TS004", name:"T-Shirt 004", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"],
     images:[
     "assets/ts002-white-1.jpeg"
   ]
   },
-  { id:"TS005", name:"Get The Bag T-shirt", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"],
+  { id:"TS005", name:"Twic East Girls Association T-shirt", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"],
     images:[
     "assets/ts004-white-1.jpeg",
     "assets/ts004-white-2.jpeg"
   ]
   },
-  { id:"TS006", name:"T-Shirt 006", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"],
+  { id:"TS006", name:"Get The Bag T-shirt", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"],
     images:[
     "assets/ts003-white-1.jpeg",
     "assets/ts003-white-2.jpeg"
@@ -421,6 +421,7 @@ populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
