@@ -731,6 +731,28 @@ gap: 18px !important;
 }
 }
 
+  @media (max-width: 640px){
+.hero-carousel .hero-track{
+padding:14px !important;
+gap:12px !important;
+}
+.hero-carousel .hero-slide{
+flex: 0 0 88% !important;
+aspect-ratio: 21 / 9 !important;
+}
+}
+
+@media (min-width: 900px){
+.hero-carousel .hero-track{
+padding:20px !important;
+gap:18px !important;
+}
+.hero-carousel .hero-slide{
+flex: 0 0 92% !important;
+aspect-ratio: 16 / 9 !important;
+}
+}
+
 
 
 
