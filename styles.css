@@ -185,6 +185,33 @@ justify-content:center;
 border:2px solid #fff;
 }
 
+@media (max-width: 640px){
+.site-header{
+flex-wrap:wrap;
+align-items:center;
+}
+
+.brand{
+flex:1;
+}
+
+.header-actions{
+flex:0;
+margin-left:auto;
+}
+
+.header-search{
+order:3;
+flex:0 0 100%;
+max-width:none;
+margin:10px 0 0;
+}
+
+.header-search input{
+width:100%;
+}
+}
+
 .header-search{
 flex:1;
 max-width:560px;
@@ -691,6 +718,7 @@ display:block;
 border-color: #fff;
 opacity:1;
 }
+
 
 
 
