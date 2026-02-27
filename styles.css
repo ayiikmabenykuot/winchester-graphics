@@ -501,6 +501,17 @@ color:rgba(14,23,38,.55);
   .grid{grid-template-columns: 1fr}
 }
 
+@media (min-width: 900px){
+.viewer-body{
+height:auto;
+padding:16px;
+}
+.viewer-img{
+width:min(520px, 92vw);
+height: calc(min(520px, 92vw) * 4 / 3);
+border-radius:14px;
+}
+}
 
 .viewer-panel{
 position:fixed;
@@ -565,6 +576,7 @@ display:block;
 border-color: #fff;
 opacity:1;
 }
+
 
 
 
