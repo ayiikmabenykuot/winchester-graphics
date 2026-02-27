@@ -470,21 +470,32 @@ window.addEventListener("resize", updateHero);
 setTimeout(updateHero, 100);
 setInterval(nextHero, 6000);
 
+(() => {
+if (!carousel || !track) return;
+
 let startX = 0;
 let currentX = 0;
 let isDown = false;
 
 const getX = (e) => (e.touches ? e.touches[0].clientX : e.clientX);
 
+const slidesCount = () => track.querySelectorAll(".hero-slide").length;
+
 const prevHero = () => {
-if (!track) return;
-const slides = track.querySelectorAll(".hero-slide");
-heroIndex = (heroIndex - 1 + slides.length) % slides.length;
+const n = slidesCount();
+if (!n) return;
+heroIndex = (heroIndex - 1 + n) % n;
+updateHero();
+};
+
+const nextHeroSafe = () => {
+const n = slidesCount();
+if (!n) return;
+heroIndex = (heroIndex + 1) % n;
 updateHero();
 };
 
 const onDown = (e) => {
-if (!track) return;
 isDown = true;
 startX = getX(e);
 currentX = startX;
@@ -492,45 +503,55 @@ track.style.transition = "none";
 };
 
 const onMove = (e) => {
-if (!isDown || !track) return;
+if (!isDown) return;
 currentX = getX(e);
 const dx = currentX - startX;
-const slides = track.querySelectorAll(".hero-slide");
-const slideWidth = slides[0].getBoundingClientRect().width;
-const gap = 14;
-const offset = (slideWidth + gap) * heroIndex;
 
-track.style.transform = `translateX(${dx - offset}px)`;
+const slides = track.querySelectorAll(".hero-slide");
+if (!slides.length) return;
+
+const slideWidth = slides[0].getBoundingClientRect().width;
+
+const styles = getComputedStyle(track);
+const gap = parseFloat(styles.columnGap || styles.gap || "0") || 0;
+const padL = parseFloat(styles.paddingLeft || "0") || 0;
+
+const viewport = track.parentElement.getBoundingClientRect().width;
+const centerOffset = (viewport - slideWidth) / 2;
+const offsetToSlideStart = padL + heroIndex * (slideWidth + gap);
+
+track.style.transform = `translateX(${centerOffset - offsetToSlideStart + dx}px)`;
 };
 
 const onUp = () => {
-if (!isDown || !track) return;
+if (!isDown) return;
 isDown = false;
 track.style.transition = "transform .55s ease";
 
 const dx = currentX - startX;
-const threshold = 50;
+const threshold = 45;
 
 if (dx > threshold) prevHero();
-else if (dx < -threshold) nextHero();
+else if (dx < -threshold) nextHeroSafe();
 else updateHero();
 };
 
-if (track){
-track.addEventListener("touchstart", onDown, {passive:true});
-track.addEventListener("touchmove", onMove, {passive:true});
-track.addEventListener("touchend", onUp);
+carousel.addEventListener("touchstart", onDown, {passive:true});
+carousel.addEventListener("touchmove", onMove, {passive:true});
+carousel.addEventListener("touchend", onUp);
 
-track.addEventListener("mousedown", onDown);
+carousel.addEventListener("mousedown", onDown);
 window.addEventListener("mousemove", onMove);
 window.addEventListener("mouseup", onUp);
-}
+})();
 
+.hero-carousel{ touch-action: pan-y; }
 
 populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
