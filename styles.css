@@ -241,24 +241,20 @@ box-shadow:0 0 0 4px rgba(31,75,214,.12);
 }
 
 .hero-logo-wrap{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  padding:14px;
-  margin-bottom:14px;
-  width:100%;
-  max-width:100%;
-  margin:0 auto 14px;
-  text-align:center;
+background:#fff;
+border:1px solid var(--border);
+border-radius:var(--radius);
+box-shadow:var(--shadow);
+padding:14px;
+margin:0 auto 14px;
+text-align:center;
 }
 .hero-logo{
-  width:auto;
-  max-width:100%;
-  max-height:140px;
-  margin:0 auto;
-  object-fit:auto;
-  display:block;
+width:auto;
+max-width:100%;
+max-height:140px;
+margin:0 auto;
+display:block;
 }
 
 .hero-row{ display:block; }
@@ -285,30 +281,27 @@ box-shadow: var(--shadow);
 background:#fff;
 }
 
-@media (min-width: 900px){
-.hero-carousel{
-border-radius:22px;
-}
-
 .hero-track{
 display:flex;
-gap:16px;
-padding:18px;
+gap:12px;
+padding:14px;
 transition: transform .55s ease;
 will-change: transform;
+touch-action: pan-y;
 }
 
 .hero-slide{
-flex:0 0 82%;
-flex-basis: 86%;
+flex:0 0 88%;
 border-radius:18px;
 overflow:hidden;
 background:#0e1726;
-aspect-ratio: 18 / 9;
+aspect-ratio: 21 / 9;
 }
 
 @media (min-width: 900px){
-.hero-slide{ aspect-ratio: 20 / 9; }
+.hero-carousel{ border-radius:22px; }
+.hero-track{ gap:16px; padding:18px; }
+.hero-slide{ flex-basis:86%; aspect-ratio: 18 / 9; }
 }
 
 .hero-slide img{
@@ -327,8 +320,6 @@ border-radius:18px;
 box-shadow: var(--shadow);
 padding:16px;
 }
-
-.hero-track{ touch-action: pan-y; }
 
 .brand-logo{
 width:106px;
@@ -791,6 +782,7 @@ flex: 0 0 88% !important;
 aspect-ratio: 21 / 9 !important;
 }
 }
+
 
 
 
