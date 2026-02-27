@@ -116,8 +116,8 @@ border:2px solid #fff;
 }
 .hero-logo{
   width:auto;
-  max-width:80%;
-  max-height:120px;
+  max-width:100%;
+  max-height:140px;
   margin:0 auto;
   object-fit:auto;
   display:block;
@@ -140,8 +140,8 @@ display:block;
 }
 
 .brand-logo{
-width:126px;
-height:86px;
+width:106px;
+height:66px;
 }
 .brand-logo img{
 width:100%;
@@ -565,6 +565,7 @@ display:block;
 border-color: #fff;
 opacity:1;
 }
+
 
 
 
