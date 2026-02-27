@@ -320,6 +320,8 @@ box-shadow: var(--shadow);
 padding:16px;
 }
 
+.hero-carousel{ touch-action: pan-y; }
+
 .brand-logo{
 width:106px;
 height:66px;
@@ -781,6 +783,7 @@ flex: 0 0 88% !important;
 aspect-ratio: 21 / 9 !important;
 }
 }
+
 
 
 
