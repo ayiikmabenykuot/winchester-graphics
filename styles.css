@@ -720,6 +720,18 @@ border-color: #fff;
 opacity:1;
 }
 
+@media (min-width: 900px){
+.hero-carousel .hero-slide{
+flex: 0 0 92% !important;
+aspect-ratio: 16 / 9 !important;
+}
+.hero-carousel .hero-track{
+padding: 20px !important;
+gap: 18px !important;
+}
+}
+
+
 
 
 
