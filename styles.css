@@ -187,29 +187,25 @@ border:2px solid #fff;
 
 @media (max-width: 640px){
 .site-header{
-flex-wrap:wrap;
+display:grid;
+grid-template-columns: 1fr auto;
+grid-template-areas:
+"brand actions"
+"search search";
+gap:10px;
 align-items:center;
 }
 
-.brand{
-flex:1;
-}
-
-.header-actions{
-flex:0;
-margin-left:auto;
-}
-
+.brand{ grid-area: brand; }
+.header-actions{ grid-area: actions; }
 .header-search{
-order:3;
-flex:0 0 100%;
+grid-area: search;
 max-width:none;
-margin:10px 0 0;
-}
-
-.header-search input{
+margin:0;
 width:100%;
 }
+
+.header-search input{ width:100%; }
 }
 
 .header-search{
@@ -718,6 +714,7 @@ display:block;
 border-color: #fff;
 opacity:1;
 }
+
 
 
 
