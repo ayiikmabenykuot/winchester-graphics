@@ -30,6 +30,7 @@ body{
   border-bottom:1px solid var(--border);
   display:flex; align-items:center; justify-content:space-between;
   padding:14px 18px;
+  gap:12px;
 }
 
 .wa-ico{
@@ -182,6 +183,23 @@ display:flex;
 align-items:center;
 justify-content:center;
 border:2px solid #fff;
+}
+
+.header-search{
+flex:1;
+max-width:520px;
+margin:0 12px;
+}
+.header-search input{
+width:100%;
+padding:10px 12px;
+border-radius:12px;
+border:1px solid var(--border);
+outline:none;
+}
+.header-search input:focus{
+border-color:rgba(31,75,214,.45);
+box-shadow:0 0 0 4px rgba(31,75,214,.12);
 }
 
 .hero-logo-wrap{
@@ -658,6 +676,7 @@ display:block;
 border-color: #fff;
 opacity:1;
 }
+
 
 
 
