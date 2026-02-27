@@ -424,6 +424,8 @@ els.checkoutBtn.addEventListener("click", () => {
 let heroIndex = 0;
 const track = document.getElementById("heroTrack");
 
+console.log("heroTrack found?", !!track);
+
 const updateHero = () => {
 if (!track) return;
 const slides = track.querySelectorAll(".hero-slide");
@@ -553,6 +555,7 @@ populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
