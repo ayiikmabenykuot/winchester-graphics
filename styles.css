@@ -285,6 +285,12 @@ padding:16px;
 }
 }
 
+.hero-right{ display:none; }
+
+@media (min-width: 900px){
+.hero-right{ display:block; }
+}
+
 .hero-carousel{
 position:relative;
 width:100%;
@@ -730,6 +736,7 @@ display:block;
 border-color: #fff;
 opacity:1;
 }
+
 
 
 
