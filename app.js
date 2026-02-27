@@ -433,9 +433,12 @@ if (!slides.length) return;
 
 const slideWidth = slides[0].getBoundingClientRect().width;
 const gap = 14;
-const offset = (slideWidth + gap) * heroIndex;
+const viewport = track.parentElement.getBoundingClientRect().width;
 
-track.style.transform = `translateX(-${offset}px)`;
+const offsetToSlideStart = (slideWidth + gap) * heroIndex;
+const centerOffset = (viewport - slideWidth) / 2;
+
+track.style.transform = `translateX(${centerOffset - offsetToSlideStart}px)`;
 };
 
 const nextHero = () => {
@@ -510,6 +513,7 @@ populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
