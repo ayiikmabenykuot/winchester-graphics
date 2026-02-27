@@ -290,12 +290,16 @@ transition: transform .55s ease;
 }
 
 .hero-slide{
-flex:0 0 88%;
+flex:0 0 72%;
 border-radius:18px;
 overflow:hidden;
 background:#0e1726;
-aspect-ratio: 16 / 9;
+aspect-ratio: 21 / 9;
 box-shadow: 0 10px 22px rgba(0,0,0,.18);
+}
+
+@media (min-width: 900px){
+.hero-slide{ flex-basis: 62%; aspect-ratio: 24 / 9; }
 }
 
 .hero-slide img{
@@ -702,6 +706,7 @@ display:block;
 border-color: #fff;
 opacity:1;
 }
+
 
 
 
