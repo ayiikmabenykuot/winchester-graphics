@@ -164,10 +164,6 @@ els.clearCartBtn.addEventListener("click", () => {
   updateCartUi();
 });
 
-els.scrollBtn.addEventListener("click", () => {
-  document.getElementById("products").scrollIntoView({behavior:"smooth"});
-});
-
 const updateCartUi = () => {
   els.cartCount.textContent = cartCount();
   els.cartTotal.textContent = formatKsh(cartTotal());
@@ -445,6 +441,7 @@ populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
