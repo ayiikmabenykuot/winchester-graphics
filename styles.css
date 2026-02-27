@@ -432,10 +432,8 @@ border-color:transparent;
 }
 
 .hero{
-  display:grid;
-  grid-template-columns: 1.3fr .7fr;
-  gap:18px;
-  padding:20px 0 6px;
+display:block;
+grid-template-columns: unset;
 }
 .hero h1{margin:0 0 8px; font-size:34px; letter-spacing:-.5px}
 .hero p{margin:0 0 14px; color:var(--muted); line-height:1.5}
@@ -716,6 +714,7 @@ display:block;
 border-color: #fff;
 opacity:1;
 }
+
 
 
 
