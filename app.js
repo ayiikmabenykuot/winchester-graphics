@@ -3,14 +3,14 @@ const WHATSAPP_NUMBER = "254793669941";
 const formatKsh = (n) => `Kshs. ${n.toLocaleString("en-KE")}`;
 
 const PRODUCTS = [
-{ id:"FJ001", name:"Football Jersey 001", category:"Football Jersey", color:"Green", price:1200, sizes:["M","L","XL"],
+{ id:"FJ001", name:"South Sudan Away Kit", category:"Football Jersey", color:"Green", price:1200, sizes:["M","L","XL"],
 images:[
 "assets/fj001-green-1.jpeg",
 "assets/fj001-green-2.jpeg",
 "assets/fj001-green-3.jpeg"
 ]
 },
-{ id:"FJ002", name:"Football Jersey 002", category:"Football Jersey", color:"White", price:1200, sizes:["M","L","XL"],
+{ id:"FJ002", name:"South Sudan Home Kit", category:"Football Jersey", color:"White", price:1200, sizes:["M","L","XL"],
 images:[
 "assets/fj002-white-1.jpeg",
 "assets/fj002-white-2.jpeg",
@@ -18,7 +18,7 @@ images:[
 ]
 },
 
-  { id:"BJ001", name:"Basketball Jersey 001", category:"Basketball Jersey", color:"White", price:1500, sizes:["L","XL","XXL"],
+  { id:"BJ001", name:"South Sudan Home Kit: FIBA World Cup 2023", category:"Basketball Jersey", color:"White", price:1500, sizes:["L","XL","XXL"],
   images:[
     "assets/bj001-1.jpeg",
     "assets/bj001-2.jpeg",
@@ -26,7 +26,7 @@ images:[
     ]
   },
  
-  { id:"BJ002", name:"Basketball Jersey 002", category:"Basketball Jersey", color:"Black", price:1500, sizes:["L","XL","XXL"],
+  { id:"BJ002", name:"South Sudan Away Kit: FIBA World Cup 2023", category:"Basketball Jersey", color:"Black", price:1500, sizes:["L","XL","XXL"],
   images:[
     "assets/bj002-black-1.jpeg",
     "assets/bj002-black-2.jpeg",
@@ -51,12 +51,12 @@ images:[
     "assets/ts001-white-2.jpeg"
   ]
   },
-  { id:"TS004", name:"T-Shirt 004", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"],
+  { id:"TS004", name:"Twic East Girls Association T-shirt", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"],
     images:[
     "assets/ts002-white-1.jpeg"
   ]
   },
-  { id:"TS005", name:"T-Shirt 005", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"],
+  { id:"TS005", name:"Get The Bag T-shirt", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"],
     images:[
     "assets/ts004-white-1.jpeg",
     "assets/ts004-white-2.jpeg"
@@ -421,6 +421,7 @@ populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
