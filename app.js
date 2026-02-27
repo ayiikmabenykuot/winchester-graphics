@@ -545,12 +545,11 @@ window.addEventListener("mousemove", onMove);
 window.addEventListener("mouseup", onUp);
 })();
 
-.hero-carousel{ touch-action: pan-y; }
-
 populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
