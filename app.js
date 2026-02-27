@@ -422,6 +422,7 @@ els.checkoutBtn.addEventListener("click", () => {
 });
 
 let heroIndex = 0;
+const carousel = document.getElementById("heroCarousel");
 const track = document.getElementById("heroTrack");
 
 console.log("heroTrack found?", !!track);
@@ -549,6 +550,7 @@ populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
