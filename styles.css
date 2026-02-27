@@ -743,6 +743,55 @@ aspect-ratio: 21 / 9 !important;
 }
 
 
+  @media (max-width: 899px){
+.site-header{
+display:grid !important;
+grid-template-columns: 1fr auto !important;
+grid-template-areas:
+"brand actions"
+"search search" !important;
+gap:10px !important;
+align-items:center !important;
+}
+
+.brand{ grid-area: brand !important; }
+.header-actions{ grid-area: actions !important; }
+.header-search{
+grid-area: search !important;
+width:100% !important;
+max-width:none !important;
+margin:0 !important;
+}
+
+.brand-logo{
+width:58px !important;
+height:42px !important;
+}
+
+.hero-row{
+display:block !important;
+}
+.hero-right{
+display:none !important;
+}
+
+.hero-carousel{
+width:100% !important;
+margin:0 !important;
+border-radius:18px !important;
+}
+
+.hero-carousel .hero-track{
+padding:14px !important;
+gap:12px !important;
+}
+
+.hero-carousel .hero-slide{
+flex: 0 0 88% !important;
+aspect-ratio: 21 / 9 !important;
+}
+}
+
 
 
 
