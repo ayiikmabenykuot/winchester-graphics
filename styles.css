@@ -261,20 +261,43 @@ box-shadow:0 0 0 4px rgba(31,75,214,.12);
   display:block;
 }
 
-.hero-slideshow{
-background:var(--card);
-border:1px solid var(--border);
+.hero-carousel{
+position:relative;
+width:100%;
 border-radius: var(--radius);
-box-shadow: var(--shadow);
 overflow:hidden;
-aspect-ratio: 4 / 3;
+border:1px solid var(--border);
+box-shadow: var(--shadow);
+background:transparent;
+padding:0;
 }
 
-.hero-slideshow img{
+.hero-track{
+display:flex;
+gap:14px;
+padding:14px;
+transform: translateX(0);
+transition: transform .55s ease;
+}
+
+.hero-slide{
+flex:0 0 88%;
+border-radius:18px;
+overflow:hidden;
+background:#0e1726;
+aspect-ratio: 16 / 9;
+box-shadow: 0 10px 22px rgba(0,0,0,.18);
+}
+
+.hero-slide img{
 width:100%;
 height:100%;
 object-fit:cover;
 display:block;
+}
+
+@media (min-width: 900px){
+.hero-slide{ flex-basis: 70%; }
 }
 
 .brand-logo{
@@ -330,54 +353,8 @@ display:block;
 }
 .btn-full{width:100%}
 
-.hero-banner img{
-animation: heroKenBurns 15s ease-in-out infinite;
-transform-origin:center;
-}
-
-@keyframes heroKenBurns{
-0%{ transform:scale(1); }
-100%{ transform:scale(1.08); }
-}
-
-.fade-swap{
-transition: opacity .5s ease;
-}
-
 .hero{
 padding:20px 0 6px;
-}
-
-.btn{
-transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
-}
-
-.btn:hover{
-transform: translateY(-2px);
-filter: brightness(1.02);
-}
-
-.btn:active{
-transform: translateY(0px) scale(.98);
-}
-
-.hero-cta .btn{
-animation: btnFloat 1.6s ease-in-out infinite;
-will-change: transform;
-}
-
-.hero-cta .btn:nth-child(2){
-animation-delay: .25s;
-}
-
-@keyframes btnFloat{
-0%,100%{ transform: translateY(0); }
-50%{ transform: translateY(-3px); }
-}
-
-.hero-cta .btn:active{
-transform: translateY(0) scale(.98);
-animation-play-state: paused;
 }
 
 .hero-banner{
@@ -714,6 +691,7 @@ display:block;
 border-color: #fff;
 opacity:1;
 }
+
 
 
 
