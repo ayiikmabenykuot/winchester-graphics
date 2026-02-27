@@ -276,11 +276,11 @@ align-items:stretch;
 .hero-carousel{
 width:100%;
 margin:0;
+background:transparent;
+border:none;
+box-shadow:none;
 border-radius:0;
-overflow:hidden;
-border:1px solid var(--border);
-box-shadow: var(--shadow);
-background:#fff;
+overflow:visible;
 }
 
 .hero-track{
@@ -863,6 +863,7 @@ flex: 0 0 88% !important;
 aspect-ratio: 21 / 9 !important;
 }
 }
+
 
 
 
