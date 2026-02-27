@@ -435,10 +435,19 @@ const slideWidth = slides[0].getBoundingClientRect().width;
 const gap = 14;
 const viewport = track.parentElement.getBoundingClientRect().width;
 
+const trackWidth = slides.length * slideWidth + (slides.length - 1) * gap + 28; // + padding left+right (14+14)
+const maxLeft = 0; // first slide snaps to left
+const maxRight = viewport - trackWidth; // last slide snaps to right (negative)
+
 const offsetToSlideStart = (slideWidth + gap) * heroIndex;
 const centerOffset = (viewport - slideWidth) / 2;
 
-track.style.transform = `translateX(${centerOffset - offsetToSlideStart}px)`;
+let x = centerOffset - offsetToSlideStart;
+
+if (x > maxLeft) x = maxLeft;
+if (x < maxRight) x = maxRight;
+
+track.style.transform = `translateX(${x}px)`;
 };
 
 const nextHero = () => {
@@ -513,6 +522,7 @@ populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
