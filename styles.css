@@ -300,6 +300,8 @@ display:block;
 .hero-slide{ flex-basis: 70%; }
 }
 
+.hero-track{ touch-action: pan-y; }
+
 .brand-logo{
 width:106px;
 height:66px;
@@ -691,6 +693,7 @@ display:block;
 border-color: #fff;
 opacity:1;
 }
+
 
 
 
