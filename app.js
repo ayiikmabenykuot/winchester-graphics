@@ -127,6 +127,11 @@ if (els.whatsappOrderBtn){
 els.whatsappOrderBtn.href = makeWaLink("Hi Winchester Graphics, I’d like to ask about your products.");
 }
 
+const searchBtn = document.getElementById("searchBtn");
+if (searchBtn){
+searchBtn.addEventListener("click", () => renderProducts());
+}
+
 const CART_KEY = "wg_cart_v1";
 
 const loadCart = () => {
@@ -441,6 +446,7 @@ populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
