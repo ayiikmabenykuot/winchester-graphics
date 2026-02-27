@@ -285,20 +285,26 @@ box-shadow: var(--shadow);
 background:#fff;
 }
 
+@media (min-width: 900px){
+.hero-carousel{
+border-radius:22px;
+}
+
 .hero-track{
 display:flex;
-gap:14px;
-padding:14px;
+gap:16px;
+padding:18px;
 transition: transform .55s ease;
 will-change: transform;
 }
 
 .hero-slide{
 flex:0 0 82%;
+flex-basis: 86%;
 border-radius:18px;
 overflow:hidden;
 background:#0e1726;
-aspect-ratio: 21 / 9;
+aspect-ratio: 18 / 9;
 }
 
 @media (min-width: 900px){
@@ -713,6 +719,7 @@ display:block;
 border-color: #fff;
 opacity:1;
 }
+
 
 
 
