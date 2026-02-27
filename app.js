@@ -293,6 +293,36 @@ openViewer(p);
   });
 };
 
+const helpBtn = document.getElementById("helpBtn");
+const helpMenu = document.getElementById("helpMenu");
+const helpWaBtn = document.getElementById("helpWaBtn");
+
+const closeHelp = () => helpMenu?.setAttribute("aria-hidden","true");
+const toggleHelp = () => {
+if (!helpMenu) return;
+const isOpen = helpMenu.getAttribute("aria-hidden") === "false";
+helpMenu.setAttribute("aria-hidden", isOpen ? "true" : "false");
+};
+
+if (helpBtn) helpBtn.addEventListener("click", (e) => {
+e.stopPropagation();
+toggleHelp();
+});
+
+document.addEventListener("click", (e) => {
+if (!helpMenu) return;
+if (helpMenu.contains(e.target) || helpBtn?.contains(e.target)) return;
+closeHelp();
+});
+
+helpMenu?.querySelectorAll("[data-help-close]").forEach(a => {
+a.addEventListener("click", closeHelp);
+});
+
+if (helpWaBtn){
+helpWaBtn.href = makeWaLink("Hi Winchester Graphics, I need help placing an order.");
+}
+
 const addToCart = (product, size) => {
   const key = `${product.id}__${size}`;
   const existing = cart.find(i => i.key === key);
@@ -415,6 +445,7 @@ populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
