@@ -274,6 +274,13 @@ background:transparent;
 padding:0;
 }
 
+.hero-carousel{
+width:100vw;
+margin-left:calc(50% - 50vw);
+margin-right:calc(50% - 50vw);
+border-radius:0;
+}
+
 .hero-track{
 display:flex;
 gap:14px;
@@ -695,6 +702,7 @@ display:block;
 border-color: #fff;
 opacity:1;
 }
+
 
 
 
