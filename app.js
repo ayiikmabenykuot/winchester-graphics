@@ -432,20 +432,29 @@ const slides = track.querySelectorAll(".hero-slide");
 if (!slides.length) return;
 
 const slideWidth = slides[0].getBoundingClientRect().width;
-const gap = 14;
+
+const styles = getComputedStyle(track);
+const gap = parseFloat(styles.columnGap || styles.gap || "0") || 0;
+const padL = parseFloat(styles.paddingLeft || "0") || 0;
+const padR = parseFloat(styles.paddingRight || "0") || 0;
+
 const viewport = track.parentElement.getBoundingClientRect().width;
 
-const trackWidth = slides.length * slideWidth + (slides.length - 1) * gap + 28; // + padding left+right (14+14)
-const maxLeft = 0; // first slide snaps to left
-const maxRight = viewport - trackWidth; // last slide snaps to right (negative)
+const trackWidth =
+padL + padR +
+slides.length * slideWidth +
+(slides.length - 1) * gap;
 
-const offsetToSlideStart = (slideWidth + gap) * heroIndex;
+const minX = viewport - trackWidth; // last slide snaps right
+const maxX = 0; // first slide snaps left
+
+const offsetToSlideStart = padL + heroIndex * (slideWidth + gap);
 const centerOffset = (viewport - slideWidth) / 2;
 
 let x = centerOffset - offsetToSlideStart;
 
-if (x > maxLeft) x = maxLeft;
-if (x < maxRight) x = maxRight;
+if (x > maxX) x = maxX;
+if (x < minX) x = minX;
 
 track.style.transform = `translateX(${x}px)`;
 };
@@ -522,6 +531,7 @@ populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
