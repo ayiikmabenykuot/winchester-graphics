@@ -264,7 +264,9 @@ box-shadow:0 0 0 4px rgba(31,75,214,.12);
 .hero-carousel{
 position:relative;
 width:100%;
-border-radius: var(--radius);
+max-width:none;
+margin:0;
+border-radius:0;
 overflow:hidden;
 border:1px solid var(--border);
 box-shadow: var(--shadow);
@@ -693,6 +695,7 @@ display:block;
 border-color: #fff;
 opacity:1;
 }
+
 
 
 
