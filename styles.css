@@ -261,6 +261,30 @@ box-shadow:0 0 0 4px rgba(31,75,214,.12);
   display:block;
 }
 
+.hero-row{
+display:block;
+}
+
+@media (min-width: 900px){
+.hero-row{
+display:grid;
+grid-template-columns: 1fr 320px;
+gap:16px;
+align-items:stretch;
+}
+.hero-left{ min-width:0; }
+.hero-right{ display:block; }
+.hero-sidecard{
+height:100%;
+min-height:220px;
+background:var(--card);
+border:1px solid var(--border);
+border-radius: var(--radius);
+box-shadow: var(--shadow);
+padding:16px;
+}
+}
+
 .hero-carousel{
 position:relative;
 width:100%;
@@ -706,6 +730,7 @@ display:block;
 border-color: #fff;
 opacity:1;
 }
+
 
 
 
