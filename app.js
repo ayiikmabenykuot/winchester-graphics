@@ -174,6 +174,11 @@ const updateCartUi = () => {
   els.cartTotal.textContent = formatKsh(cartTotal());
 };
 
+const featWaBtn = document.getElementById("featWaBtn");
+if (featWaBtn){
+featWaBtn.href = makeWaLink("Hi Winchester Graphics, I want the Featured Basketball Jersey (Kshs. 1500).");
+}
+
 let viewer = { images: [], index: 0, title: "" };
 
 const openViewer = (product) => {
@@ -550,6 +555,7 @@ populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
