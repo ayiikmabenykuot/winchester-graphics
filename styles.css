@@ -304,11 +304,19 @@ background:transparent;
 padding:0;
 }
 
+.hero-row{
+position:relative;
+z-index:1;
+}
+
+.hero-left, .hero-right{
+position:relative;
+z-index:1;
+}
+
 .hero-carousel{
-width:100vw;
-margin-left:calc(50% - 50vw);
-margin-right:calc(50% - 50vw);
-border-radius:0;
+width:100%;
+margin:0;
 }
 
 .hero-track{
@@ -736,6 +744,7 @@ display:block;
 border-color: #fff;
 opacity:1;
 }
+
 
 
 
