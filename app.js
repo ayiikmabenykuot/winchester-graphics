@@ -495,52 +495,6 @@ else if (dx < -threshold) nextHero();
 else updateHero();
 };
 
-let startX = 0;
-let currentX = 0;
-let isDown = false;
-
-const getX = (e) => (e.touches ? e.touches[0].clientX : e.clientX);
-
-const prevHero = () => {
-if (!track) return;
-const slides = track.querySelectorAll(".hero-slide");
-heroIndex = (heroIndex - 1 + slides.length) % slides.length;
-updateHero();
-};
-
-const onDown = (e) => {
-if (!track) return;
-isDown = true;
-startX = getX(e);
-currentX = startX;
-track.style.transition = "none";
-};
-
-const onMove = (e) => {
-if (!isDown || !track) return;
-currentX = getX(e);
-const dx = currentX - startX;
-const slides = track.querySelectorAll(".hero-slide");
-const slideWidth = slides[0].getBoundingClientRect().width;
-const gap = 14;
-const offset = (slideWidth + gap) * heroIndex;
-
-track.style.transform = `translateX(${dx - offset}px)`;
-};
-
-const onUp = () => {
-if (!isDown || !track) return;
-isDown = false;
-track.style.transition = "transform .55s ease";
-
-const dx = currentX - startX;
-const threshold = 50;
-
-if (dx > threshold) prevHero();
-else if (dx < -threshold) nextHero();
-else updateHero();
-};
-
 if (track){
 track.addEventListener("touchstart", onDown, {passive:true});
 track.addEventListener("touchmove", onMove, {passive:true});
@@ -551,10 +505,12 @@ window.addEventListener("mousemove", onMove);
 window.addEventListener("mouseup", onUp);
 }
 
+
 populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
