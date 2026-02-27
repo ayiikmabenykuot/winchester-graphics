@@ -194,13 +194,15 @@ const src = viewer.images[viewer.index];
 els.viewerImg.src = src;
 els.viewerImg.alt = viewer.title;
 
-els.viewerDots.innerHTML = viewer.images.map((_, i) =>
-`<button class="viewer-dot ${i===viewer.index ? "active":""}" data-dot="${i}" type="button"></button>`
+els.viewerDots.innerHTML = viewer.images.map((imgSrc, i) =>
+`<button class="viewer-thumb ${i===viewer.index ? "active":""}" data-thumb="${i}" type="button" aria-label="View photo ${i+1}">
+<img src="${imgSrc}" alt="">
+</button>`
 ).join("");
 
-els.viewerDots.querySelectorAll("[data-dot]").forEach(b => {
+els.viewerDots.querySelectorAll("[data-thumb]").forEach(b => {
 b.addEventListener("click", () => {
-viewer.index = Number(b.dataset.dot);
+viewer.index = Number(b.dataset.thumb);
 renderViewer();
 });
 });
@@ -209,14 +211,6 @@ renderViewer();
 els.closeViewerBtn.addEventListener("click", closeViewer);
 els.viewerModal.addEventListener("click", (e) => {
 if (e.target?.dataset?.viewerClose === "true") closeViewer();
-});
-els.viewerPrev.addEventListener("click", () => {
-viewer.index = (viewer.index - 1 + viewer.images.length) % viewer.images.length;
-renderViewer();
-});
-els.viewerNext.addEventListener("click", () => {
-viewer.index = (viewer.index + 1) % viewer.images.length;
-renderViewer();
 });
 
 const unique = (arr) => Array.from(new Set(arr));
@@ -421,6 +415,7 @@ populateFilterOptions();
 renderProducts();
 
 updateCartUi();
+
 
 
 
