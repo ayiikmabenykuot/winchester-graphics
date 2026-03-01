@@ -1448,6 +1448,7 @@ body {
 /* NO size dropdown, NO color badge, NO add button on card */
 
 /* Viewer Modal - Full Product Details */
+/* Viewer Modal - Scrolls normally */
 .viewer-panel {
   position: fixed;
   inset: 0;
@@ -1457,11 +1458,30 @@ body {
   border-radius: 0;
   display: flex;
   flex-direction: column;
+  overflow-y: auto; /* Enable scrolling */
+  background: var(--card);
 }
 
+/* Header - stays at top */
+.modal-header {
+  position: sticky;
+  top: 0;
+  background: var(--card);
+  z-index: 10;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* Image section - scrolls with content */
 .viewer-body {
-  flex: 0 0 45%;
+  flex: none; /* Remove flex constraints */
+  width: 100%;
   min-height: 300px;
+  max-height: 50vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1471,12 +1491,14 @@ body {
 }
 
 .viewer-img {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  max-height: 50vh;
   object-fit: contain;
   border-radius: var(--radius-sm);
 }
 
+/* Navigation arrows - stay with image */
 .viewer-nav {
   position: absolute;
   top: 50%;
@@ -1492,7 +1514,7 @@ body {
   align-items: center;
   justify-content: center;
   transition: var(--transition);
-  z-index: 10;
+  z-index: 5;
 }
 
 .viewer-nav:hover {
@@ -1503,6 +1525,7 @@ body {
 .viewer-prev { left: 16px; }
 .viewer-next { right: 16px; }
 
+/* Dots - scroll with content */
 .viewer-dots {
   display: flex;
   gap: 8px;
@@ -1536,15 +1559,31 @@ body {
   opacity: 1;
 }
 
-/* Viewer Details Section */
+/* Details section - scrolls normally */
 .viewer-details {
-  flex: 1;
   padding: 24px;
-  overflow-y: auto;
   background: var(--card);
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  .viewer-body {
+    min-height: 250px;
+    max-height: 40vh;
+    padding: 16px;
+  }
+
+  .viewer-img {
+    max-height: 40vh;
+  }
+  
+  .viewer-details {
+    padding: 20px;
+    gap: 16px;
+  }
 }
 
 .viewer-price-row {
@@ -1774,3 +1813,4 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   }
 }
+
