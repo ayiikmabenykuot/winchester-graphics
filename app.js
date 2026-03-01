@@ -309,21 +309,65 @@ els.helpMenu?.querySelectorAll("[data-help-close]").forEach(a => {
   a.addEventListener("click", closeHelp);
 });
 
-// Product Viewer
-let viewer = { product: null, images: [], index: 0 };
+// Product Viewer with Full Details
+let viewer = { 
+  product: null, 
+  images: [], 
+  index: 0,
+  selectedSize: null,
+  quantity: 1
+};
 
 const openViewer = (product) => {
   const imgs = product.images?.length ? product.images : ["assets/placeholder.jpg"];
-  viewer = { product, images: imgs, index: 0 };
+  viewer = { 
+    product, 
+    images: imgs, 
+    index: 0,
+    selectedSize: product.sizes[0],
+    quantity: 1
+  };
   
   els.viewerTitle.textContent = product.name;
-  els.viewerSubtitle.textContent = `${product.category} • ${product.color}`;
+  els.viewerSubtitle.textContent = product.category;
   els.viewerPrice.textContent = formatKsh(product.price);
-  els.viewerModal.setAttribute("aria-hidden", "false");
+  els.viewerDescription.textContent = getProductDescription(product);
+  els.viewerColorName.textContent = product.color;
+  els.viewerColorSwatch.style.backgroundColor = getColorHex(product.color);
+  
   renderViewer();
+  renderSizeSelector();
+  updateQuantityDisplay();
+  updateAddButton();
+  
+  els.viewerModal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden"; // Prevent background scroll
 };
 
-const closeViewer = () => els.viewerModal.setAttribute("aria-hidden", "true");
+const closeViewer = () => {
+  els.viewerModal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+};
+
+const getProductDescription = (product) => {
+  const descriptions = {
+    "Football Jersey": "Official team jersey made with breathable, moisture-wicking fabric. Features embroidered crest and premium stitching for match-day comfort.",
+    "Basketball Jersey": "FIBA-certified basketball kit with lightweight, quick-dry material. Designed for optimal performance on the court.",
+    "T-Shirt": "Premium cotton blend t-shirt with soft hand feel. Durable print that lasts through multiple washes without fading.",
+    "Laawah": "Traditional South Sudanese garment made from high-quality fabric. Perfect for cultural events, celebrations, and everyday elegance."
+  };
+  return descriptions[product.category] || "Premium quality product with attention to detail and comfort.";
+};
+
+const getColorHex = (color) => {
+  const colors = {
+    "Green": "#22c55e",
+    "White": "#f8fafc",
+    "Black": "#0f172a",
+    "Mixed": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+  };
+  return colors[color] || "#cbd5e1";
+};
 
 const renderViewer = () => {
   els.viewerImg.src = viewer.images[viewer.index];
@@ -343,20 +387,71 @@ const renderViewer = () => {
   });
 };
 
-// Viewer Navigation
-if (els.viewerPrev) {
-  els.viewerPrev.addEventListener("click", () => {
-    viewer.index = (viewer.index - 1 + viewer.images.length) % viewer.images.length;
-    renderViewer();
+const renderSizeSelector = () => {
+  const container = els.viewerSizeSelector;
+  container.innerHTML = viewer.product.sizes.map(size => `
+    <button class="size-btn ${size === viewer.selectedSize ? 'active' : ''}" data-size="${size}" type="button">
+      ${size}
+    </button>
+  `).join("");
+  
+  container.querySelectorAll("[data-size]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      viewer.selectedSize = btn.dataset.size;
+      renderSizeSelector();
+      updateAddButton();
+    });
   });
-}
+};
 
-if (els.viewerNext) {
-  els.viewerNext.addEventListener("click", () => {
-    viewer.index = (viewer.index + 1) % viewer.images.length;
-    renderViewer();
-  });
-}
+const updateQuantityDisplay = () => {
+  els.qtyValue.textContent = viewer.quantity;
+};
+
+const updateAddButton = () => {
+  const total = viewer.product.price * viewer.quantity;
+  els.viewerAddPrice.textContent = `• ${formatKsh(total)}`;
+};
+
+// Quantity Controls
+els.qtyDec?.addEventListener("click", () => {
+  if (viewer.quantity > 1) {
+    viewer.quantity--;
+    updateQuantityDisplay();
+    updateAddButton();
+  }
+});
+
+els.qtyInc?.addEventListener("click", () => {
+  if (viewer.quantity < 10) {
+    viewer.quantity++;
+    updateQuantityDisplay();
+    updateAddButton();
+  }
+});
+
+// Add to Cart from Viewer
+els.viewerAddBtn?.addEventListener("click", () => {
+  if (viewer.product && viewer.selectedSize) {
+    // Add multiple based on quantity
+    for (let i = 0; i < viewer.quantity; i++) {
+      addToCart(viewer.product, viewer.selectedSize);
+    }
+    closeViewer();
+    showToast(`${viewer.product.name} (Size ${viewer.selectedSize}) x${viewer.quantity} added to cart`);
+  }
+});
+
+// Viewer Navigation
+els.viewerPrev?.addEventListener("click", () => {
+  viewer.index = (viewer.index - 1 + viewer.images.length) % viewer.images.length;
+  renderViewer();
+});
+
+els.viewerNext?.addEventListener("click", () => {
+  viewer.index = (viewer.index + 1) % viewer.images.length;
+  renderViewer();
+});
 
 // Add from viewer
 if (els.viewerAddBtn) {
@@ -414,7 +509,7 @@ const sortProducts = (products) => {
   }
 };
 
-// Render Products
+// Render Simplified Product Cards (Name + Price only)
 const renderProducts = () => {
   let filtered = PRODUCTS.filter(matchesFilters);
   filtered = sortProducts(filtered);
@@ -423,7 +518,6 @@ const renderProducts = () => {
   const hasMore = filtered.length > displayedCount;
   
   els.grid.innerHTML = toShow.map(p => {
-    const sizeOptions = p.sizes.map(s => `<option value="${s}">${s}</option>`).join("");
     const thumbImg = p.images?.[0] || "assets/placeholder.jpg";
     const badgeHtml = p.badge ? `<span class="thumb-badge ${p.isNew ? 'new' : ''}">${p.badge}</span>` : "";
     const newBadge = p.isNew && !p.badge ? `<span class="thumb-badge new">New</span>` : "";
@@ -433,41 +527,29 @@ const renderProducts = () => {
         <div class="thumb">
           ${badgeHtml}${newBadge}
           <img src="${thumbImg}" alt="${p.name}" loading="lazy">
-          <button class="thumb-quickview" data-view="${p.id}">Quick View</button>
         </div>
         <div class="card-body">
-          <div class="card-header">
-            <h3 class="title">${p.name}</h3>
-          </div>
-          <div class="meta">
-            <span class="badge">${p.color}</span>
-            <span class="price">${formatKsh(p.price)}</span>
-          </div>
-          <div class="card-actions">
-            <select class="size-select" data-size-for="${p.id}">
-              ${sizeOptions}
-            </select>
-            <button class="add-btn" data-add="${p.id}" type="button">Add to Cart</button>
-          </div>
+          <h3 class="title">${p.name}</h3>
+          <span class="price">${formatKsh(p.price)}</span>
         </div>
       </article>
     `;
   }).join("");
   
-  // Load more button
+    // Load more button
   if (els.loadMoreBtn) {
     els.loadMoreBtn.style.display = hasMore ? "inline-flex" : "none";
-    els.loadMoreBtn.textContent = `Load More (${filtered.length - displayedCount} remaining)`;
+    els.loadMoreBtn.textContent = hasMore ? `Load More (${filtered.length - displayedCount} remaining)` : "No more products";
   }
   
-  // Event Listeners
-  els.grid.querySelectorAll("[data-view]").forEach(btn => {
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const p = PRODUCTS.find(x => x.id === btn.dataset.view);
+  // Event Listeners - Open viewer on card click
+  els.grid.querySelectorAll(".card").forEach(card => {
+    card.addEventListener("click", () => {
+      const p = PRODUCTS.find(x => x.id === card.dataset.id);
       openViewer(p);
     });
   });
+};
   
   els.grid.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", (e) => {
@@ -761,4 +843,5 @@ window.addEventListener("load", () => {
   updateHero();
   updateCartUi();
 });
+
 
