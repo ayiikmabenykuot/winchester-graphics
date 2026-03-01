@@ -206,7 +206,6 @@ const els = {
   categoryNav: document.getElementById("categoryNav"),
   toast: document.getElementById("toast"),
   toastMessage: document.getElementById("toastMessage"),
-  loadMoreBtn: document.getElementById("loadMoreBtn"),
   helpBtn: document.getElementById("helpBtn"),
   helpMenu: document.getElementById("helpMenu"),
   helpWaBtn: document.getElementById("helpWaBtn"),
@@ -243,7 +242,6 @@ if (els.waFloat) {
 // Cart Management
 const CART_KEY = "wg_cart_v2";
 let currentCategory = "all";
-let displayedCount = 8;
 
 const loadCart = () => {
   try { return JSON.parse(localStorage.getItem(CART_KEY) || "[]"); }
@@ -364,15 +362,13 @@ const sortProducts = (products) => {
   }
 };
 
-// Render Simplified Product Cards
+// Render ALL Products (no load more)
 const renderProducts = () => {
   let filtered = PRODUCTS.filter(matchesFilters);
   filtered = sortProducts(filtered);
   
-  const toShow = filtered.slice(0, displayedCount);
-  const hasMore = filtered.length > displayedCount;
-  
-  els.grid.innerHTML = toShow.map(p => {
+  // Show ALL products, not limited
+  els.grid.innerHTML = filtered.map(p => {
     const thumbImg = p.images?.[0] || "assets/placeholder.jpg";
     const badgeHtml = p.badge ? `<span class="thumb-badge ${p.isNew ? 'new' : ''}">${p.badge}</span>` : "";
     const newBadge = p.isNew && !p.badge ? `<span class="thumb-badge new">New</span>` : "";
@@ -391,11 +387,7 @@ const renderProducts = () => {
     `;
   }).join("");
   
-  if (els.loadMoreBtn) {
-    els.loadMoreBtn.style.display = hasMore ? "inline-flex" : "none";
-    els.loadMoreBtn.textContent = hasMore ? `Load More (${filtered.length - displayedCount} remaining)` : "No more products";
-  }
-  
+  // Add click handlers
   els.grid.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
       const p = PRODUCTS.find(x => x.id === card.dataset.id);
@@ -403,14 +395,6 @@ const renderProducts = () => {
     });
   });
 };
-
-// Load More
-if (els.loadMoreBtn) {
-  els.loadMoreBtn.addEventListener("click", () => {
-    displayedCount += 8;
-    renderProducts();
-  });
-}
 
 // Category Navigation
 if (els.categoryNav) {
@@ -720,14 +704,14 @@ if (els.checkoutBtn) els.checkoutBtn.addEventListener("click", checkout);
 
 // Filter Events
 ["change", "input"].forEach(evt => {
-  if (els.filterColor) els.filterColor.addEventListener(evt, () => { displayedCount = 8; renderProducts(); });
-  if (els.filterSize) els.filterSize.addEventListener(evt, () => { displayedCount = 8; renderProducts(); });
+  if (els.filterColor) els.filterColor.addEventListener(evt, renderProducts);
+  if (els.filterSize) els.filterSize.addEventListener(evt, renderProducts);
   if (els.sortSelect) els.sortSelect.addEventListener(evt, renderProducts);
-  if (els.search) els.search.addEventListener(evt, () => { displayedCount = 8; renderProducts(); });
+  if (els.search) els.search.addEventListener(evt, renderProducts);
 });
 
 if (els.searchBtn) {
-  els.searchBtn.addEventListener("click", () => { displayedCount = 8; renderProducts(); });
+  els.searchBtn.addEventListener("click", renderProducts);
 }
 
 // Hero Carousel - Auto-rotate every 6 seconds
@@ -837,3 +821,4 @@ window.addEventListener("load", () => {
   startAutoRotate();
   updateCartUi();
 });
+
