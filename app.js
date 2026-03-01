@@ -3,136 +3,239 @@ const WHATSAPP_NUMBER = "254793669941";
 const formatKsh = (n) => `Kshs. ${n.toLocaleString("en-KE")}`;
 
 const PRODUCTS = [
-{ id:"FJ001", name:"South Sudan Away Kit", category:"Football Jersey", color:"Green", price:1200, sizes:["M","L","XL"],
-images:[
-"assets/fj001-green-1.jpeg",
-"assets/fj001-green-2.jpeg",
-"assets/fj001-green-3.jpeg"
-]
-},
-{ id:"FJ002", name:"South Sudan Home Kit", category:"Football Jersey", color:"White", price:1200, sizes:["M","L","XL"],
-images:[
-"assets/fj002-white-1.jpeg",
-"assets/fj002-white-2.jpeg",
-"assets/fj002-white-3.jpeg"
-]
-},
-
-  { id:"BJ001", name:"South Sudan Home Kit: FIBA World Cup 2023", category:"Basketball Jersey", color:"White", price:1500, sizes:["L","XL","XXL"],
-  images:[
-    "assets/bj001-1.jpeg",
-    "assets/bj001-2.jpeg",
-    "assets/bj001-3.jpeg"
-    ]
+  { 
+    id: "FJ001", 
+    name: "South Sudan Away Kit", 
+    category: "Football Jersey", 
+    color: "Green", 
+    price: 1200, 
+    sizes: ["M", "L", "XL"],
+    images: ["assets/fj001-green-1.jpeg", "assets/fj001-green-2.jpeg", "assets/fj001-green-3.jpeg"],
+    badge: "Popular",
+    isNew: false
   },
- 
-  { id:"BJ002", name:"South Sudan Away Kit: FIBA World Cup 2023", category:"Basketball Jersey", color:"Black", price:1500, sizes:["L","XL","XXL"],
-  images:[
-    "assets/bj002-black-1.jpeg",
-    "assets/bj002-black-2.jpeg",
-    "assets/bj002-black-3.jpeg"
-  ]
-},
-
-  { id:"TS001", name:"T-Shirt 001", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"],
-  images:[
-    "assets/ts001-black-1.jpeg",
-    "assets/ts001-black-2.jpeg"
-  ]
+  { 
+    id: "FJ002", 
+    name: "South Sudan Home Kit", 
+    category: "Football Jersey", 
+    color: "White", 
+    price: 1200, 
+    sizes: ["M", "L", "XL"],
+    images: ["assets/fj002-white-1.jpeg", "assets/fj002-white-2.jpeg", "assets/fj002-white-3.jpeg"],
+    badge: null,
+    isNew: false
   },
-  { id:"TS002", name:"T-Shirt 002", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"],
-  images:[
-    "assets/ts002-black-1.jpeg"
-  ]
-},
-  { id:"TS003", name:"T-Shirt 003", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"],
-    images:[
-    "assets/ts001-white-1.jpeg",
-    "assets/ts001-white-2.jpeg"
-  ]
+  { 
+    id: "BJ001", 
+    name: "South Sudan FIBA World Cup Jersey", 
+    category: "Basketball Jersey", 
+    color: "White", 
+    price: 1500, 
+    sizes: ["L", "XL", "XXL"],
+    images: ["assets/bj001-1.jpeg", "assets/bj001-2.jpeg", "assets/bj001-3.jpeg"],
+    badge: "Best Seller",
+    isNew: true
   },
-  { id:"TS004", name:"T-Shirt 004", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"],
-    images:[
-    "assets/ts002-white-1.jpeg"
-  ]
+  { 
+    id: "BJ002", 
+    name: "South Sudan FIBA Away Jersey", 
+    category: "Basketball Jersey", 
+    color: "Black", 
+    price: 1500, 
+    sizes: ["L", "XL", "XXL"],
+    images: ["assets/bj002-black-1.jpeg", "assets/bj002-black-2.jpeg", "assets/bj002-black-3.jpeg"],
+    badge: null,
+    isNew: false
   },
-  { id:"TS005", name:"Twic East Girls Association T-shirt", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"],
-    images:[
-    "assets/ts004-white-1.jpeg",
-    "assets/ts004-white-2.jpeg"
-  ]
+  { 
+    id: "TS001", 
+    name: "SSD Basketball Tee - Black", 
+    category: "T-Shirt", 
+    color: "Black", 
+    price: 1200, 
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    images: ["assets/ts001-black-1.jpeg", "assets/ts001-black-2.jpeg"],
+    badge: null,
+    isNew: false
   },
-  { id:"TS006", name:"Get The Bag T-shirt", category:"T-Shirt", color:"Mixed", price:1200, sizes:["S","M","L","XL","XXL"],
-    images:[
-    "assets/ts003-white-1.jpeg",
-    "assets/ts003-white-2.jpeg"
-  ]
+  { 
+    id: "TS002", 
+    name: "SSD Basketball Tank - Black", 
+    category: "T-Shirt", 
+    color: "Black", 
+    price: 1200, 
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    images: ["assets/ts002-black-1.jpeg"],
+    badge: null,
+    isNew: false
   },
-
-  { id:"LW001", name:"Laawah 001", category:"Laawah", color:"Mixed", price:2500, sizes:["Standard"],
-  images:[
-    "assets/laawah-01.jpeg"
-   ]
+  { 
+    id: "TS003", 
+    name: "SSD Basketball Tee - White", 
+    category: "T-Shirt", 
+    color: "White", 
+    price: 1200, 
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    images: ["assets/ts001-white-1.jpeg", "assets/ts001-white-2.jpeg"],
+    badge: null,
+    isNew: false
   },
-  { id:"LW002", name:"Laawah 002", category:"Laawah", color:"Mixed", price:2500, sizes:["Standard"],
-  images:[
-    "assets/laawah-02.jpeg"
-   ]
+  { 
+    id: "TS004", 
+    name: "SSD Basketball Tank - White", 
+    category: "T-Shirt", 
+    color: "White", 
+    price: 1200, 
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    images: ["assets/ts002-white-1.jpeg"],
+    badge: null,
+    isNew: false
   },
-  { id:"LW003", name:"Laawah 003", category:"Laawah", color:"Mixed", price:2500, sizes:["Standard"] },
-  { id:"LW004", name:"Laawah 004", category:"Laawah", color:"Mixed", price:2500, sizes:["Standard"] },
+  { 
+    id: "TS005", 
+    name: "Twic East Girls Association Tee", 
+    category: "T-Shirt", 
+    color: "White", 
+    price: 1200, 
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    images: ["assets/ts004-white-1.jpeg", "assets/ts004-white-2.jpeg"],
+    badge: "Limited",
+    isNew: true
+  },
+  { 
+    id: "TS006", 
+    name: "Get The Bag Tee", 
+    category: "T-Shirt", 
+    color: "White", 
+    price: 1200, 
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    images: ["assets/ts003-white-1.jpeg", "assets/ts003-white-2.jpeg"],
+    badge: null,
+    isNew: false
+  },
+  { 
+    id: "LW001", 
+    name: "South Sudan Laawah - Blue Gradient", 
+    category: "Laawah", 
+    color: "Mixed", 
+    price: 2500, 
+    sizes: ["Standard"],
+    images: ["assets/laawah-01.jpeg"],
+    badge: "Traditional",
+    isNew: false
+  },
+  { 
+    id: "LW002", 
+    name: "South Sudan Laawah - Flag Print", 
+    category: "Laawah", 
+    color: "Mixed", 
+    price: 2500, 
+    sizes: ["Standard"],
+    images: ["assets/laawah-02.jpeg"],
+    badge: "Traditional",
+    isNew: false
+  },
+  { 
+    id: "LW003", 
+    name: "South Sudan Laawah - Classic", 
+    category: "Laawah", 
+    color: "Mixed", 
+    price: 2500, 
+    sizes: ["Standard"],
+    images: [],
+    badge: "Traditional",
+    isNew: false
+  },
+  { 
+    id: "LW004", 
+    name: "South Sudan Laawah - Premium", 
+    category: "Laawah", 
+    color: "Mixed", 
+    price: 2500, 
+    sizes: ["Standard"],
+    images: [],
+    badge: "Premium",
+    isNew: true
+  },
 ];
 
+// DOM Elements
 const els = {
   year: document.getElementById("year"),
   grid: document.getElementById("productGrid"),
   filterCategory: document.getElementById("filterCategory"),
   filterColor: document.getElementById("filterColor"),
   filterSize: document.getElementById("filterSize"),
+  sortSelect: document.getElementById("sortSelect"),
   search: document.getElementById("searchInput"),
+  searchBtn: document.getElementById("searchBtn"),
   cartModal: document.getElementById("cartModal"),
   cartItems: document.getElementById("cartItems"),
   cartTotal: document.getElementById("cartTotal"),
+  cartSubtotal: document.getElementById("cartSubtotal"),
+  cartSubtitle: document.getElementById("cartSubtitle"),
   cartCount: document.getElementById("cartCount"),
   openCartBtn: document.getElementById("openCartBtn"),
   closeCartBtn: document.getElementById("closeCartBtn"),
   clearCartBtn: document.getElementById("clearCartBtn"),
   checkoutBtn: document.getElementById("checkoutBtn"),
-  whatsappHeaderBtn: document.getElementById("whatsappHeaderBtn"),
-  whatsappOrderBtn: document.getElementById("whatsappOrderBtn"),
-  scrollBtn: document.getElementById("scrollToProductsBtn"),
-
+  stickyCartBar: document.getElementById("stickyCartBar"),
+  stickyCartCount: document.getElementById("stickyCartCount"),
+  stickyCartTotal: document.getElementById("stickyCartTotal"),
+  stickyCheckoutBtn: document.getElementById("stickyCheckoutBtn"),
   viewerModal: document.getElementById("viewerModal"),
-viewerImg: document.getElementById("viewerImg"),
-viewerTitle: document.getElementById("viewerTitle"),
-viewerSubtitle: document.getElementById("viewerSubtitle"),
-closeViewerBtn: document.getElementById("closeViewerBtn"),
-viewerPrev: document.getElementById("viewerPrev"),
-viewerNext: document.getElementById("viewerNext"),
-viewerDots: document.getElementById("viewerDots"),
+  viewerImg: document.getElementById("viewerImg"),
+  viewerTitle: document.getElementById("viewerTitle"),
+  viewerSubtitle: document.getElementById("viewerSubtitle"),
+  viewerPrice: document.getElementById("viewerPrice"),
+  viewerAddBtn: document.getElementById("viewerAddBtn"),
+  closeViewerBtn: document.getElementById("closeViewerBtn"),
+  viewerPrev: document.getElementById("viewerPrev"),
+  viewerNext: document.getElementById("viewerNext"),
+  viewerDots: document.getElementById("viewerDots"),
+  heroTrack: document.getElementById("heroTrack"),
+  heroDots: document.getElementById("heroDots"),
+  categoryNav: document.getElementById("categoryNav"),
+  toast: document.getElementById("toast"),
+  toastMessage: document.getElementById("toastMessage"),
+  loadMoreBtn: document.getElementById("loadMoreBtn"),
+  helpBtn: document.getElementById("helpBtn"),
+  helpMenu: document.getElementById("helpMenu"),
+  helpWaBtn: document.getElementById("helpWaBtn"),
+  featWaBtn: document.getElementById("featWaBtn"),
+  whatsappOrderBtn: document.getElementById("whatsappOrderBtn"),
+  waFloat: document.getElementById("waFloat"),
 };
 
+// Initialize
 els.year.textContent = new Date().getFullYear();
 
+// WhatsApp Links
 const makeWaLink = (text) => {
   const encoded = encodeURIComponent(text);
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`;
 };
 
-if (els.whatsappHeaderBtn){
-els.whatsappHeaderBtn.href = makeWaLink("Hi Winchester Graphics, I’d like to place an order.");
+if (els.featWaBtn) {
+  els.featWaBtn.href = makeWaLink("Hi Winchester Graphics, I want the Featured South Sudan FIBA Jersey (Kshs. 1,500).");
 }
 
-if (els.whatsappOrderBtn){
-els.whatsappOrderBtn.href = makeWaLink("Hi Winchester Graphics, I’d like to ask about your products.");
+if (els.whatsappOrderBtn) {
+  els.whatsappOrderBtn.href = makeWaLink("Hi Winchester Graphics, I'd like to ask about your products.");
 }
 
-const searchBtn = document.getElementById("searchBtn");
-if (searchBtn){
-searchBtn.addEventListener("click", () => renderProducts());
+if (els.helpWaBtn) {
+  els.helpWaBtn.href = makeWaLink("Hi Winchester Graphics, I need help placing an order.");
 }
 
-const CART_KEY = "wg_cart_v1";
+if (els.waFloat) {
+  els.waFloat.href = makeWaLink("Hi Winchester Graphics, I'd like to place an order.");
+}
+
+// Cart Management
+const CART_KEY = "wg_cart_v2";
+let currentCategory = "all";
+let displayedCount = 8;
 
 const loadCart = () => {
   try { return JSON.parse(localStorage.getItem(CART_KEY) || "[]"); }
@@ -146,248 +249,352 @@ let cart = loadCart();
 const cartCount = () => cart.reduce((sum, i) => sum + i.qty, 0);
 const cartTotal = () => cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
 
-const openCart = () => {
-  els.cartModal.setAttribute("aria-hidden","false");
-  renderCart();
+// Toast Notification
+const showToast = (message) => {
+  els.toastMessage.textContent = message;
+  els.toast.classList.add("show");
+  setTimeout(() => els.toast.classList.remove("show"), 3000);
 };
-const closeCart = () => els.cartModal.setAttribute("aria-hidden","true");
 
-const waFloat = document.getElementById("waFloat");
-if (waFloat){
-waFloat.href = makeWaLink("Hi Winchester Graphics, I’d like to place an order.");
-}
-
-els.openCartBtn.addEventListener("click", openCart);
-els.closeCartBtn.addEventListener("click", closeCart);
-els.cartModal.addEventListener("click", (e) => {
-  if (e.target?.dataset?.close === "true") closeCart();
-});
-els.clearCartBtn.addEventListener("click", () => {
-  cart = [];
-  saveCart(cart);
-  renderCart();
-  updateCartUi();
-});
-
+// Cart UI Updates
 const updateCartUi = () => {
-  els.cartCount.textContent = cartCount();
-  els.cartTotal.textContent = formatKsh(cartTotal());
+  const count = cartCount();
+  const total = cartTotal();
+  
+  els.cartCount.textContent = count;
+  els.cartTotal.textContent = formatKsh(total);
+  els.cartSubtotal.textContent = formatKsh(total);
+  els.cartSubtitle.textContent = `${count} item${count !== 1 ? 's' : ''}`;
+  
+  // Sticky bar
+  if (count > 0) {
+    els.stickyCartBar.classList.add("visible");
+    els.stickyCartCount.textContent = `${count} item${count !== 1 ? 's' : ''}`;
+    els.stickyCartTotal.textContent = formatKsh(total);
+  } else {
+    els.stickyCartBar.classList.remove("visible");
+  }
 };
 
-const featWaBtn = document.getElementById("featWaBtn");
-if (featWaBtn){
-featWaBtn.href = makeWaLink("Hi Winchester Graphics, I want the Featured Basketball Jersey (Kshs. 1500).");
+// Modal Controls
+const openCart = () => {
+  els.cartModal.setAttribute("aria-hidden", "false");
+  renderCart();
+};
+
+const closeCart = () => els.cartModal.setAttribute("aria-hidden", "true");
+
+// Help Menu
+const toggleHelp = () => {
+  const isOpen = els.helpMenu.getAttribute("aria-hidden") === "false";
+  els.helpMenu.setAttribute("aria-hidden", isOpen ? "true" : "false");
+};
+
+const closeHelp = () => els.helpMenu.setAttribute("aria-hidden", "true");
+
+if (els.helpBtn) {
+  els.helpBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleHelp();
+  });
 }
 
-let viewer = { images: [], index: 0, title: "" };
+document.addEventListener("click", (e) => {
+  if (els.helpMenu && !els.helpMenu.contains(e.target) && !els.helpBtn.contains(e.target)) {
+    closeHelp();
+  }
+});
+
+els.helpMenu?.querySelectorAll("[data-help-close]").forEach(a => {
+  a.addEventListener("click", closeHelp);
+});
+
+// Product Viewer
+let viewer = { product: null, images: [], index: 0 };
 
 const openViewer = (product) => {
-const imgs = (product.images && product.images.length) ? product.images : [];
-if (!imgs.length) return;
-
-viewer = { images: imgs, index: 0, title: product.name };
-
-els.viewerTitle.textContent = product.name;
-els.viewerSubtitle.textContent = `${product.category} • ${product.color}`;
-els.viewerModal.setAttribute("aria-hidden", "false");
-renderViewer();
+  const imgs = product.images?.length ? product.images : ["assets/placeholder.jpg"];
+  viewer = { product, images: imgs, index: 0 };
+  
+  els.viewerTitle.textContent = product.name;
+  els.viewerSubtitle.textContent = `${product.category} • ${product.color}`;
+  els.viewerPrice.textContent = formatKsh(product.price);
+  els.viewerModal.setAttribute("aria-hidden", "false");
+  renderViewer();
 };
 
 const closeViewer = () => els.viewerModal.setAttribute("aria-hidden", "true");
 
 const renderViewer = () => {
-const src = viewer.images[viewer.index];
-els.viewerImg.src = src;
-els.viewerImg.alt = viewer.title;
-
-els.viewerDots.innerHTML = viewer.images.map((imgSrc, i) =>
-`<button class="viewer-thumb ${i===viewer.index ? "active":""}" data-thumb="${i}" type="button" aria-label="View photo ${i+1}">
-<img src="${imgSrc}" alt="">
-</button>`
-).join("");
-
-els.viewerDots.querySelectorAll("[data-thumb]").forEach(b => {
-b.addEventListener("click", () => {
-viewer.index = Number(b.dataset.thumb);
-renderViewer();
-});
-});
-};
-
-els.closeViewerBtn.addEventListener("click", closeViewer);
-els.viewerModal.addEventListener("click", (e) => {
-if (e.target?.dataset?.viewerClose === "true") closeViewer();
-});
-
-const unique = (arr) => Array.from(new Set(arr));
-
-const populateFilterOptions = () => {
-  const colors = unique(PRODUCTS.map(p => p.color)).sort();
-  const sizes = unique(PRODUCTS.flatMap(p => p.sizes)).sort((a,b)=>a.localeCompare(b, undefined, {numeric:true}));
-
-  els.filterColor.innerHTML = '<option value="all">All</option>' + colors.map(c => `<option value="${c}">${c}</option>`).join("");
-  els.filterSize.innerHTML = '<option value="all">All</option>' + sizes.map(s => `<option value="${s}">${s}</option>`).join("");
-};
-
-const matchesFilters = (p) => {
-  const cat = els.filterCategory.value;
-  const col = els.filterColor.value;
-  const size = els.filterSize.value;
-  const q = (els.search.value || "").trim().toLowerCase();
-
-  if (cat !== "all" && p.category !== cat) return false;
-  if (col !== "all" && p.color !== col) return false;
-  if (size !== "all" && !p.sizes.includes(size)) return false;
-
-  if (q){
-    const hay = `${p.name} ${p.category} ${p.color} ${p.id}`.toLowerCase();
-    if (!hay.includes(q)) return false;
-  }
-
-  return true;
-};
-
-const renderProducts = () => {
-const list = PRODUCTS.filter(matchesFilters);
-
-els.grid.innerHTML = list.map(p => {
-const sizeOptions = p.sizes.map(s => `<option value="${s}">${s}</option>`).join("");
-
-const thumbHtml = (p.images && p.images.length)
-? `<img src="${p.images[0]}" alt="${p.name}">`
-: `<span>${p.category}</span>`;
-
-return `
-<article class="card" data-view="${p.id}" role="button" tabindex="0">
-<div class="thumb">${thumbHtml}</div>
-<div class="card-body">
-<div class="title">${p.name}</div>
-<div class="meta">
-<span class="badge">${p.color}</span>
-<span class="price">${formatKsh(p.price)}</span>
-</div>
-<div class="row">
-<select data-size-for="${p.id}">
-${sizeOptions}
-</select>
-<button class="btn btn-primary" data-add="${p.id}" type="button">Add</button>
-</div>
-</div>
-</article>
-`;
-}).join("");
-
-  els.grid.querySelectorAll("[data-view]").forEach(card => {
-const id = card.getAttribute("data-view");
-const p = PRODUCTS.find(x => x.id === id);
-card.addEventListener("click", (e) => {
-if (e.target.closest("[data-add]")) return;
-if (e.target.closest("select")) return;
-openViewer(p);
-});
-});
+  els.viewerImg.src = viewer.images[viewer.index];
+  els.viewerImg.alt = viewer.product.name;
   
-  els.grid.querySelectorAll("[data-add]").forEach(btn => {
+  els.viewerDots.innerHTML = viewer.images.map((img, i) => `
+    <button class="viewer-thumb ${i === viewer.index ? "active" : ""}" data-thumb="${i}" type="button" aria-label="View image ${i + 1}">
+      <img src="${img}" alt="">
+    </button>
+  `).join("");
+  
+  els.viewerDots.querySelectorAll("[data-thumb]").forEach(btn => {
     btn.addEventListener("click", () => {
-      const id = btn.getAttribute("data-add");
-      const p = PRODUCTS.find(x => x.id === id);
-      const sizeSel = els.grid.querySelector(`[data-size-for="${id}"]`);
-      const chosenSize = sizeSel?.value || p.sizes[0];
-
-      addToCart(p, chosenSize);
+      viewer.index = Number(btn.dataset.thumb);
+      renderViewer();
     });
   });
 };
 
-const helpBtn = document.getElementById("helpBtn");
-const helpMenu = document.getElementById("helpMenu");
-const helpWaBtn = document.getElementById("helpWaBtn");
-
-const closeHelp = () => helpMenu?.setAttribute("aria-hidden","true");
-const toggleHelp = () => {
-if (!helpMenu) return;
-const isOpen = helpMenu.getAttribute("aria-hidden") === "false";
-helpMenu.setAttribute("aria-hidden", isOpen ? "true" : "false");
-};
-
-if (helpBtn) helpBtn.addEventListener("click", (e) => {
-e.stopPropagation();
-toggleHelp();
-});
-
-document.addEventListener("click", (e) => {
-if (!helpMenu) return;
-if (helpMenu.contains(e.target) || helpBtn?.contains(e.target)) return;
-closeHelp();
-});
-
-helpMenu?.querySelectorAll("[data-help-close]").forEach(a => {
-a.addEventListener("click", closeHelp);
-});
-
-if (helpWaBtn){
-helpWaBtn.href = makeWaLink("Hi Winchester Graphics, I need help placing an order.");
+// Viewer Navigation
+if (els.viewerPrev) {
+  els.viewerPrev.addEventListener("click", () => {
+    viewer.index = (viewer.index - 1 + viewer.images.length) % viewer.images.length;
+    renderViewer();
+  });
 }
 
+if (els.viewerNext) {
+  els.viewerNext.addEventListener("click", () => {
+    viewer.index = (viewer.index + 1) % viewer.images.length;
+    renderViewer();
+  });
+}
+
+// Add from viewer
+if (els.viewerAddBtn) {
+  els.viewerAddBtn.addEventListener("click", () => {
+    if (viewer.product) {
+      addToCart(viewer.product, viewer.product.sizes[0]);
+      closeViewer();
+    }
+  });
+}
+
+// Filter Functions
+const unique = (arr) => Array.from(new Set(arr));
+
+const populateFilterOptions = () => {
+  const colors = unique(PRODUCTS.map(p => p.color)).sort();
+  const sizes = unique(PRODUCTS.flatMap(p => p.sizes)).sort((a, b) => a.localeCompare(b, undefined, {numeric: true}));
+  
+  els.filterColor.innerHTML = '<option value="all">All Colors</option>' + 
+    colors.map(c => `<option value="${c}">${c}</option>`).join("");
+  
+  els.filterSize.innerHTML = '<option value="all">All Sizes</option>' + 
+    sizes.map(s => `<option value="${s}">${s}</option>`).join("");
+};
+
+const matchesFilters = (p) => {
+  const col = els.filterColor.value;
+  const size = els.filterSize.value;
+  const q = (els.search.value || "").trim().toLowerCase();
+  
+  if (currentCategory !== "all" && p.category !== currentCategory) return false;
+  if (col !== "all" && p.color !== col) return false;
+  if (size !== "all" && !p.sizes.includes(size)) return false;
+  
+  if (q) {
+    const hay = `${p.name} ${p.category} ${p.color} ${p.id}`.toLowerCase();
+    if (!hay.includes(q)) return false;
+  }
+  
+  return true;
+};
+
+const sortProducts = (products) => {
+  const sortType = els.sortSelect?.value || "featured";
+  
+  switch(sortType) {
+    case "price-low":
+      return [...products].sort((a, b) => a.price - b.price);
+    case "price-high":
+      return [...products].sort((a, b) => b.price - a.price);
+    case "newest":
+      return [...products].sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0));
+    default:
+      return products;
+  }
+};
+
+// Render Products
+const renderProducts = () => {
+  let filtered = PRODUCTS.filter(matchesFilters);
+  filtered = sortProducts(filtered);
+  
+  const toShow = filtered.slice(0, displayedCount);
+  const hasMore = filtered.length > displayedCount;
+  
+  els.grid.innerHTML = toShow.map(p => {
+    const sizeOptions = p.sizes.map(s => `<option value="${s}">${s}</option>`).join("");
+    const thumbImg = p.images?.[0] || "assets/placeholder.jpg";
+    const badgeHtml = p.badge ? `<span class="thumb-badge ${p.isNew ? 'new' : ''}">${p.badge}</span>` : "";
+    const newBadge = p.isNew && !p.badge ? `<span class="thumb-badge new">New</span>` : "";
+    
+    return `
+      <article class="card" data-id="${p.id}">
+        <div class="thumb">
+          ${badgeHtml}${newBadge}
+          <img src="${thumbImg}" alt="${p.name}" loading="lazy">
+          <button class="thumb-quickview" data-view="${p.id}">Quick View</button>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <h3 class="title">${p.name}</h3>
+          </div>
+          <div class="meta">
+            <span class="badge">${p.color}</span>
+            <span class="price">${formatKsh(p.price)}</span>
+          </div>
+          <div class="card-actions">
+            <select class="size-select" data-size-for="${p.id}">
+              ${sizeOptions}
+            </select>
+            <button class="add-btn" data-add="${p.id}" type="button">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("");
+  
+  // Load more button
+  if (els.loadMoreBtn) {
+    els.loadMoreBtn.style.display = hasMore ? "inline-flex" : "none";
+    els.loadMoreBtn.textContent = `Load More (${filtered.length - displayedCount} remaining)`;
+  }
+  
+  // Event Listeners
+  els.grid.querySelectorAll("[data-view]").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const p = PRODUCTS.find(x => x.id === btn.dataset.view);
+      openViewer(p);
+    });
+  });
+  
+  els.grid.querySelectorAll(".card").forEach(card => {
+    card.addEventListener("click", (e) => {
+      if (e.target.closest("button") || e.target.closest("select")) return;
+      const p = PRODUCTS.find(x => x.id === card.dataset.id);
+      openViewer(p);
+    });
+  });
+  
+  els.grid.querySelectorAll("[data-add]").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const id = btn.dataset.add;
+      const p = PRODUCTS.find(x => x.id === id);
+      const sizeSel = els.grid.querySelector(`[data-size-for="${id}"]`);
+      const size = sizeSel?.value || p.sizes[0];
+      
+      addToCart(p, size);
+    });
+  });
+};
+
+// Load More
+if (els.loadMoreBtn) {
+  els.loadMoreBtn.addEventListener("click", () => {
+    displayedCount += 8;
+    renderProducts();
+  });
+}
+
+// Category Navigation
+if (els.categoryNav) {
+  els.categoryNav.querySelectorAll("[data-cat]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      els.categoryNav.querySelectorAll("[data-cat]").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentCategory = btn.dataset.cat;
+      displayedCount = 8;
+      renderProducts();
+    });
+  });
+}
+
+// Cart Functions
 const addToCart = (product, size) => {
   const key = `${product.id}__${size}`;
   const existing = cart.find(i => i.key === key);
-  if (existing) existing.qty += 1;
-  else cart.push({
-    key,
-    id: product.id,
-    name: product.name,
-    category: product.category,
-    color: product.color,
-    size,
-    price: product.price,
-    qty: 1
-  });
-
+  
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({
+      key,
+      id: product.id,
+      name: product.name,
+      category: product.category,
+      color: product.color,
+      size,
+      price: product.price,
+      qty: 1,
+      image: product.images?.[0] || "assets/placeholder.jpg"
+    });
+  }
+  
   saveCart(cart);
   updateCartUi();
+  showToast(`${product.name} added to cart`);
 };
 
 const renderCart = () => {
-  if (!cart.length){
-    els.cartItems.innerHTML = `<div class="cart-mini">Your cart is empty.</div>`;
+  if (!cart.length) {
+    els.cartItems.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-state-icon">🛒</div>
+        <h3>Your cart is empty</h3>
+        <p>Add some products to get started</p>
+      </div>
+    `;
     updateCartUi();
     return;
   }
-
+  
   els.cartItems.innerHTML = cart.map(item => `
     <div class="cart-item">
-      <div class="cart-top">
-        <div>
-          <div class="cart-name">${item.name}</div>
-          <div class="cart-mini">${item.category} • ${item.color} • Size ${item.size}</div>
-        </div>
-        <div class="cart-name">${formatKsh(item.price * item.qty)}</div>
+      <div class="cart-thumb">
+        <img src="${item.image}" alt="${item.name}">
       </div>
-
-      <div class="cart-actions">
-        <div class="qty">
-          <button type="button" data-dec="${item.key}">-</button>
-          <div>${item.qty}</div>
-          <button type="button" data-inc="${item.key}">+</button>
+      <div class="cart-details">
+        <div class="cart-name">${item.name}</div>
+        <div class="cart-meta">${item.color} • Size ${item.size}</div>
+        <div class="cart-price">${formatKsh(item.price * item.qty)}</div>
+        <div class="cart-controls">
+          <div class="qty">
+            <button type="button" data-dec="${item.key}">−</button>
+            <div>${item.qty}</div>
+            <button type="button" data-inc="${item.key}">+</button>
+          </div>
+          <button class="remove-btn" type="button" data-remove="${item.key}">Remove</button>
         </div>
-        <button class="btn btn-ghost" type="button" data-remove="${item.key}">Remove</button>
       </div>
     </div>
   `).join("");
-
-  els.cartItems.querySelectorAll("[data-inc]").forEach(b => b.addEventListener("click", () => changeQty(b.dataset.inc, +1)));
-  els.cartItems.querySelectorAll("[data-dec]").forEach(b => b.addEventListener("click", () => changeQty(b.dataset.dec, -1)));
-  els.cartItems.querySelectorAll("[data-remove]").forEach(b => b.addEventListener("click", () => removeItem(b.dataset.remove)));
-
+  
+  els.cartItems.querySelectorAll("[data-inc]").forEach(btn => {
+    btn.addEventListener("click", () => changeQty(btn.dataset.inc, 1));
+  });
+  
+  els.cartItems.querySelectorAll("[data-dec]").forEach(btn => {
+    btn.addEventListener("click", () => changeQty(btn.dataset.dec, -1));
+  });
+  
+  els.cartItems.querySelectorAll("[data-remove]").forEach(btn => {
+    btn.addEventListener("click", () => removeItem(btn.dataset.remove));
+  });
+  
   updateCartUi();
 };
 
 const changeQty = (key, delta) => {
   const item = cart.find(i => i.key === key);
   if (!item) return;
+  
   item.qty += delta;
-  if (item.qty <= 0) cart = cart.filter(i => i.key !== key);
+  if (item.qty <= 0) {
+    cart = cart.filter(i => i.key !== key);
+  }
+  
   saveCart(cart);
   renderCart();
 };
@@ -398,195 +605,130 @@ const removeItem = (key) => {
   renderCart();
 };
 
-els.checkoutBtn.addEventListener("click", () => {
+// Checkout
+const checkout = () => {
   if (!cart.length) return;
+  
+  const lines = [
+    "Hi Winchester Graphics, I'd like to order:",
+    "",
+    ...cart.map(i => `• ${i.name} (${i.color}) - Size ${i.size} x${i.qty} = ${formatKsh(i.price * i.qty)}`),
+    "",
+    `*Total: ${formatKsh(cartTotal())}*`,
+    "",
+    "Name: ",
+    "Location: ",
+    "Preferred delivery time: "
+  ];
+  
+  window.open(makeWaLink(lines.join("\n")), "_blank");
+};
 
-  const lines = [];
-  lines.push("Hi Winchester Graphics, I’d like to order:");
-  lines.push("");
-
-  cart.forEach((i) => {
-    lines.push(`- ${i.name} (${i.color}), Size: ${i.size}, Qty: ${i.qty} = ${formatKsh(i.price * i.qty)}`);
-  });
-
-  lines.push("");
-  lines.push(`Total: ${formatKsh(cartTotal())}`);
-  lines.push("");
-  lines.push("My name: ");
-  lines.push("My location: ");
-  lines.push("Preferred delivery/pickup: ");
-
-  window.open(makeWaLink(lines.join("")), "_blank");
+// Event Listeners
+els.openCartBtn?.addEventListener("click", openCart);
+els.closeCartBtn?.addEventListener("click", closeCart);
+els.stickyCheckoutBtn?.addEventListener("click", openCart);
+els.cartModal?.addEventListener("click", (e) => {
+  if (e.target?.dataset?.close === "true") closeCart();
+});
+els.clearCartBtn?.addEventListener("click", () => {
+  cart = [];
+  saveCart(cart);
+  renderCart();
+});
+els.checkoutBtn?.addEventListener("click", checkout);
+els.closeViewerBtn?.addEventListener("click", closeViewer);
+els.viewerModal?.addEventListener("click", (e) => {
+  if (e.target?.dataset?.viewerClose === "true") closeViewer();
 });
 
-["change","input"].forEach(evt => {
-  els.filterCategory.addEventListener(evt, renderProducts);
-  els.filterColor.addEventListener(evt, renderProducts);
-  els.filterSize.addEventListener(evt, renderProducts);
-  els.search.addEventListener(evt, renderProducts);
+// Filter Events
+["change", "input"].forEach(evt => {
+  els.filterColor?.addEventListener(evt, () => { displayedCount = 8; renderProducts(); });
+  els.filterSize?.addEventListener(evt, () => { displayedCount = 8; renderProducts(); });
+  els.sortSelect?.addEventListener(evt, renderProducts);
+  els.search?.addEventListener(evt, () => { displayedCount = 8; renderProducts(); });
 });
 
+els.searchBtn?.addEventListener("click", () => { displayedCount = 8; renderProducts(); });
+
+// Hero Carousel - Manual Only (No Auto-rotation)
 let heroIndex = 0;
-const carousel = document.getElementById("heroCarousel");
-const track = document.getElementById("heroTrack");
-
-console.log("heroTrack found?", !!track);
+let heroInterval;
 
 const updateHero = () => {
-if (!track) return;
-const slides = track.querySelectorAll(".hero-slide");
-if (!slides.length) return;
-
-const slideWidth = slides[0].getBoundingClientRect().width;
-
-const styles = getComputedStyle(track);
-const gap = parseFloat(styles.columnGap || styles.gap || "0") || 0;
-const padL = parseFloat(styles.paddingLeft || "0") || 0;
-const padR = parseFloat(styles.paddingRight || "0") || 0;
-
-const viewport = track.parentElement.getBoundingClientRect().width;
-
-const trackWidth =
-padL + padR +
-slides.length * slideWidth +
-(slides.length - 1) * gap;
-
-const minX = viewport - trackWidth; // last slide snaps right
-const maxX = 0; // first slide snaps left
-
-const offsetToSlideStart = padL + heroIndex * (slideWidth + gap);
-const centerOffset = (viewport - slideWidth) / 2;
-
-let x = centerOffset - offsetToSlideStart;
-
-if (x > maxX) x = maxX;
-if (x < minX) x = minX;
-
-track.style.transform = `translateX(${x}px)`;
+  if (!els.heroTrack) return;
+  const slides = els.heroTrack.querySelectorAll(".hero-slide");
+  if (!slides.length) return;
+  
+  const slideWidth = slides[0].offsetWidth;
+  els.heroTrack.style.transform = `translateX(-${heroIndex * slideWidth}px)`;
+  
+  // Update dots
+  if (els.heroDots) {
+    els.heroDots.innerHTML = Array.from(slides).map((_, i) => `
+      <button class="hero-dot ${i === heroIndex ? 'active' : ''}" data-hero-dot="${i}" aria-label="Go to slide ${i + 1}"></button>
+    `).join("");
+    
+    els.heroDots.querySelectorAll("[data-hero-dot]").forEach(dot => {
+      dot.addEventListener("click", () => {
+        heroIndex = Number(dot.dataset.heroDot);
+        updateHero();
+      });
+    });
+  }
 };
 
 const nextHero = () => {
-if (!track) return;
-const slides = track.querySelectorAll(".hero-slide");
-heroIndex = (heroIndex + 1) % slides.length;
-updateHero();
+  const slides = els.heroTrack?.querySelectorAll(".hero-slide");
+  if (!slides?.length) return;
+  heroIndex = (heroIndex + 1) % slides.length;
+  updateHero();
 };
-
-window.addEventListener("resize", updateHero);
-setTimeout(updateHero, 100);
-setInterval(nextHero, 6000);
-
-(() => {
-if (!carousel || !track) return;
-
-let startX = 0;
-let currentX = 0;
-let isDown = false;
-
-const getX = (e) => (e.touches ? e.touches[0].clientX : e.clientX);
-
-const slidesCount = () => track.querySelectorAll(".hero-slide").length;
 
 const prevHero = () => {
-const n = slidesCount();
-if (!n) return;
-heroIndex = (heroIndex - 1 + n) % n;
-updateHero();
+  const slides = els.heroTrack?.querySelectorAll(".hero-slide");
+  if (!slides?.length) return;
+  heroIndex = (heroIndex - 1 + slides.length) % slides.length;
+  updateHero();
 };
 
-const nextHeroSafe = () => {
-const n = slidesCount();
-if (!n) return;
-heroIndex = (heroIndex + 1) % n;
-updateHero();
-};
-
-const onDown = (e) => {
-isDown = true;
-startX = getX(e);
-currentX = startX;
-track.style.transition = "none";
-};
-
-const onMove = (e) => {
-if (!isDown) return;
-currentX = getX(e);
-const dx = currentX - startX;
-
-const slides = track.querySelectorAll(".hero-slide");
-if (!slides.length) return;
-
-const slideWidth = slides[0].getBoundingClientRect().width;
-
-const styles = getComputedStyle(track);
-const gap = parseFloat(styles.columnGap || styles.gap || "0") || 0;
-const padL = parseFloat(styles.paddingLeft || "0") || 0;
-
-const viewport = track.parentElement.getBoundingClientRect().width;
-const centerOffset = (viewport - slideWidth) / 2;
-const offsetToSlideStart = padL + heroIndex * (slideWidth + gap);
-
-track.style.transform = `translateX(${centerOffset - offsetToSlideStart + dx}px)`;
-};
-
-const onUp = () => {
-if (!isDown) return;
-isDown = false;
-track.style.transition = "transform .55s ease";
-
-const dx = currentX - startX;
-const threshold = 45;
-
-if (dx > threshold) prevHero();
-else if (dx < -threshold) nextHeroSafe();
-else updateHero();
-};
-
-carousel.addEventListener("touchstart", onDown, {passive:true});
-carousel.addEventListener("touchmove", onMove, {passive:true});
-carousel.addEventListener("touchend", onUp);
-
-carousel.addEventListener("mousedown", onDown);
-window.addEventListener("mousemove", onMove);
-window.addEventListener("mouseup", onUp);
+// Touch/Swipe for Hero
+(() => {
+  const carousel = document.getElementById("heroCarousel");
+  if (!carousel || !els.heroTrack) return;
+  
+  let startX = 0;
+  let isDown = false;
+  
+  const onDown = (e) => {
+    isDown = true;
+    startX = e.touches ? e.touches[0].clientX : e.clientX;
+  };
+  
+  const onUp = (e) => {
+    if (!isDown) return;
+    isDown = false;
+    const endX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+    const diff = startX - endX;
+    
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) nextHero();
+      else prevHero();
+    }
+  };
+  
+  carousel.addEventListener("touchstart", onDown, {passive: true});
+  carousel.addEventListener("touchend", onUp);
+  carousel.addEventListener("mousedown", onDown);
+  window.addEventListener("mouseup", onUp);
 })();
 
-populateFilterOptions();
-renderProducts();
-
-updateCartUi();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Initialize
+window.addEventListener("resize", updateHero);
+window.addEventListener("load", () => {
+  populateFilterOptions();
+  renderProducts();
+  updateHero();
+  updateCartUi();
+});
