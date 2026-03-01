@@ -652,9 +652,9 @@ els.viewerModal?.addEventListener("click", (e) => {
 
 els.searchBtn?.addEventListener("click", () => { displayedCount = 8; renderProducts(); });
 
-// Hero Carousel - Manual Only (No Auto-rotation)
+// Hero Carousel - Auto-rotate every 6 seconds
 let heroIndex = 0;
-let heroInterval;
+let heroInterval = null;
 
 const updateHero = () => {
   if (!els.heroTrack) return;
@@ -674,6 +674,7 @@ const updateHero = () => {
       dot.addEventListener("click", () => {
         heroIndex = Number(dot.dataset.heroDot);
         updateHero();
+        resetAutoRotate(); // Reset timer when manually clicked
       });
     });
   }
@@ -692,6 +693,34 @@ const prevHero = () => {
   heroIndex = (heroIndex - 1 + slides.length) % slides.length;
   updateHero();
 };
+
+// AUTO-ROTATE FUNCTION
+const startAutoRotate = () => {
+  heroInterval = setInterval(nextHero, 6000); // 6000ms = 6 seconds
+};
+
+const stopAutoRotate = () => {
+  if (heroInterval) {
+    clearInterval(heroInterval);
+    heroInterval = null;
+  }
+};
+
+const resetAutoRotate = () => {
+  stopAutoRotate();
+  startAutoRotate();
+};
+
+// Pause on hover/touch
+const carousel = document.getElementById("heroCarousel");
+if (carousel) {
+  carousel.addEventListener("mouseenter", stopAutoRotate);
+  carousel.addEventListener("mouseleave", startAutoRotate);
+  carousel.addEventListener("touchstart", stopAutoRotate, {passive: true});
+  carousel.addEventListener("touchend", () => {
+    setTimeout(startAutoRotate, 3000); // Resume after 3 seconds
+  }, {passive: true});
+}
 
 // Touch/Swipe for Hero
 (() => {
@@ -732,3 +761,4 @@ window.addEventListener("load", () => {
   updateHero();
   updateCartUi();
 });
+
