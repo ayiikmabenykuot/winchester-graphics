@@ -115,7 +115,7 @@ const PRODUCTS = [
   },
   { 
     id: "LW001", 
-    name: "South Sudan Laawah - Blue Gradient", 
+    name: "South Sudanese Laawah - Blue Gradient", 
     category: "Laawah", 
     color: "Mixed", 
     price: 2500, 
@@ -126,7 +126,7 @@ const PRODUCTS = [
   },
   { 
     id: "LW002", 
-    name: "South Sudan Laawah - Flag Print", 
+    name: "South Sudanese Laawah - Flag Print", 
     category: "Laawah", 
     color: "Mixed", 
     price: 2500, 
@@ -137,7 +137,7 @@ const PRODUCTS = [
   },
   { 
     id: "LW003", 
-    name: "South Sudan Laawah - Classic", 
+    name: "South Sudanese Laawah - Classic", 
     category: "Laawah", 
     color: "Mixed", 
     price: 2500, 
@@ -148,7 +148,29 @@ const PRODUCTS = [
   },
   { 
     id: "LW004", 
-    name: "South Sudan Laawah - Premium", 
+    name: "South Sudanese Laawah - Premium", 
+    category: "Laawah", 
+    color: "Mixed", 
+    price: 2500, 
+    sizes: ["Standard"],
+    images: [],
+    badge: "Premium",
+    isNew: true
+  },
+  { 
+    id: "LW005", 
+    name: "South Sudanese Laawah - Premium", 
+    category: "Laawah", 
+    color: "Mixed", 
+    price: 2500, 
+    sizes: ["Standard"],
+    images: [],
+    badge: "Premium",
+    isNew: true
+  },
+  { 
+    id: "LW006", 
+    name: "South Sudanese Laawah - Premium", 
     category: "Laawah", 
     color: "Mixed", 
     price: 2500, 
@@ -821,4 +843,5 @@ window.addEventListener("load", () => {
   startAutoRotate();
   updateCartUi();
 });
+
 
