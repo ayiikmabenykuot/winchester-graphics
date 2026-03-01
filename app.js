@@ -163,7 +163,6 @@ const PRODUCTS = [
 const els = {
   year: document.getElementById("year"),
   grid: document.getElementById("productGrid"),
-  filterCategory: document.getElementById("filterCategory"),
   filterColor: document.getElementById("filterColor"),
   filterSize: document.getElementById("filterSize"),
   sortSelect: document.getElementById("sortSelect"),
@@ -188,11 +187,20 @@ const els = {
   viewerTitle: document.getElementById("viewerTitle"),
   viewerSubtitle: document.getElementById("viewerSubtitle"),
   viewerPrice: document.getElementById("viewerPrice"),
+  viewerDescription: document.getElementById("viewerDescription"),
+  viewerColorBox: document.getElementById("viewerColorBox"),
+  viewerColorSwatch: document.getElementById("viewerColorSwatch"),
+  viewerColorName: document.getElementById("viewerColorName"),
+  viewerSizeSelector: document.getElementById("viewerSizeSelector"),
   viewerAddBtn: document.getElementById("viewerAddBtn"),
+  viewerAddPrice: document.getElementById("viewerAddPrice"),
   closeViewerBtn: document.getElementById("closeViewerBtn"),
   viewerPrev: document.getElementById("viewerPrev"),
   viewerNext: document.getElementById("viewerNext"),
   viewerDots: document.getElementById("viewerDots"),
+  qtyDec: document.getElementById("qtyDec"),
+  qtyInc: document.getElementById("qtyInc"),
+  qtyValue: document.getElementById("qtyValue"),
   heroTrack: document.getElementById("heroTrack"),
   heroDots: document.getElementById("heroDots"),
   categoryNav: document.getElementById("categoryNav"),
@@ -266,7 +274,6 @@ const updateCartUi = () => {
   els.cartSubtotal.textContent = formatKsh(total);
   els.cartSubtitle.textContent = `${count} item${count !== 1 ? 's' : ''}`;
   
-  // Sticky bar
   if (count > 0) {
     els.stickyCartBar.classList.add("visible");
     els.stickyCartCount.textContent = `${count} item${count !== 1 ? 's' : ''}`;
@@ -282,7 +289,7 @@ const openCart = () => {
   renderCart();
 };
 
-const closeCart = () => els.cartModal.setAttribute("aria-hidden", "true");
+const closeCart = () => els.cartModal.setAttribute("aria-hidden", "false");
 
 // Help Menu
 const toggleHelp = () => {
@@ -305,161 +312,9 @@ document.addEventListener("click", (e) => {
   }
 });
 
-els.helpMenu?.querySelectorAll("[data-help-close]").forEach(a => {
-  a.addEventListener("click", closeHelp);
-});
-
-// Product Viewer with Full Details
-let viewer = { 
-  product: null, 
-  images: [], 
-  index: 0,
-  selectedSize: null,
-  quantity: 1
-};
-
-const openViewer = (product) => {
-  const imgs = product.images?.length ? product.images : ["assets/placeholder.jpg"];
-  viewer = { 
-    product, 
-    images: imgs, 
-    index: 0,
-    selectedSize: product.sizes[0],
-    quantity: 1
-  };
-  
-  els.viewerTitle.textContent = product.name;
-  els.viewerSubtitle.textContent = product.category;
-  els.viewerPrice.textContent = formatKsh(product.price);
-  els.viewerDescription.textContent = getProductDescription(product);
-  els.viewerColorName.textContent = product.color;
-  els.viewerColorSwatch.style.backgroundColor = getColorHex(product.color);
-  
-  renderViewer();
-  renderSizeSelector();
-  updateQuantityDisplay();
-  updateAddButton();
-  
-  els.viewerModal.setAttribute("aria-hidden", "false");
-  document.body.style.overflow = "hidden"; // Prevent background scroll
-};
-
-const closeViewer = () => {
-  els.viewerModal.setAttribute("aria-hidden", "true");
-  document.body.style.overflow = "";
-};
-
-const getProductDescription = (product) => {
-  const descriptions = {
-    "Football Jersey": "Official team jersey made with breathable, moisture-wicking fabric. Features embroidered crest and premium stitching for match-day comfort.",
-    "Basketball Jersey": "FIBA-certified basketball kit with lightweight, quick-dry material. Designed for optimal performance on the court.",
-    "T-Shirt": "Premium cotton blend t-shirt with soft hand feel. Durable print that lasts through multiple washes without fading.",
-    "Laawah": "Traditional South Sudanese garment made from high-quality fabric. Perfect for cultural events, celebrations, and everyday elegance."
-  };
-  return descriptions[product.category] || "Premium quality product with attention to detail and comfort.";
-};
-
-const getColorHex = (color) => {
-  const colors = {
-    "Green": "#22c55e",
-    "White": "#f8fafc",
-    "Black": "#0f172a",
-    "Mixed": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
-  };
-  return colors[color] || "#cbd5e1";
-};
-
-const renderViewer = () => {
-  els.viewerImg.src = viewer.images[viewer.index];
-  els.viewerImg.alt = viewer.product.name;
-  
-  els.viewerDots.innerHTML = viewer.images.map((img, i) => `
-    <button class="viewer-thumb ${i === viewer.index ? "active" : ""}" data-thumb="${i}" type="button" aria-label="View image ${i + 1}">
-      <img src="${img}" alt="">
-    </button>
-  `).join("");
-  
-  els.viewerDots.querySelectorAll("[data-thumb]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      viewer.index = Number(btn.dataset.thumb);
-      renderViewer();
-    });
-  });
-};
-
-const renderSizeSelector = () => {
-  const container = els.viewerSizeSelector;
-  container.innerHTML = viewer.product.sizes.map(size => `
-    <button class="size-btn ${size === viewer.selectedSize ? 'active' : ''}" data-size="${size}" type="button">
-      ${size}
-    </button>
-  `).join("");
-  
-  container.querySelectorAll("[data-size]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      viewer.selectedSize = btn.dataset.size;
-      renderSizeSelector();
-      updateAddButton();
-    });
-  });
-};
-
-const updateQuantityDisplay = () => {
-  els.qtyValue.textContent = viewer.quantity;
-};
-
-const updateAddButton = () => {
-  const total = viewer.product.price * viewer.quantity;
-  els.viewerAddPrice.textContent = `• ${formatKsh(total)}`;
-};
-
-// Quantity Controls
-els.qtyDec?.addEventListener("click", () => {
-  if (viewer.quantity > 1) {
-    viewer.quantity--;
-    updateQuantityDisplay();
-    updateAddButton();
-  }
-});
-
-els.qtyInc?.addEventListener("click", () => {
-  if (viewer.quantity < 10) {
-    viewer.quantity++;
-    updateQuantityDisplay();
-    updateAddButton();
-  }
-});
-
-// Add to Cart from Viewer
-els.viewerAddBtn?.addEventListener("click", () => {
-  if (viewer.product && viewer.selectedSize) {
-    // Add multiple based on quantity
-    for (let i = 0; i < viewer.quantity; i++) {
-      addToCart(viewer.product, viewer.selectedSize);
-    }
-    closeViewer();
-    showToast(`${viewer.product.name} (Size ${viewer.selectedSize}) x${viewer.quantity} added to cart`);
-  }
-});
-
-// Viewer Navigation
-els.viewerPrev?.addEventListener("click", () => {
-  viewer.index = (viewer.index - 1 + viewer.images.length) % viewer.images.length;
-  renderViewer();
-});
-
-els.viewerNext?.addEventListener("click", () => {
-  viewer.index = (viewer.index + 1) % viewer.images.length;
-  renderViewer();
-});
-
-// Add from viewer
-if (els.viewerAddBtn) {
-  els.viewerAddBtn.addEventListener("click", () => {
-    if (viewer.product) {
-      addToCart(viewer.product, viewer.product.sizes[0]);
-      closeViewer();
-    }
+if (els.helpMenu) {
+  els.helpMenu.querySelectorAll("[data-help-close]").forEach(a => {
+    a.addEventListener("click", closeHelp);
   });
 }
 
@@ -509,7 +364,7 @@ const sortProducts = (products) => {
   }
 };
 
-// Render Simplified Product Cards (Name + Price only)
+// Render Simplified Product Cards
 const renderProducts = () => {
   let filtered = PRODUCTS.filter(matchesFilters);
   filtered = sortProducts(filtered);
@@ -536,38 +391,15 @@ const renderProducts = () => {
     `;
   }).join("");
   
-    // Load more button
   if (els.loadMoreBtn) {
     els.loadMoreBtn.style.display = hasMore ? "inline-flex" : "none";
     els.loadMoreBtn.textContent = hasMore ? `Load More (${filtered.length - displayedCount} remaining)` : "No more products";
   }
   
-  // Event Listeners - Open viewer on card click
   els.grid.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", () => {
       const p = PRODUCTS.find(x => x.id === card.dataset.id);
       openViewer(p);
-    });
-  });
-};
-  
-  els.grid.querySelectorAll(".card").forEach(card => {
-    card.addEventListener("click", (e) => {
-      if (e.target.closest("button") || e.target.closest("select")) return;
-      const p = PRODUCTS.find(x => x.id === card.dataset.id);
-      openViewer(p);
-    });
-  });
-  
-  els.grid.querySelectorAll("[data-add]").forEach(btn => {
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const id = btn.dataset.add;
-      const p = PRODUCTS.find(x => x.id === id);
-      const sizeSel = els.grid.querySelector(`[data-size-for="${id}"]`);
-      const size = sizeSel?.value || p.sizes[0];
-      
-      addToCart(p, size);
     });
   });
 };
@@ -593,47 +425,182 @@ if (els.categoryNav) {
   });
 }
 
-// Cart Functions
-const addToCart = (product, size) => {
-  const key = `${product.id}__${size}`;
-  const existing = cart.find(i => i.key === key);
-  
-  if (existing) {
-    existing.qty += 1;
-  } else {
-    cart.push({
-      key,
-      id: product.id,
-      name: product.name,
-      category: product.category,
-      color: product.color,
-      size,
-      price: product.price,
-      qty: 1,
-      image: product.images?.[0] || "assets/placeholder.jpg"
-    });
-  }
-  
-  saveCart(cart);
-  updateCartUi();
-  showToast(`${product.name} added to cart`);
+// Product Viewer
+let viewer = { 
+  product: null, 
+  images: [], 
+  index: 0,
+  selectedSize: null,
+  quantity: 1
 };
 
+const getProductDescription = (product) => {
+  const descriptions = {
+    "Football Jersey": "Official team jersey made with breathable, moisture-wicking fabric. Features embroidered crest and premium stitching for match-day comfort.",
+    "Basketball Jersey": "FIBA-certified basketball kit with lightweight, quick-dry material. Designed for optimal performance on the court.",
+    "T-Shirt": "Premium cotton blend t-shirt with soft hand feel. Durable print that lasts through multiple washes without fading.",
+    "Laawah": "Traditional South Sudanese garment made from high-quality fabric. Perfect for cultural events, celebrations, and everyday elegance."
+  };
+  return descriptions[product.category] || "Premium quality product with attention to detail and comfort.";
+};
+
+const getColorHex = (color) => {
+  const colors = {
+    "Green": "#22c55e",
+    "White": "#f8fafc",
+    "Black": "#0f172a",
+    "Mixed": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+  };
+  return colors[color] || "#cbd5e1";
+};
+
+const openViewer = (product) => {
+  const imgs = product.images?.length ? product.images : ["assets/placeholder.jpg"];
+  viewer = { 
+    product: 
+The user is reporting a syntax error at line 573. Looking at my previous response, I can see that I cut off the JavaScript code at the end. The file was incomplete - I need to provide the complete, working JavaScript file.
+Let me provide the complete, corrected JavaScript file that will actually work. The error is likely because the code was truncated or there's a missing closing brace. I'll make sure to include everything from start to finish. 0,
+selectedSize: product.sizes[0],
+quantity: 1
+};
+els.viewerTitle.textContent = product.name;
+els.viewerSubtitle.textContent = product.category;
+els.viewerPrice.textContent = formatKsh(product.price);
+els.viewerDescription.textContent = getProductDescription(product);
+els.viewerColorName.textContent = product.color;
+els.viewerColorSwatch.style.background = getColorHex(product.color);
+renderViewer();
+renderSizeSelector();
+updateQuantityDisplay();
+updateAddButton();
+els.viewerModal.setAttribute("aria-hidden", "false");
+document.body.style.overflow = "hidden";
+};
+const closeViewer = () => {
+els.viewerModal.setAttribute("aria-hidden", "true");
+document.body.style.overflow = "";
+};
+const renderViewer = () => {
+els.viewerImg.src = viewer.images[viewer.index];
+els.viewerImg.alt = viewer.product.name;
+els.viewerDots.innerHTML = viewer.images.map((img, i) =>     <button class="viewer-thumb ${i === viewer.index ? "active" : ""}" data-thumb="${i}" type="button" aria-label="View image ${i + 1}">
+      <img src="${img}" alt="">
+    </button>
+ ).join("");
+els.viewerDots.querySelectorAll("[data-thumb]").forEach(btn => {
+btn.addEventListener("click", () => {
+viewer.index = Number(btn.dataset.thumb);
+renderViewer();
+});
+});
+};
+const renderSizeSelector = () => {
+const container = els.viewerSizeSelector;
+container.innerHTML = viewer.product.sizes.map(size =>     <button class="size-btn ${size === viewer.selectedSize ? 'active' : ''}" data-size="${size}" type="button">
+      ${size}
+    </button>
+ ).join("");
+container.querySelectorAll("[data-size]").forEach(btn => {
+btn.addEventListener("click", () => {
+viewer.selectedSize = btn.dataset.size;
+renderSizeSelector();
+updateAddButton();
+});
+});
+};
+const updateQuantityDisplay = () => {
+els.qtyValue.textContent = viewer.quantity;
+};
+const updateAddButton = () => {
+const total = viewer.product.price * viewer.quantity;
+els.viewerAddPrice.textContent = • ${formatKsh(total)};
+};
+// Quantity Controls
+if (els.qtyDec) {
+els.qtyDec.addEventListener("click", () => {
+if (viewer.quantity > 1) {
+viewer.quantity--;
+updateQuantityDisplay();
+updateAddButton();
+}
+});
+}
+if (els.qtyInc) {
+els.qtyInc.addEventListener("click", () => {
+if (viewer.quantity < 10) {
+viewer.quantity++;
+updateQuantityDisplay();
+updateAddButton();
+}
+});
+}
+// Add to Cart from Viewer
+if (els.viewerAddBtn) {
+els.viewerAddBtn.addEventListener("click", () => {
+if (viewer.product && viewer.selectedSize) {
+for (let i = 0; i < viewer.quantity; i++) {
+addToCart(viewer.product, viewer.selectedSize);
+}
+closeViewer();
+showToast(${viewer.product.name} (Size ${viewer.selectedSize}) x${viewer.quantity} added to cart);
+}
+});
+}
+// Viewer Navigation
+if (els.viewerPrev) {
+els.viewerPrev.addEventListener("click", () => {
+viewer.index = (viewer.index - 1 + viewer.images.length) % viewer.images.length;
+renderViewer();
+});
+}
+if (els.viewerNext) {
+els.viewerNext.addEventListener("click", () => {
+viewer.index = (viewer.index + 1) % viewer.images.length;
+renderViewer();
+});
+}
+if (els.closeViewerBtn) {
+els.closeViewerBtn.addEventListener("click", closeViewer);
+}
+if (els.viewerModal) {
+els.viewerModal.addEventListener("click", (e) => {
+if (e.target?.dataset?.viewerClose === "true") closeViewer();
+});
+}
+// Cart Functions
+const addToCart = (product, size) => {
+const key = ${product.id}__${size};
+const existing = cart.find(i => i.key === key);
+if (existing) {
+existing.qty += 1;
+} else {
+cart.push({
+key,
+id: product.id,
+name: product.name,
+category: product.category,
+color: product.color,
+size,
+price: product.price,
+qty: 1,
+image: product.images?.[0] || "assets/placeholder.jpg"
+});
+}
+saveCart(cart);
+updateCartUi();
+};
 const renderCart = () => {
-  if (!cart.length) {
-    els.cartItems.innerHTML = `
-      <div class="empty-state">
+if (!cart.length) {
+els.cartItems.innerHTML =       <div class="empty-state">
         <div class="empty-state-icon">🛒</div>
         <h3>Your cart is empty</h3>
         <p>Add some products to get started</p>
       </div>
-    `;
-    updateCartUi();
-    return;
-  }
-  
-  els.cartItems.innerHTML = cart.map(item => `
-    <div class="cart-item">
+   ;
+updateCartUi();
+return;
+}
+els.cartItems.innerHTML = cart.map(item =>     <div class="cart-item">
       <div class="cart-thumb">
         <img src="${item.image}" alt="${item.name}">
       </div>
@@ -651,197 +618,164 @@ const renderCart = () => {
         </div>
       </div>
     </div>
-  `).join("");
-  
-  els.cartItems.querySelectorAll("[data-inc]").forEach(btn => {
-    btn.addEventListener("click", () => changeQty(btn.dataset.inc, 1));
-  });
-  
-  els.cartItems.querySelectorAll("[data-dec]").forEach(btn => {
-    btn.addEventListener("click", () => changeQty(btn.dataset.dec, -1));
-  });
-  
-  els.cartItems.querySelectorAll("[data-remove]").forEach(btn => {
-    btn.addEventListener("click", () => removeItem(btn.dataset.remove));
-  });
-  
-  updateCartUi();
+ ).join("");
+els.cartItems.querySelectorAll("[data-inc]").forEach(btn => {
+btn.addEventListener("click", () => changeQty(btn.dataset.inc, 1));
+});
+els.cartItems.querySelectorAll("[data-dec]").forEach(btn => {
+btn.addEventListener("click", () => changeQty(btn.dataset.dec, -1));
+});
+els.cartItems.querySelectorAll("[data-remove]").forEach(btn => {
+btn.addEventListener("click", () => removeItem(btn.dataset.remove));
+});
+updateCartUi();
 };
-
 const changeQty = (key, delta) => {
-  const item = cart.find(i => i.key === key);
-  if (!item) return;
-  
-  item.qty += delta;
-  if (item.qty <= 0) {
-    cart = cart.filter(i => i.key !== key);
-  }
-  
-  saveCart(cart);
-  renderCart();
+const item = cart.find(i => i.key === key);
+if (!item) return;
+item.qty += delta;
+if (item.qty <= 0) {
+cart = cart.filter(i => i.key !== key);
+}
+saveCart(cart);
+renderCart();
 };
-
 const removeItem = (key) => {
-  cart = cart.filter(i => i.key !== key);
-  saveCart(cart);
-  renderCart();
+cart = cart.filter(i => i.key !== key);
+saveCart(cart);
+renderCart();
 };
-
 // Checkout
 const checkout = () => {
-  if (!cart.length) return;
-  
-  const lines = [
-    "Hi Winchester Graphics, I'd like to order:",
-    "",
-    ...cart.map(i => `• ${i.name} (${i.color}) - Size ${i.size} x${i.qty} = ${formatKsh(i.price * i.qty)}`),
-    "",
-    `*Total: ${formatKsh(cartTotal())}*`,
-    "",
-    "Name: ",
-    "Location: ",
-    "Preferred delivery time: "
-  ];
-  
-  window.open(makeWaLink(lines.join("\n")), "_blank");
+if (!cart.length) return;
+const lines = [
+"Hi Winchester Graphics, I'd like to order:",
+"",
+...cart.map(i => • ${i.name} (${i.color}) - Size ${i.size} x${i.qty} = ${formatKsh(i.price * i.qty)}),
+"",
+*Total: ${formatKsh(cartTotal())}*,
+"",
+"Name: ",
+"Location: ",
+"Preferred delivery time: "
+];
+window.open(makeWaLink(lines.join("\n")), "_blank");
 };
-
-// Event Listeners
-els.openCartBtn?.addEventListener("click", openCart);
-els.closeCartBtn?.addEventListener("click", closeCart);
-els.stickyCheckoutBtn?.addEventListener("click", openCart);
-els.cartModal?.addEventListener("click", (e) => {
-  if (e.target?.dataset?.close === "true") closeCart();
+// Cart Event Listeners
+if (els.openCartBtn) els.openCartBtn.addEventListener("click", openCart);
+if (els.closeCartBtn) els.closeCartBtn.addEventListener("click", closeCart);
+if (els.stickyCheckoutBtn) els.stickyCheckoutBtn.addEventListener("click", openCart);
+if (els.cartModal) {
+els.cartModal.addEventListener("click", (e) => {
+if (e.target?.dataset?.close === "true") closeCart();
 });
-els.clearCartBtn?.addEventListener("click", () => {
-  cart = [];
-  saveCart(cart);
-  renderCart();
+}
+if (els.clearCartBtn) {
+els.clearCartBtn.addEventListener("click", () => {
+cart = [];
+saveCart(cart);
+renderCart();
 });
-els.checkoutBtn?.addEventListener("click", checkout);
-els.closeViewerBtn?.addEventListener("click", closeViewer);
-els.viewerModal?.addEventListener("click", (e) => {
-  if (e.target?.dataset?.viewerClose === "true") closeViewer();
-});
-
+}
+if (els.checkoutBtn) els.checkoutBtn.addEventListener("click", checkout);
 // Filter Events
 ["change", "input"].forEach(evt => {
-  els.filterColor?.addEventListener(evt, () => { displayedCount = 8; renderProducts(); });
-  els.filterSize?.addEventListener(evt, () => { displayedCount = 8; renderProducts(); });
-  els.sortSelect?.addEventListener(evt, renderProducts);
-  els.search?.addEventListener(evt, () => { displayedCount = 8; renderProducts(); });
+if (els.filterColor) els.filterColor.addEventListener(evt, () => { displayedCount = 8; renderProducts(); });
+if (els.filterSize) els.filterSize.addEventListener(evt, () => { displayedCount = 8; renderProducts(); });
+if (els.sortSelect) els.sortSelect.addEventListener(evt, renderProducts);
+if (els.search) els.search.addEventListener(evt, () => { displayedCount = 8; renderProducts(); });
 });
-
-els.searchBtn?.addEventListener("click", () => { displayedCount = 8; renderProducts(); });
-
+if (els.searchBtn) {
+els.searchBtn.addEventListener("click", () => { displayedCount = 8; renderProducts(); });
+}
 // Hero Carousel - Auto-rotate every 6 seconds
 let heroIndex = 0;
 let heroInterval = null;
-
 const updateHero = () => {
-  if (!els.heroTrack) return;
-  const slides = els.heroTrack.querySelectorAll(".hero-slide");
-  if (!slides.length) return;
-  
-  const slideWidth = slides[0].offsetWidth;
-  els.heroTrack.style.transform = `translateX(-${heroIndex * slideWidth}px)`;
-  
-  // Update dots
-  if (els.heroDots) {
-    els.heroDots.innerHTML = Array.from(slides).map((_, i) => `
-      <button class="hero-dot ${i === heroIndex ? 'active' : ''}" data-hero-dot="${i}" aria-label="Go to slide ${i + 1}"></button>
-    `).join("");
-    
-    els.heroDots.querySelectorAll("[data-hero-dot]").forEach(dot => {
-      dot.addEventListener("click", () => {
-        heroIndex = Number(dot.dataset.heroDot);
-        updateHero();
-        resetAutoRotate(); // Reset timer when manually clicked
-      });
-    });
-  }
-};
+if (!els.heroTrack) return;
+const slides = els.heroTrack.querySelectorAll(".hero-slide");
+if (!slides.length) return;
+const slideWidth = slides[0].offsetWidth;
+els.heroTrack.style.transform = translateX(-${heroIndex * slideWidth}px);
+if (els.heroDots) {
+els.heroDots.innerHTML = Array.from(slides).map((_, i) =>       <button class="hero-dot ${i === heroIndex ? "active" : ""}" data-hero-dot="${i}" aria-label="Go to slide ${i + 1}"></button>
+   ).join("");
 
+els.heroDots.querySelectorAll("[data-hero-dot]").forEach(dot => {
+  dot.addEventListener("click", () => {
+    heroIndex = Number(dot.dataset.heroDot);
+    updateHero();
+    resetAutoRotate();
+  });
+});
+}
+};
 const nextHero = () => {
-  const slides = els.heroTrack?.querySelectorAll(".hero-slide");
-  if (!slides?.length) return;
-  heroIndex = (heroIndex + 1) % slides.length;
-  updateHero();
+const slides = els.heroTrack?.querySelectorAll(".hero-slide");
+if (!slides?.length) return;
+heroIndex = (heroIndex + 1) % slides.length;
+updateHero();
 };
-
 const prevHero = () => {
-  const slides = els.heroTrack?.querySelectorAll(".hero-slide");
-  if (!slides?.length) return;
-  heroIndex = (heroIndex - 1 + slides.length) % slides.length;
-  updateHero();
+const slides = els.heroTrack?.querySelectorAll(".hero-slide");
+if (!slides?.length) return;
+heroIndex = (heroIndex - 1 + slides.length) % slides.length;
+updateHero();
 };
-
-// AUTO-ROTATE FUNCTION
 const startAutoRotate = () => {
-  heroInterval = setInterval(nextHero, 6000); // 6000ms = 6 seconds
+heroInterval = setInterval(nextHero, 6000);
 };
-
 const stopAutoRotate = () => {
-  if (heroInterval) {
-    clearInterval(heroInterval);
-    heroInterval = null;
-  }
+if (heroInterval) {
+clearInterval(heroInterval);
+heroInterval = null;
+}
 };
-
 const resetAutoRotate = () => {
-  stopAutoRotate();
-  startAutoRotate();
+stopAutoRotate();
+startAutoRotate();
 };
-
 // Pause on hover/touch
 const carousel = document.getElementById("heroCarousel");
 if (carousel) {
-  carousel.addEventListener("mouseenter", stopAutoRotate);
-  carousel.addEventListener("mouseleave", startAutoRotate);
-  carousel.addEventListener("touchstart", stopAutoRotate, {passive: true});
-  carousel.addEventListener("touchend", () => {
-    setTimeout(startAutoRotate, 3000); // Resume after 3 seconds
-  }, {passive: true});
+carousel.addEventListener("mouseenter", stopAutoRotate);
+carousel.addEventListener("mouseleave", startAutoRotate);
+carousel.addEventListener("touchstart", stopAutoRotate, {passive: true});
+carousel.addEventListener("touchend", () => {
+setTimeout(startAutoRotate, 3000);
+}, {passive: true});
 }
-
 // Touch/Swipe for Hero
 (() => {
-  const carousel = document.getElementById("heroCarousel");
-  if (!carousel || !els.heroTrack) return;
-  
-  let startX = 0;
-  let isDown = false;
-  
-  const onDown = (e) => {
-    isDown = true;
-    startX = e.touches ? e.touches[0].clientX : e.clientX;
-  };
-  
-  const onUp = (e) => {
-    if (!isDown) return;
-    isDown = false;
-    const endX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
-    const diff = startX - endX;
-    
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) nextHero();
-      else prevHero();
-    }
-  };
-  
-  carousel.addEventListener("touchstart", onDown, {passive: true});
-  carousel.addEventListener("touchend", onUp);
-  carousel.addEventListener("mousedown", onDown);
-  window.addEventListener("mouseup", onUp);
+if (!carousel || !els.heroTrack) return;
+let startX = 0;
+let isDown = false;
+const onDown = (e) => {
+isDown = true;
+startX = e.touches ? e.touches[0].clientX : e.clientX;
+};
+const onUp = (e) => {
+if (!isDown) return;
+isDown = false;
+const endX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+const diff = startX - endX;
+ if (Math.abs(diff) > 50) {
+  if (diff > 0) nextHero();
+  else prevHero();
+}
+};
+carousel.addEventListener("touchstart", onDown, {passive: true});
+carousel.addEventListener("touchend", onUp);
+carousel.addEventListener("mousedown", onDown);
+window.addEventListener("mouseup", onUp);
 })();
-
 // Initialize
 window.addEventListener("resize", updateHero);
 window.addEventListener("load", () => {
-  populateFilterOptions();
-  renderProducts();
-  updateHero();
-  updateCartUi();
+populateFilterOptions();
+renderProducts();
+updateHero();
+startAutoRotate();
+updateCartUi();
 });
-
 
