@@ -551,7 +551,7 @@ body {
   text-decoration: none;
   font-weight: 700;
   color: #fff;
-  background: linear-gradient(135deg, var(--blue), var(--red));
+  background: #000000;
   transition: var(--transition);
   white-space: nowrap;
 }
