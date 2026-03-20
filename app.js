@@ -11,7 +11,7 @@ const PRODUCTS = [
     price: 1200, 
     sizes: ["M", "L", "XL"],
     images: ["assets/fj001-green-1.jpeg", "assets/fj001-green-2.jpeg", "assets/fj001-green-3.jpeg"],
-    badge: "Popular",
+    badge: null,
     isNew: false
   },
   { 
@@ -33,7 +33,7 @@ const PRODUCTS = [
     price: 1500, 
     sizes: ["L", "XL", "XXL"],
     images: ["assets/bj001-1.jpeg", "assets/bj001-2.jpeg", "assets/bj001-3.jpeg"],
-    badge: "Best Seller",
+    badge: null,
     isNew: true
   },
   { 
@@ -99,7 +99,7 @@ const PRODUCTS = [
     price: 1200, 
     sizes: ["S", "M", "L", "XL", "XXL"],
     images: ["assets/ts004-white-1.jpeg", "assets/ts004-white-2.jpeg"],
-    badge: "Limited",
+    badge: null,
     isNew: true
   },
   { 
@@ -121,7 +121,7 @@ const PRODUCTS = [
     price: 2500, 
     sizes: ["Standard"],
     images: ["assets/laawah-01.jpeg"],
-    badge: "Traditional",
+    badge: null,
     isNew: false
   },
   { 
@@ -132,7 +132,7 @@ const PRODUCTS = [
     price: 2500, 
     sizes: ["Standard"],
     images: ["assets/laawah-02.jpeg"],
-    badge: "Traditional",
+    badge: null,
     isNew: false
   },
   { 
@@ -143,7 +143,7 @@ const PRODUCTS = [
     price: 2500, 
     sizes: ["Standard"],
     images: [],
-    badge: "Traditional",
+    badge: null,
     isNew: false
   },
   { 
@@ -154,7 +154,7 @@ const PRODUCTS = [
     price: 2500, 
     sizes: ["Standard"],
     images: [],
-    badge: "Premium",
+    badge: null,
     isNew: true
   },
   { 
@@ -165,7 +165,7 @@ const PRODUCTS = [
     price: 2500, 
     sizes: ["Standard"],
     images: [],
-    badge: "Premium",
+    badge: null,
     isNew: true
   },
   { 
@@ -176,7 +176,7 @@ const PRODUCTS = [
     price: 2500, 
     sizes: ["Standard"],
     images: [],
-    badge: "Premium",
+    badge: null,
     isNew: true
   },
 ];
