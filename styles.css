@@ -1269,7 +1269,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background: var(--card);
+  background: #000000;
   border-top: 1px solid var(--border);
 }
 
