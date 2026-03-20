@@ -134,7 +134,7 @@ body {
   cursor: pointer;
   font-weight: 700;
   color: #fff;
-  background: linear-gradient(135deg, var(--blue), var(--red));
+  background: #000000;
   box-shadow: var(--shadow);
   transition: var(--transition);
   white-space: nowrap;
