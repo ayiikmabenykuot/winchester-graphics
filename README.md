@@ -19,9 +19,9 @@ A static shop for **Winchester Graphics**: printed t-shirts, South Sudan footbal
 
 ---
 
-## Layout (modelled on the Dove homepage)
+## Layout 
 
-| Dove homepage | Winchester Graphics |
+| Winchester Graphics |
 | --- | --- |
 | Navy utility strip with brand links + “Find Dove Near You / Sign Up & Save” | Navy utility strip with brand links + “Find Us on WhatsApp / Sign Up & Save” |
 | White header: logo, nav, underlined search box | White header: logo, category nav, search, account, help, cart |
