@@ -1,212 +1,316 @@
-/* =============================================================
-   Winchester Graphics — catalog, product preview, cart,
-   WhatsApp checkout.  Vanilla JS, no dependencies.
-   ============================================================= */
+/* =========================================================
+   Winchester Graphics — app.js
+   Hero carousel · catalog · product preview · cart · accounts · WhatsApp checkout
+   ========================================================= */
 (function () {
   "use strict";
 
-  /* ---------- CONFIG ---------- */
+  /* ----------------------- CONFIG ----------------------- */
   var CONFIG = {
-    whatsapp: "254793669941",          // WhatsApp Business number (no +, no spaces)
+    whatsapp: "254793669941",      // WhatsApp Business number, digits only
     currency: "Kshs.",
     storageKey: "wg_cart_v1",
-    imageBase: "assets/img/products/"  // drop your product photos here
+    userKey: "wg_user_v1",         // logged-in customer
+    usersKey: "wg_users_v1",       // registered customers (demo, browser only)
+    imageBase: "assets/img/products/"
   };
 
-  var CATEGORIES = [
-    { id: "all",        label: "All Products" },
-    { id: "football",   label: "Football" },
-    { id: "basketball", label: "Basketball" },
-    { id: "tshirts",    label: "T-Shirts" },
-    { id: "laawah",     label: "Laawah" }
+  /* ----------------------- HERO SLIDES -----------------------
+     Replace the image paths with your own photos (assets/img/).
+  ------------------------------------------------------------ */
+  var SLIDES = [
+    {
+      image: "assets/img/hero-1.jpg",
+      alt: "South Sudan basketball jersey",
+      eyebrow: "New this season",
+      script: "Official kits",
+      title: "South Sudan jerseys",
+      text: "Bright Stars football and basketball jerseys, printed and ready to ship countrywide.",
+      ctaLabel: "Shop now",
+      cat: "basketball"
+    },
+    {
+      image: "assets/img/hero-2.jpg",
+      alt: "Laawah traditional dress",
+      eyebrow: "Made for celebrations",
+      script: "Handprinted",
+      title: "Laawah for every ceremony",
+      text: "Traditional dress for weddings, dowry ceremonies and cultural days — custom prints on request.",
+      ctaLabel: "Shop laawah",
+      cat: "laawah"
+    },
+    {
+      image: "assets/img/hero-3.jpg",
+      alt: "Printed t-shirts",
+      eyebrow: "Teams & events",
+      script: "From one piece",
+      title: "Printed t-shirts & tanks",
+      text: "Names, numbers, crests and artwork — printed in our own workshop, with no minimum order.",
+      ctaLabel: "Shop t-shirts",
+      cat: "tshirts"
+    }
   ];
 
-  /* ---------- PRODUCTS ----------
-     Edit this array to manage your catalog.
-     image: file name inside assets/img/products/ (a placeholder
-     is drawn automatically if the file is missing). */
+  /* ----------------------- CATEGORIES ----------------------- */
+  var CATEGORIES = [
+    { id: "all", label: "All products" },
+    { id: "football", label: "Football" },
+    { id: "basketball", label: "Basketball" },
+    { id: "tshirts", label: "T-Shirts" },
+    { id: "laawah", label: "Laawah" }
+  ];
+
+  /* ----------------------- PRODUCTS -----------------------
+     Edit this list to change your shop. `image` is a file name
+     inside assets/img/products/. Prices are in Kenyan shillings.
+  --------------------------------------------------------- */
   var PRODUCTS = [
     {
-      id: "ssd-away-kit", name: "South Sudan Away Kit", category: "football",
-      price: 1200, image: "ssd-away-kit.jpg", badge: "", featured: true, added: "2026-07-02",
-      colors: ["Green"], sizes: ["S", "M", "L", "XL", "2XL"], rating: 4.8, reviews: 42,
-      description: "Official-style South Sudan away kit in bright green with the national crest and embossed pattern detail. Breathable polyester mesh built for match day or the terraces. Name and number printing available on request."
-    },
-    {
-      id: "ssd-home-kit", name: "South Sudan Home Kit", category: "football",
-      price: 1200, image: "ssd-home-kit.jpg", badge: "", featured: true, added: "2026-07-02",
-      colors: ["White"], sizes: ["S", "M", "L", "XL", "2XL"], rating: 4.7, reviews: 38,
-      description: "South Sudan home kit in clean white with the national star and crest. Lightweight quick-dry fabric with a tailored fit. Pair it with matching shorts for a full set."
-    },
-    {
       id: "ssd-fiba-wc", name: "South Sudan FIBA World Cup Jersey", category: "basketball",
-      price: 1500, image: "ssd-fiba-wc.jpg", badge: "NEW", featured: true, added: "2026-09-10",
-      colors: ["White"], sizes: ["S", "M", "L", "XL", "2XL"], rating: 4.9, reviews: 67,
-      description: "The World Cup home jersey of the Bright Stars in white, with SOUTH SUDAN chest print and national flag badge. Premium mesh cut for movement and airflow — our most requested basketball piece."
+      price: 1500, image: "ssd-fiba-wc.jpg", badge: "New", rating: 4.9, reviews: 67,
+      sizes: ["S", "M", "L", "XL", "2XL"], colors: ["White"], added: "2026-09-10", featured: true,
+      description: "The Bright Stars home jersey in white, with SOUTH SUDAN chest print and the national flag badge. Premium breathable mesh, cut for movement — our most requested basketball piece."
     },
     {
       id: "ssd-fiba-away", name: "South Sudan FIBA Away Jersey", category: "basketball",
-      price: 1500, image: "ssd-fiba-away.jpg", badge: "", featured: false, added: "2026-08-14",
-      colors: ["Navy"], sizes: ["S", "M", "L", "XL", "2XL"], rating: 4.8, reviews: 31,
-      description: "Navy away jersey with sky-blue trim and sponsor detail, finished with the national flag badge. Same premium mesh as the home kit. Custom numbers available."
+      price: 1500, image: "ssd-fiba-away.jpg", rating: 4.8, reviews: 31,
+      sizes: ["S", "M", "L", "XL", "2XL"], colors: ["Navy"], added: "2026-08-20",
+      description: "The away edition in deep blue with contrast trim. Same breathable mesh and stitched numbering as the home kit."
     },
     {
-      id: "ssd-bball-tee-black", name: "SSD Basketball Tee — Black", category: "tshirts",
-      price: 1200, image: "ssd-bball-tee-black.jpg", badge: "", featured: false, added: "2026-06-20",
-      colors: ["Black"], sizes: ["S", "M", "L", "XL", "2XL"], rating: 4.6, reviews: 24,
-      description: "Heavyweight black cotton tee with the bold SSD BASKETBALL chest print and flag accent. Pre-shrunk, ribbed collar, everyday fit."
+      id: "ssd-home-kit", name: "South Sudan Home Kit", category: "football",
+      price: 1200, image: "ssd-home-kit.jpg", rating: 4.7, reviews: 38,
+      sizes: ["S", "M", "L", "XL", "2XL"], colors: ["White"], added: "2026-08-02", featured: true,
+      description: "National team home jersey in white with flag detailing. Light football fabric that holds print and colour after repeated washing."
     },
     {
-      id: "ssd-bball-tank-black", name: "SSD Basketball Tank — Black", category: "tshirts",
-      price: 1200, image: "ssd-bball-tank-black.jpg", badge: "", featured: false, added: "2026-06-20",
-      colors: ["Black"], sizes: ["S", "M", "L", "XL"], rating: 4.5, reviews: 18,
-      description: "Sleeveless black training tank with SSD BASKETBALL print. Cut wide at the armhole for gym and court sessions."
+      id: "ssd-away-kit", name: "South Sudan Away Kit", category: "football",
+      price: 1200, image: "ssd-away-kit.jpg", rating: 4.8, reviews: 42,
+      sizes: ["S", "M", "L", "XL", "2XL"], colors: ["Green"], added: "2026-08-02", featured: true,
+      description: "The away football jersey with the national crest. Add your own name and number at no extra charge — just tell us on WhatsApp."
     },
     {
       id: "ssd-bball-tee-white", name: "SSD Basketball Tee — White", category: "tshirts",
-      price: 1200, image: "ssd-bball-tee-white.jpg", badge: "", featured: false, added: "2026-06-20",
-      colors: ["White"], sizes: ["S", "M", "L", "XL", "2XL"], rating: 4.6, reviews: 27,
-      description: "White cotton tee with black SSD BASKETBALL print and the South Sudan flag underneath. A lighter option for hot days."
+      price: 1200, image: "ssd-bball-tee-white.jpg", rating: 4.6, reviews: 27,
+      sizes: ["S", "M", "L", "XL", "2XL"], colors: ["White"], added: "2026-07-15",
+      description: "Everyday cotton tee with the South Sudan basketball print. Comfortable fit for supporters and training days."
+    },
+    {
+      id: "ssd-bball-tee-black", name: "SSD Basketball Tee — Black", category: "tshirts",
+      price: 1200, image: "ssd-bball-tee-black.jpg", rating: 4.6, reviews: 24,
+      sizes: ["S", "M", "L", "XL", "2XL"], colors: ["Black"], added: "2026-07-15",
+      description: "The same supporter tee in black. Durable DTF print that stays sharp wash after wash."
+    },
+    {
+      id: "ssd-bball-tank-black", name: "SSD Basketball Tank — Black", category: "tshirts",
+      price: 1200, image: "ssd-bball-tank-black.jpg", rating: 4.5, reviews: 18,
+      sizes: ["S", "M", "L", "XL"], colors: ["Black"], added: "2026-07-20",
+      description: "Sleeveless training tank in black, printed with the national basketball artwork. Built for courts and gym sessions."
     },
     {
       id: "ssd-bball-tank-white", name: "SSD Basketball Tank — White", category: "tshirts",
-      price: 1200, image: "ssd-bball-tank-white.jpg", badge: "", featured: false, added: "2026-06-20",
-      colors: ["White"], sizes: ["S", "M", "L", "XL"], rating: 4.4, reviews: 15,
-      description: "White sleeveless tank with SSD BASKETBALL print. Soft combed cotton that holds print colour wash after wash."
+      price: 1200, image: "ssd-bball-tank-white.jpg", rating: 4.4, reviews: 15,
+      sizes: ["S", "M", "L", "XL"], colors: ["White"], added: "2026-07-20",
+      description: "White training tank with the South Sudan basketball print. Light, breathable and easy to move in."
     },
     {
       id: "twic-east-tee", name: "Twic East Girls Association Tee", category: "tshirts",
-      price: 1200, image: "twic-east-tee.jpg", badge: "NEW", featured: false, added: "2026-09-12",
-      colors: ["White"], sizes: ["S", "M", "L", "XL", "2XL"], rating: 4.7, reviews: 12,
-      description: "Association tee printed with the full Twic East Girls Association crest. Made for group orders — bulk pricing available for teams and associations."
+      price: 1200, image: "twic-east-tee.jpg", badge: "New", rating: 4.7, reviews: 12,
+      sizes: ["S", "M", "L", "XL", "2XL"], colors: ["White"], added: "2026-09-05",
+      description: "Association tee printed for community groups and events. Send us your logo and we will set up the same style for your group."
     },
     {
       id: "get-the-bag-tee", name: "Get The Bag Tee", category: "tshirts",
-      price: 1200, image: "get-the-bag-tee.jpg", badge: "", featured: false, added: "2026-05-30",
-      colors: ["White"], sizes: ["S", "M", "L", "XL", "2XL"], rating: 4.3, reviews: 9,
-      description: "Clean white tee with the GTB monogram print. Simple streetwear staple from our own label."
+      price: 1200, image: "get-the-bag-tee.jpg", rating: 4.3, reviews: 9,
+      sizes: ["S", "M", "L", "XL", "2XL"], colors: ["White"], added: "2026-06-28",
+      description: "Statement graphic tee from our own design shelf. Bold print, relaxed fit, everyday cotton."
     },
     {
-      id: "laawah-palm", name: "Laawah — Palm &amp; River Print", category: "laawah",
-      price: 3500, image: "laawah-palm.jpg", badge: "", featured: true, added: "2026-08-28",
-      colors: ["White", "Blue"], sizes: ["One Size"], sizeNote: "One size, full length",
-      rating: 4.9, reviews: 54,
-      description: "Traditional laawah printed with the palm and river motif in turquoise and green on white. A favourite for dowry ceremonies and weddings — we print bridal-party sets with matching names and dates."
+      id: "laawah-palm", name: "Laawah — Palm & River Print", category: "laawah",
+      price: 3500, image: "laawah-palm.jpg", rating: 4.9, reviews: 54,
+      sizes: ["One Size"], colors: ["White", "Blue"], added: "2026-08-12", featured: true,
+      sizeNote: "One size, full length",
+      description: "Traditional laawah printed with a palm and river motif. Soft, full-length fabric worn for celebrations and family gatherings."
     },
     {
       id: "laawah-custom", name: "Laawah — Custom Ceremony Set", category: "laawah",
-      price: 4000, image: "laawah-custom.jpg", badge: "NEW", featured: false, added: "2026-09-15",
-      colors: ["White", "Blue", "Red"], sizes: ["One Size"], sizeNote: "One size, full length",
-      rating: 4.8, reviews: 21,
-      description: "Fully custom laawah designed around your ceremony — your names, date and chosen colours printed across the fabric. Send us your details on WhatsApp and we will design a proof before printing. Group orders of 10+ get a discount."
+      price: 4000, image: "laawah-custom.jpg", badge: "New", rating: 4.8, reviews: 21,
+      sizes: ["One Size"], colors: ["White", "Blue", "Red"], added: "2026-09-08", featured: true,
+      sizeNote: "One size, full length",
+      description: "Custom printed laawah for weddings and dowry ceremonies. Share your names, colours or photographs and we will design the print with you."
     }
   ];
 
-  /* ---------- STATE ---------- */
+  var SIZE_ORDER = ["S", "M", "L", "XL", "2XL", "3XL", "One Size"];
+
+  /* ----------------------- STATE ----------------------- */
   var state = {
     category: "all",
-    color: "all",
-    size: "all",
-    sort: "featured",
     search: "",
-    cart: loadCart(),
+    color: "",
+    size: "",
+    sort: "featured",
+    cart: [],
+    current: null,
+    selected: { size: null, color: null, qty: 1 },
     slide: 0,
-    lastFocus: null
+    user: null,
+    authMode: "signup"
   };
 
-  /* ---------- HELPERS ---------- */
-  function $(sel) { return document.querySelector(sel); }
-  function money(n) { return CONFIG.currency + " " + n.toLocaleString("en-KE"); }
+  var $ = function (id) { return document.getElementById(id); };
+  var timer = null;
+  var heroTimer = null;
+
+  /* ----------------------- HELPERS ----------------------- */
+  function money(n) { return CONFIG.currency + " " + Number(n).toLocaleString("en-KE"); }
+
   function esc(s) {
-    return String(s).replace(/[&<>"']/g, function (c) {
-      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
-    });
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
   }
-  function plain(s) { // strip entities used in product names for WhatsApp text
-    var d = document.createElement("textarea");
-    d.innerHTML = s;
-    return d.value;
-  }
-  function byId(id) {
+
+  function product(id) {
     for (var i = 0; i < PRODUCTS.length; i++) if (PRODUCTS[i].id === id) return PRODUCTS[i];
     return null;
   }
-  function loadCart() {
-    try { return JSON.parse(localStorage.getItem(CONFIG.storageKey)) || []; }
-    catch (e) { return []; }
-  }
-  function saveCart() {
-    try { localStorage.setItem(CONFIG.storageKey, JSON.stringify(state.cart)); } catch (e) {}
+
+  function catLabel(id) {
+    for (var i = 0; i < CATEGORIES.length; i++) if (CATEGORIES[i].id === id) return CATEGORIES[i].label;
+    return id;
   }
 
-  /* Inline SVG placeholder so the grid never shows broken images. */
-  function placeholder(name) {
-    var label = plain(name).replace(/ — .*$/, "");
+  function imgSrc(p) { return CONFIG.imageBase + p.image; }
+
+  // Placeholder shown until you drop your own photo in place.
+  function placeholder(label) {
     var svg =
-      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">' +
-      '<rect width="400" height="400" fill="#0A1E3C"/>' +
-      '<path d="M40 60l30 110 26-68 14 36 14-36 26 68 30-110" fill="none" stroke="#ffffff" ' +
-      'stroke-opacity="0.22" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" ' +
-      'transform="translate(95 100)"/>' +
-      '<text x="200" y="330" fill="#ffffff" fill-opacity="0.6" font-size="20" ' +
-      'font-family="Arial, sans-serif" text-anchor="middle">' + esc(label) + '</text>' +
-      '</svg>';
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">' +
+      '<rect width="600" height="600" fill="#EEF3FB"/>' +
+      '<path d="M110 200 L190 400 L245 270 L300 400 L355 270 L410 400 L490 200" fill="none" stroke="#C3D2EC" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<text x="300" y="500" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="26" fill="#8FA6CE">' +
+      esc(label || "Winchester Graphics") + "</text></svg>";
     return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
   }
 
-  function stars(rating) {
-    var full = Math.floor(rating);
-    var half = rating - full >= 0.5;
-    var out = "";
-    for (var i = 0; i < 5; i++) {
-      var cls = i < full ? "on" : (i === full && half ? "half" : "");
-      out += '<span class="star ' + cls + '" aria-hidden="true">\u2605</span>';
+  function applyFallbacks(root) {
+    var imgs = (root || document).querySelectorAll("img");
+    for (var i = 0; i < imgs.length; i++) {
+      (function (img) {
+        if (img.dataset.bound) return;
+        img.dataset.bound = "1";
+        img.addEventListener("error", function () {
+          if (img.dataset.done) return;
+          img.dataset.done = "1";
+          img.src = placeholder(img.dataset.fallback || img.alt);
+        });
+        if (img.complete && img.naturalWidth === 0) {
+          img.dataset.done = "1";
+          img.src = placeholder(img.dataset.fallback || img.alt);
+        }
+      })(imgs[i]);
     }
-    return '<span class="stars">' + out + "</span>";
+  }
+
+  function stars(rating, reviews) {
+    var full = Math.round(rating);
+    var s = "";
+    for (var i = 1; i <= 5; i++) s += i <= full ? "\u2605" : "\u2606";
+    return '<span class="stars" aria-hidden="true">' + s + "</span>" +
+      '<span class="rating-text">' + rating.toFixed(1) + " · " + reviews + " reviews</span>";
   }
 
   function toast(msg) {
-    var t = $("#toast");
-    t.textContent = msg;
-    t.hidden = false;
-    t.classList.add("show");
-    clearTimeout(toast._t);
-    toast._t = setTimeout(function () {
-      t.classList.remove("show");
-      setTimeout(function () { t.hidden = true; }, 220);
-    }, 2400);
+    var el = $("toast");
+    el.textContent = msg;
+    el.classList.add("is-visible");
+    clearTimeout(timer);
+    timer = setTimeout(function () { el.classList.remove("is-visible"); }, 2600);
   }
 
-  /* ---------- FILTER + SORT ---------- */
+  function store(key, value) {
+    try {
+      if (value === undefined) {
+        var raw = localStorage.getItem(key);
+        return raw ? JSON.parse(raw) : null;
+      }
+      localStorage.setItem(key, JSON.stringify(value));
+    } catch (e) { /* storage unavailable */ }
+    return null;
+  }
+
+  /* ----------------------- HERO CAROUSEL ----------------------- */
+  function renderHero() {
+    var slides = SLIDES.map(function (s, i) {
+      return '<div class="hero-slide' + (i === state.slide ? " is-active" : "") + '">' +
+        '<img src="' + esc(s.image) + '" alt="' + esc(s.alt) + '" data-fallback="' + esc(s.title) + '" />' +
+        "</div>";
+    }).join("");
+    $("heroSlides").innerHTML = slides;
+
+    var s = SLIDES[state.slide];
+    $("heroCopy").innerHTML =
+      '<p class="eyebrow">' + esc(s.eyebrow) + "</p>" +
+      '<p class="hero-script">' + esc(s.script) + "</p>" +
+      "<h1>" + esc(s.title) + "</h1>" +
+      "<p>" + esc(s.text) + "</p>" +
+      '<div class="hero-cta">' +
+      '<button class="btn btn-primary" type="button" data-cat="' + esc(s.cat) + '">' + esc(s.ctaLabel) + "</button>" +
+      '<button class="btn btn-ghost" type="button" data-auth="signup">Sign up &amp; save</button>' +
+      "</div>";
+
+    $("heroDots").innerHTML = SLIDES.map(function (_, i) {
+      return '<button class="dot' + (i === state.slide ? " is-active" : "") +
+        '" type="button" data-slide="' + i + '" aria-label="Slide ' + (i + 1) + '"></button>';
+    }).join("");
+
+    applyFallbacks($("hero"));
+  }
+
+  function goSlide(i) {
+    state.slide = (i + SLIDES.length) % SLIDES.length;
+    renderHero();
+  }
+
+  function autoplay() {
+    clearInterval(heroTimer);
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    heroTimer = setInterval(function () { goSlide(state.slide + 1); }, 7000);
+  }
+
+  /* ----------------------- CATALOG ----------------------- */
   function visibleProducts() {
-    var q = state.search.toLowerCase().trim();
+    var q = state.search.trim().toLowerCase();
     var list = PRODUCTS.filter(function (p) {
       if (state.category !== "all" && p.category !== state.category) return false;
-      if (state.color !== "all" && p.colors.indexOf(state.color) === -1) return false;
-      if (state.size !== "all" && p.sizes.indexOf(state.size) === -1) return false;
+      if (state.color && p.colors.indexOf(state.color) === -1) return false;
+      if (state.size && p.sizes.indexOf(state.size) === -1) return false;
       if (q) {
-        var hay = (plain(p.name) + " " + p.category + " " + p.description).toLowerCase();
+        var hay = (p.name + " " + p.description + " " + catLabel(p.category) + " " + p.colors.join(" ")).toLowerCase();
         if (hay.indexOf(q) === -1) return false;
       }
       return true;
     });
 
-    var sorters = {
-      featured: function (a, b) { return (b.featured ? 1 : 0) - (a.featured ? 1 : 0) || b.rating - a.rating; },
-      "new": function (a, b) { return new Date(b.added) - new Date(a.added); },
-      "price-asc": function (a, b) { return a.price - b.price; },
-      "price-desc": function (a, b) { return b.price - a.price; },
-      rating: function (a, b) { return b.rating - a.rating; }
-    };
-    return list.sort(sorters[state.sort] || sorters.featured);
+    list.sort(function (a, b) {
+      switch (state.sort) {
+        case "price-asc": return a.price - b.price;
+        case "price-desc": return b.price - a.price;
+        case "rating": return b.rating - a.rating;
+        case "new": return a.added < b.added ? 1 : -1;
+        default:
+          if (!!b.featured !== !!a.featured) return b.featured ? 1 : -1;
+          return b.rating - a.rating;
+      }
+    });
+    return list;
   }
 
-  /* ---------- RENDER: categories, filters ---------- */
   function renderCategories() {
-    $("#categoryNav").innerHTML = CATEGORIES.map(function (c) {
+    $("categoryNav").innerHTML = CATEGORIES.map(function (c) {
       return '<button class="pill' + (state.category === c.id ? " is-active" : "") +
-        '" data-cat="' + c.id + '" aria-pressed="' + (state.category === c.id) + '">' +
-        esc(c.label) + "</button>";
+        '" type="button" data-cat="' + c.id + '">' + esc(c.label) + "</button>";
     }).join("");
   }
 
@@ -217,104 +321,46 @@
       p.sizes.forEach(function (s) { if (sizes.indexOf(s) === -1) sizes.push(s); });
     });
     colors.sort();
-    var order = ["S", "M", "L", "XL", "2XL", "3XL", "One Size"];
-    sizes.sort(function (a, b) { return order.indexOf(a) - order.indexOf(b); });
+    sizes.sort(function (a, b) { return SIZE_ORDER.indexOf(a) - SIZE_ORDER.indexOf(b); });
 
-    $("#colorFilter").innerHTML = '<option value="all">All Colors</option>' +
+    $("colorFilter").innerHTML = '<option value="">All colours</option>' +
       colors.map(function (c) { return '<option value="' + esc(c) + '">' + esc(c) + "</option>"; }).join("");
-    $("#sizeFilter").innerHTML = '<option value="all">All Sizes</option>' +
+    $("sizeFilter").innerHTML = '<option value="">All sizes</option>' +
       sizes.map(function (s) { return '<option value="' + esc(s) + '">' + esc(s) + "</option>"; }).join("");
   }
 
-  /* ---------- RENDER: grid ---------- */
   function card(p) {
-    return '<article class="card" data-id="' + p.id + '" tabindex="0" role="button" ' +
-      'aria-label="' + esc(plain(p.name)) + ', ' + money(p.price) + '. View details">' +
+    return '<article class="card" data-quick="' + p.id + '" tabindex="0" role="button" aria-label="View ' + esc(p.name) + '">' +
       '<div class="card-media">' +
-        (p.badge ? '<span class="badge">' + esc(p.badge) + "</span>" : "") +
-        '<img loading="lazy" alt="' + esc(plain(p.name)) + '" src="' + CONFIG.imageBase + p.image +
-        '" data-fallback="' + placeholder(p.name) + '" />' +
+      (p.badge ? '<span class="badge">' + esc(p.badge) + "</span>" : "") +
+      '<img src="' + esc(imgSrc(p)) + '" alt="' + esc(p.name) + '" data-fallback="' + esc(p.name) + '" loading="lazy" />' +
       "</div>" +
       '<div class="card-body">' +
-        "<h3>" + p.name + "</h3>" +
-        '<div class="card-rating">' + stars(p.rating) +
-          '<span class="rating-num">' + p.rating.toFixed(1) + "</span></div>" +
-        '<p class="price">' + money(p.price) + "</p>" +
-        '<button class="btn btn-dark btn-sm card-cta" data-quick="' + p.id + '">View item</button>' +
-      "</div></article>";
+      '<p class="card-cat">' + esc(catLabel(p.category)) + "</p>" +
+      '<h3 class="card-title">' + esc(p.name) + "</h3>" +
+      '<div class="card-rating">' + stars(p.rating, p.reviews) + "</div>" +
+      '<p class="card-price">' + money(p.price) + "</p>" +
+      '<div class="card-actions">' +
+      '<button class="btn btn-primary btn-sm" type="button" data-add="' + p.id + '">Add to cart</button>' +
+      "</div></div></article>";
   }
 
   function renderGrid() {
     var list = visibleProducts();
-    var label = CATEGORIES.filter(function (c) { return c.id === state.category; })[0].label;
-    $("#catalogTitle").textContent = state.search ? 'Results for “' + state.search + '”' : label;
-    $("#resultCount").textContent = list.length + (list.length === 1 ? " item" : " items");
-    $("#productGrid").innerHTML = list.map(card).join("");
-    $("#emptyState").hidden = list.length !== 0;
-    applyFallbacks();
+    $("productGrid").innerHTML = list.map(card).join("");
+    $("catalogTitle").textContent = catLabel(state.category);
+    $("resultCount").textContent = list.length + (list.length === 1 ? " item" : " items");
+    $("emptyState").hidden = list.length > 0;
+    $("productGrid").hidden = list.length === 0;
+    applyFallbacks($("productGrid"));
   }
 
-  function applyFallbacks() {
-    document.querySelectorAll("img[data-fallback]").forEach(function (img) {
-      img.onerror = function () {
-        img.onerror = null;
-        img.src = img.getAttribute("data-fallback");
-        img.classList.add("is-placeholder");
-      };
-      if (img.complete && img.naturalWidth === 0) img.onerror();
-    });
+  function renderSpotRating() {
+    var p = product("ssd-fiba-wc");
+    if (p) $("spotRating").innerHTML = stars(p.rating, p.reviews);
   }
 
-  /* ---------- RENDER: hero ---------- */
-  var SLIDES = [
-    { title: "Laawah for every ceremony", text: "Custom printed traditional dress for weddings and dowry celebrations.", cat: "laawah" },
-    { title: "South Sudan basketball", text: "FIBA World Cup home and away jerseys, in stock now.", cat: "basketball" },
-    { title: "Football kits", text: "Home and away national team kits with optional name and number printing.", cat: "football" },
-    { title: "Printed t-shirts", text: "Team, church and association tees printed in-house from one piece up.", cat: "tshirts" }
-  ];
-
-  function renderCarousel() {
-    $("#slides").innerHTML = SLIDES.map(function (s, i) {
-      return '<div class="slide' + (i === 0 ? " is-active" : "") + '" data-i="' + i + '">' +
-        '<div class="slide-copy"><p class="eyebrow">Winchester Graphics</p><h2>' + esc(s.title) +
-        "</h2><p>" + esc(s.text) + '</p>' +
-        '<button class="btn btn-light btn-sm" data-cat="' + s.cat + '">Shop now</button></div></div>';
-    }).join("");
-
-    $("#carDots").innerHTML = SLIDES.map(function (s, i) {
-      return '<button class="dot' + (i === 0 ? " is-active" : "") + '" data-slide="' + i +
-        '" role="tab" aria-label="Slide ' + (i + 1) + '" aria-selected="' + (i === 0) + '"></button>';
-    }).join("");
-  }
-
-  function goSlide(i) {
-    var n = SLIDES.length;
-    state.slide = (i + n) % n;
-    document.querySelectorAll(".slide").forEach(function (el, idx) {
-      el.classList.toggle("is-active", idx === state.slide);
-    });
-    document.querySelectorAll(".dot").forEach(function (el, idx) {
-      el.classList.toggle("is-active", idx === state.slide);
-      el.setAttribute("aria-selected", String(idx === state.slide));
-    });
-  }
-
-  function renderFeature() {
-    var p = byId("ssd-fiba-wc") || PRODUCTS[0];
-    $("#featureCard").innerHTML =
-      '<div class="fc-media"><img alt="' + esc(plain(p.name)) + '" src="' + CONFIG.imageBase + p.image +
-      '" data-fallback="' + placeholder(p.name) + '" /></div>' +
-      '<p class="eyebrow">Featured this week</p>' +
-      "<h3>" + p.name + "</h3>" +
-      '<p class="fc-sub">Official World Cup kit · Premium quality</p>' +
-      '<div class="card-rating">' + stars(p.rating) + '<span class="rating-num">' + p.rating.toFixed(1) +
-      ' (' + p.reviews + ')</span></div>' +
-      '<div class="fc-foot"><strong class="price">' + money(p.price) + "</strong>" +
-      '<button class="btn btn-dark" data-quick="' + p.id + '">Order Now</button></div>';
-    applyFallbacks();
-  }
-
-  /* ---------- PRODUCT MODAL ---------- */
+  /* ----------------------- PRODUCT PREVIEW ----------------------- */
   function similarTo(p) {
     var same = PRODUCTS.filter(function (x) { return x.id !== p.id && x.category === p.category; });
     var others = PRODUCTS.filter(function (x) { return x.id !== p.id && x.category !== p.category; })
@@ -323,151 +369,143 @@
   }
 
   function openProduct(id) {
-    var p = byId(id);
+    var p = product(id);
     if (!p) return;
-    state.lastFocus = document.activeElement;
+    state.current = p;
+    state.selected = { size: p.sizes[0], color: p.colors[0], qty: 1 };
 
     var sizeOpts = p.sizes.map(function (s, i) {
-      return '<label class="chip"><input type="radio" name="pmSize" value="' + esc(s) + '"' +
-        (i === 0 ? " checked" : "") + " /><span>" + esc(s) + "</span></label>";
+      return '<button class="opt' + (i === 0 ? " is-active" : "") + '" type="button" data-size="' + esc(s) + '">' + esc(s) + "</button>";
     }).join("");
-
     var colorOpts = p.colors.map(function (c, i) {
-      return '<label class="chip"><input type="radio" name="pmColor" value="' + esc(c) + '"' +
-        (i === 0 ? " checked" : "") + " /><span>" + esc(c) + "</span></label>";
+      return '<button class="opt' + (i === 0 ? " is-active" : "") + '" type="button" data-color="' + esc(c) + '">' + esc(c) + "</button>";
+    }).join("");
+    var similar = similarTo(p).map(function (s) {
+      return '<button class="mini" type="button" data-quick="' + s.id + '">' +
+        '<span class="mini-media"><img src="' + esc(imgSrc(s)) + '" alt="' + esc(s.name) + '" data-fallback="' + esc(s.name) + '" /></span>' +
+        '<span class="mini-body"><span class="mini-title">' + esc(s.name) + "</span>" +
+        '<span class="mini-price">' + money(s.price) + "</span></span></button>";
     }).join("");
 
-    var sim = similarTo(p).map(function (s) {
-      return '<button class="sim" data-quick="' + s.id + '">' +
-        '<img alt="" src="' + CONFIG.imageBase + s.image + '" data-fallback="' + placeholder(s.name) + '" />' +
-        '<span class="sim-name">' + s.name + "</span>" +
-        '<span class="sim-price">' + money(s.price) + "</span></button>";
-    }).join("");
-
-    $("#pmBody").innerHTML =
+    $("pmBody").innerHTML =
       '<div class="pm-grid">' +
-        '<div class="pm-media">' +
-          (p.badge ? '<span class="badge">' + esc(p.badge) + "</span>" : "") +
-          '<img alt="' + esc(plain(p.name)) + '" src="' + CONFIG.imageBase + p.image +
-          '" data-fallback="' + placeholder(p.name) + '" />' +
-        "</div>" +
-        '<div class="pm-info">' +
-          '<p class="eyebrow">' + esc(catLabel(p.category)) + "</p>" +
-          '<h2 id="pmTitle">' + p.name + "</h2>" +
-          '<div class="card-rating">' + stars(p.rating) +
-            '<span class="rating-num">' + p.rating.toFixed(1) + " · " + p.reviews + " reviews</span></div>" +
-          '<p class="pm-price">' + money(p.price) + "</p>" +
-          '<p class="pm-desc">' + esc(p.description) + "</p>" +
-          '<div class="opt-group"><p class="opt-label">Size' +
-            (p.sizeNote ? ' <span class="muted">(' + esc(p.sizeNote) + ")</span>" : "") +
-            '</p><div class="chips">' + sizeOpts + "</div></div>" +
-          '<div class="opt-group"><p class="opt-label">Colour</p><div class="chips">' + colorOpts + "</div></div>" +
-          '<div class="pm-actions">' +
-            '<div class="qty" role="group" aria-label="Quantity">' +
-              '<button type="button" id="qtyMinus" aria-label="Decrease quantity">−</button>' +
-              '<input id="pmQty" type="number" value="1" min="1" max="99" aria-label="Quantity" />' +
-              '<button type="button" id="qtyPlus" aria-label="Increase quantity">+</button>' +
-            "</div>" +
-            '<button class="btn btn-dark" id="pmAdd" data-add="' + p.id + '">Add to cart</button>' +
-            '<button class="btn btn-wa" id="pmBuy" data-buy="' + p.id + '">Order on WhatsApp</button>' +
-          "</div>" +
-          '<p class="pm-note">Need custom names, numbers or a bulk order? Ask us on WhatsApp before checkout.</p>' +
-        "</div>" +
+      '<div class="pm-media">' +
+      (p.badge ? '<span class="badge">' + esc(p.badge) + "</span>" : "") +
+      '<img src="' + esc(imgSrc(p)) + '" alt="' + esc(p.name) + '" data-fallback="' + esc(p.name) + '" />' +
       "</div>" +
-      '<section class="pm-similar"><h3>You may also like</h3><div class="sims">' + sim + "</div></section>";
+      '<div class="pm-info">' +
+      '<p class="eyebrow">' + esc(catLabel(p.category)) + "</p>" +
+      '<h2 id="pmTitle">' + esc(p.name) + "</h2>" +
+      '<div class="pm-rating">' + stars(p.rating, p.reviews) + "</div>" +
+      '<p class="pm-price">' + money(p.price) + "</p>" +
+      '<p class="pm-desc">' + esc(p.description) + "</p>" +
+      '<div class="opt-group"><h4>Size' + (p.sizeNote ? " — " + esc(p.sizeNote) : "") + '</h4><div class="opts">' + sizeOpts + "</div></div>" +
+      '<div class="opt-group"><h4>Colour</h4><div class="opts">' + colorOpts + "</div></div>" +
+      '<div class="pm-buy">' +
+      '<div class="qty"><button type="button" id="qtyMinus" aria-label="Decrease quantity">−</button>' +
+      '<span id="pmQty">1</span>' +
+      '<button type="button" id="qtyPlus" aria-label="Increase quantity">+</button></div>' +
+      '<button class="btn btn-primary" type="button" data-add="' + p.id + '">Add to cart</button>' +
+      '<button class="btn btn-wa" type="button" data-buy="' + p.id + '">Order on WhatsApp</button>' +
+      "</div>" +
+      '<p class="pm-note">Need custom names, numbers or a bulk order? Ask us on WhatsApp before checkout.</p>' +
+      "</div></div>" +
+      '<div class="similar"><h3>You may also like</h3><div class="similar-grid">' + similar + "</div></div>";
 
-    applyFallbacks();
-    showDialog($("#productModal"));
-    $("#pmClose").focus();
-  }
-
-  function catLabel(id) {
-    var c = CATEGORIES.filter(function (x) { return x.id === id; })[0];
-    return c ? c.label : id;
+    applyFallbacks($("pmBody"));
+    showDialog($("productModal"));
   }
 
   function selectedOptions() {
-    var size = document.querySelector('input[name="pmSize"]:checked');
-    var color = document.querySelector('input[name="pmColor"]:checked');
-    var qty = parseInt(($("#pmQty") || {}).value, 10);
     return {
-      size: size ? size.value : "",
-      color: color ? color.value : "",
-      qty: isNaN(qty) || qty < 1 ? 1 : Math.min(qty, 99)
+      size: state.selected.size || (state.current ? state.current.sizes[0] : ""),
+      color: state.selected.color || (state.current ? state.current.colors[0] : ""),
+      qty: state.selected.qty || 1
     };
   }
 
-  /* ---------- DIALOG PLUMBING ---------- */
+  /* ----------------------- DIALOGS ----------------------- */
   function showDialog(el) {
-    $("#overlay").hidden = false;
+    $("overlay").hidden = false;
     el.hidden = false;
-    document.body.classList.add("no-scroll");
-  }
-  function closeDialogs() {
-    ["#productModal", "#helpModal", "#cartDrawer"].forEach(function (s) { $(s).hidden = true; });
-    $("#overlay").hidden = true;
-    document.body.classList.remove("no-scroll");
-    if (state.lastFocus && state.lastFocus.focus) state.lastFocus.focus();
+    document.body.style.overflow = "hidden";
   }
 
-  /* ---------- CART ---------- */
+  function closeDialogs() {
+    $("overlay").hidden = true;
+    $("productModal").hidden = true;
+    $("cartDrawer").hidden = true;
+    $("helpModal").hidden = true;
+    $("authModal").hidden = true;
+    document.body.style.overflow = "";
+  }
+
+  /* ----------------------- CART ----------------------- */
+  function lineKey(id, size, color) { return id + "|" + size + "|" + color; }
+
+  function saveCart() { store(CONFIG.storageKey, state.cart); }
+
+  function loadCart() {
+    var saved = store(CONFIG.storageKey);
+    state.cart = Array.isArray(saved) ? saved.filter(function (l) { return !!product(l.id); }) : [];
+  }
+
   function addToCart(id, opts) {
-    var p = byId(id);
+    var p = product(id);
     if (!p) return;
-    var key = id + "|" + opts.size + "|" + opts.color;
-    var found = state.cart.filter(function (l) { return l.key === key; })[0];
-    if (found) found.qty = Math.min(found.qty + opts.qty, 99);
-    else state.cart.push({ key: key, id: id, size: opts.size, color: opts.color, qty: opts.qty });
+    var o = opts || { size: p.sizes[0], color: p.colors[0], qty: 1 };
+    var key = lineKey(id, o.size, o.color);
+    var found = null;
+    for (var i = 0; i < state.cart.length; i++) if (state.cart[i].key === key) found = state.cart[i];
+    if (found) found.qty = Math.min(99, found.qty + (o.qty || 1));
+    else state.cart.push({ key: key, id: id, size: o.size, color: o.color, qty: o.qty || 1 });
     saveCart();
     renderCart();
-    toast(plain(p.name) + " added to cart");
+    toast(p.name + " added to cart");
   }
 
   function cartTotal() {
     return state.cart.reduce(function (sum, l) {
-      var p = byId(l.id);
+      var p = product(l.id);
       return sum + (p ? p.price * l.qty : 0);
     }, 0);
   }
 
   function renderCart() {
     var count = state.cart.reduce(function (n, l) { return n + l.qty; }, 0);
-    $("#cartCount").textContent = count;
-    $("#cartCount").classList.toggle("has-items", count > 0);
-    $("#cartTotal").textContent = money(cartTotal());
+    $("cartCount").textContent = count;
 
     if (!state.cart.length) {
-      $("#cartBody").innerHTML =
-        '<div class="cart-empty"><p>Your cart is empty.</p>' +
-        '<button class="btn btn-dark btn-sm" id="emptyShop">Browse products</button></div>';
-      $("#checkoutBtn").disabled = true;
-      return;
-    }
-    $("#checkoutBtn").disabled = false;
-
-    $("#cartBody").innerHTML = state.cart.map(function (l) {
-      var p = byId(l.id);
-      if (!p) return "";
-      return '<div class="line" data-key="' + esc(l.key) + '">' +
-        '<img alt="" src="' + CONFIG.imageBase + p.image + '" data-fallback="' + placeholder(p.name) + '" />' +
-        '<div class="line-info"><h4>' + p.name + "</h4>" +
-          '<p class="muted">' + esc(l.size) + " · " + esc(l.color) + "</p>" +
-          '<p class="line-price">' + money(p.price * l.qty) + "</p></div>" +
-        '<div class="line-actions">' +
-          '<div class="qty small"><button type="button" data-dec="' + esc(l.key) + '" aria-label="Decrease">−</button>' +
+      $("cartBody").innerHTML =
+        '<div class="cart-empty"><strong>Your cart is empty</strong>' +
+        "<p>Browse the collections and add the pieces you like.</p>" +
+        '<p style="margin-top:16px"><button class="btn btn-outline" type="button" id="cartBrowse">Browse products</button></p></div>';
+    } else {
+      $("cartBody").innerHTML = state.cart.map(function (l) {
+        var p = product(l.id);
+        return '<div class="cart-line">' +
+          '<div class="cart-thumb"><img src="' + esc(imgSrc(p)) + '" alt="' + esc(p.name) + '" data-fallback="' + esc(p.name) + '" /></div>' +
+          "<div><p class=\"cart-name\">" + esc(p.name) + "</p>" +
+          '<p class="cart-meta">' + esc(l.size) + " · " + esc(l.color) + "</p>" +
+          '<div class="qty"><button type="button" data-dec="' + esc(l.key) + '" aria-label="Decrease">−</button>' +
           "<span>" + l.qty + "</span>" +
-          '<button type="button" data-inc="' + esc(l.key) + '" aria-label="Increase">+</button></div>' +
-          '<button class="link-btn" data-remove="' + esc(l.key) + '">Remove</button>' +
-        "</div></div>";
-    }).join("");
-    applyFallbacks();
+          '<button type="button" data-inc="' + esc(l.key) + '" aria-label="Increase">+</button></div></div>' +
+          '<div class="cart-right"><span class="cart-price">' + money(p.price * l.qty) + "</span>" +
+          '<button class="link-btn" type="button" data-remove="' + esc(l.key) + '">Remove</button></div>' +
+          "</div>";
+      }).join("");
+      applyFallbacks($("cartBody"));
+    }
+    $("cartTotal").textContent = money(cartTotal());
   }
 
   function changeQty(key, delta) {
-    state.cart = state.cart.map(function (l) {
-      if (l.key === key) l.qty = Math.max(0, Math.min(l.qty + delta, 99));
-      return l;
-    }).filter(function (l) { return l.qty > 0; });
+    for (var i = 0; i < state.cart.length; i++) {
+      if (state.cart[i].key === key) {
+        state.cart[i].qty = Math.max(1, Math.min(99, state.cart[i].qty + delta));
+        break;
+      }
+    }
     saveCart();
     renderCart();
   }
@@ -478,166 +516,269 @@
     renderCart();
   }
 
-  /* ---------- WHATSAPP CHECKOUT ---------- */
+  /* ----------------------- WHATSAPP ----------------------- */
   function waLink(text) {
     return "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(text);
   }
 
+  function customerBlock() {
+    var u = state.user;
+    if (!u) return "Name:\nDelivery location:\n";
+    return "Name: " + u.name + "\nPhone: " + u.phone + "\nDelivery location: " + (u.town || "") + "\n";
+  }
+
+  function orderMessage(lines) {
+    var text = "*New order — Winchester Graphics*\n\n";
+    var total = 0;
+    lines.forEach(function (l, i) {
+      var p = product(l.id);
+      var sub = p.price * l.qty;
+      total += sub;
+      text += (i + 1) + ". " + p.name + "\n";
+      text += "   Size: " + l.size + " | Colour: " + l.color + "\n";
+      text += "   Qty: " + l.qty + " x " + money(p.price) + " = " + money(sub) + "\n\n";
+    });
+    text += "*Total: " + money(total) + "*\n\n" + customerBlock() +
+      "\n(Sent from the Winchester Graphics website)";
+    return text;
+  }
+
   function checkout() {
-    if (!state.cart.length) return;
-    var lines = state.cart.map(function (l, i) {
-      var p = byId(l.id);
-      return (i + 1) + ". " + plain(p.name) +
-        "\n   Size: " + l.size + " | Colour: " + l.color +
-        "\n   Qty: " + l.qty + " x " + money(p.price) + " = " + money(p.price * l.qty);
-    }).join("\n");
-
-    var msg =
-      "*New order — Winchester Graphics*\n\n" + lines +
-      "\n\n*Total: " + money(cartTotal()) + "*" +
-      "\n\nName:\nDelivery location:\n\n(Sent from the Winchester Graphics website)";
-
-    window.open(waLink(msg), "_blank", "noopener");
+    if (!state.cart.length) { toast("Your cart is empty"); return; }
+    window.open(waLink(orderMessage(state.cart)), "_blank", "noopener");
   }
 
-  function buyNow(id, opts) {
-    var p = byId(id);
+  function buyNow(id) {
+    var o = selectedOptions();
+    var p = product(id);
     if (!p) return;
-    var msg =
-      "*Order enquiry — Winchester Graphics*\n\n" + plain(p.name) +
-      "\nSize: " + opts.size + " | Colour: " + opts.color +
-      "\nQty: " + opts.qty +
-      "\nPrice: " + money(p.price * opts.qty) +
-      "\n\nName:\nDelivery location:";
-    window.open(waLink(msg), "_blank", "noopener");
+    var line = { id: id, size: o.size || p.sizes[0], color: o.color || p.colors[0], qty: o.qty || 1 };
+    window.open(waLink(orderMessage([line])), "_blank", "noopener");
   }
 
-  /* ---------- EVENTS ---------- */
+  /* ----------------------- ACCOUNTS -----------------------
+     Front-end only: accounts are stored in the visitor's own browser
+     so checkout details can be pre-filled. Connect a real backend
+     (Firebase, Supabase, etc.) if you need server-side accounts.
+  ---------------------------------------------------------- */
+  function users() {
+    var list = store(CONFIG.usersKey);
+    return Array.isArray(list) ? list : [];
+  }
+
+  function renderAuth(error) {
+    var u = state.user;
+    if (u) {
+      $("authBody").innerHTML =
+        '<p class="eyebrow">My account</p>' +
+        "<h2>Hi, " + esc(u.name.split(" ")[0]) + "</h2>" +
+        '<p class="auth-lead">Your details are added to every WhatsApp order automatically.</p>' +
+        '<div class="account-row"><span>Name</span><strong>' + esc(u.name) + "</strong></div>" +
+        '<div class="account-row"><span>Phone</span><strong>' + esc(u.phone) + "</strong></div>" +
+        '<div class="account-row"><span>Email</span><strong>' + esc(u.email || "—") + "</strong></div>" +
+        '<div class="account-row"><span>Delivery town</span><strong>' + esc(u.town || "—") + "</strong></div>" +
+        '<button class="btn btn-outline btn-block" style="margin-top:22px" type="button" id="logoutBtn">Log out</button>';
+      return;
+    }
+
+    var signup = state.authMode === "signup";
+    $("authBody").innerHTML =
+      '<p class="eyebrow">Sign up &amp; save</p>' +
+      "<h2>" + (signup ? "Create your account" : "Welcome back") + "</h2>" +
+      '<div class="auth-tabs">' +
+      '<button class="auth-tab' + (signup ? " is-active" : "") + '" type="button" data-mode="signup">Sign up</button>' +
+      '<button class="auth-tab' + (signup ? "" : " is-active") + '" type="button" data-mode="login">Log in</button>' +
+      "</div>" +
+      (error ? '<p class="form-error">' + esc(error) + "</p>" : "") +
+      '<form id="authForm" novalidate>' +
+      (signup ? '<div class="form-field"><label for="afName">Full name</label><input id="afName" name="name" type="text" autocomplete="name" required /></div>' : "") +
+      '<div class="form-field"><label for="afPhone">WhatsApp number</label><input id="afPhone" name="phone" type="tel" placeholder="07xx xxx xxx" autocomplete="tel" required /></div>' +
+      (signup ? '<div class="form-field"><label for="afEmail">Email (optional)</label><input id="afEmail" name="email" type="email" autocomplete="email" /></div>' : "") +
+      (signup ? '<div class="form-field"><label for="afTown">Delivery town</label><input id="afTown" name="town" type="text" placeholder="Nairobi" /></div>' : "") +
+      '<div class="form-field"><label for="afPass">Password</label><input id="afPass" name="password" type="password" autocomplete="' + (signup ? "new-password" : "current-password") + '" required /></div>' +
+      '<button class="btn btn-primary btn-block" type="submit">' + (signup ? "Create account" : "Log in") + "</button>" +
+      "</form>" +
+      '<p class="form-note">Accounts are saved on this device to speed up your WhatsApp checkout. We never share your details.</p>';
+  }
+
+  function openAuth(mode) {
+    state.authMode = mode === "login" ? "login" : "signup";
+    renderAuth();
+    showDialog($("authModal"));
+  }
+
+  function refreshUserUi() {
+    var signed = !!state.user;
+    $("signupLink").hidden = signed;
+    $("accountLink").hidden = !signed;
+    $("avatarDot").hidden = !signed;
+    if (signed) $("accountLink").innerHTML = "Hi, " + esc(state.user.name.split(" ")[0]) + ' <span aria-hidden="true">›</span>';
+  }
+
+  function handleAuthSubmit(form) {
+    var data = {
+      name: (form.name ? form.name.value : "").trim(),
+      phone: (form.phone ? form.phone.value : "").trim(),
+      email: (form.email ? form.email.value : "").trim(),
+      town: (form.town ? form.town.value : "").trim(),
+      password: (form.password ? form.password.value : "")
+    };
+
+    if (state.authMode === "signup") {
+      if (data.name.length < 2) return renderAuth("Please enter your full name.");
+      if (data.phone.replace(/\D/g, "").length < 9) return renderAuth("Please enter a valid WhatsApp number.");
+      if (data.password.length < 6) return renderAuth("Password must be at least 6 characters.");
+
+      var list = users();
+      for (var i = 0; i < list.length; i++) {
+        if (list[i].phone === data.phone) return renderAuth("An account already exists for that number. Try logging in.");
+      }
+      list.push(data);
+      store(CONFIG.usersKey, list);
+      state.user = data;
+      store(CONFIG.userKey, data);
+      refreshUserUi();
+      renderAuth();
+      toast("Welcome, " + data.name.split(" ")[0] + "!");
+      return;
+    }
+
+    var found = null;
+    users().forEach(function (u) {
+      if (u.phone === data.phone && u.password === data.password) found = u;
+    });
+    if (!found) return renderAuth("We could not find that number and password.");
+    state.user = found;
+    store(CONFIG.userKey, found);
+    refreshUserUi();
+    renderAuth();
+    toast("Logged in as " + found.name.split(" ")[0]);
+  }
+
+  function logout() {
+    state.user = null;
+    store(CONFIG.userKey, null);
+    refreshUserUi();
+    renderAuth();
+    closeDialogs();
+    toast("You are logged out");
+  }
+
+  /* ----------------------- NAVIGATION ----------------------- */
   function setCategory(cat) {
     state.category = cat;
-    state.search = "";
-    $("#searchInput").value = "";
     renderCategories();
     renderGrid();
-    var target = document.getElementById("catalog");
-    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    $("mainNav").classList.remove("is-open");
+    var shop = $("shop");
+    if (shop) window.scrollTo({ top: shop.offsetTop - 90, behavior: "smooth" });
   }
 
+  /* ----------------------- EVENTS ----------------------- */
   function bind() {
-    // Category pills, hero "Shop now", footer jumps
     document.addEventListener("click", function (e) {
-      var catBtn = e.target.closest("[data-cat]");
-      if (catBtn) { setCategory(catBtn.getAttribute("data-cat")); return; }
+      var t = e.target.closest("[data-cat],[data-auth],[data-quick],[data-add],[data-buy],[data-inc],[data-dec],[data-remove],[data-slide],[data-size],[data-color],[data-mode]");
+      if (!t) return;
 
-      var jump = e.target.closest("[data-jump]");
-      if (jump) { e.preventDefault(); setCategory(jump.getAttribute("data-jump")); return; }
+      if (t.dataset.cat) { setCategory(t.dataset.cat); return; }
+      if (t.dataset.auth) { openAuth(t.dataset.auth); return; }
+      if (t.dataset.slide) { goSlide(parseInt(t.dataset.slide, 10)); autoplay(); return; }
+      if (t.dataset.mode) { state.authMode = t.dataset.mode; renderAuth(); return; }
 
-      var quick = e.target.closest("[data-quick]");
-      if (quick) { e.stopPropagation(); openProduct(quick.getAttribute("data-quick")); return; }
-
-      var cardEl = e.target.closest(".card");
-      if (cardEl) { openProduct(cardEl.getAttribute("data-id")); return; }
-
-      var add = e.target.closest("[data-add]");
-      if (add) { addToCart(add.getAttribute("data-add"), selectedOptions()); return; }
-
-      var buy = e.target.closest("[data-buy]");
-      if (buy) { buyNow(buy.getAttribute("data-buy"), selectedOptions()); return; }
-
-      var dec = e.target.closest("[data-dec]");
-      if (dec) { changeQty(dec.getAttribute("data-dec"), -1); return; }
-
-      var inc = e.target.closest("[data-inc]");
-      if (inc) { changeQty(inc.getAttribute("data-inc"), 1); return; }
-
-      var rm = e.target.closest("[data-remove]");
-      if (rm) { removeLine(rm.getAttribute("data-remove")); return; }
-
-      var dot = e.target.closest("[data-slide]");
-      if (dot) { goSlide(parseInt(dot.getAttribute("data-slide"), 10)); return; }
-
-      if (e.target.id === "emptyShop") { closeDialogs(); setCategory("all"); }
-      if (e.target.id === "qtyMinus") {
-        var qm = $("#pmQty"); qm.value = Math.max(1, (parseInt(qm.value, 10) || 1) - 1);
+      if (t.dataset.size) {
+        state.selected.size = t.dataset.size;
+        t.parentNode.querySelectorAll(".opt").forEach(function (o) { o.classList.remove("is-active"); });
+        t.classList.add("is-active");
+        return;
       }
-      if (e.target.id === "qtyPlus") {
-        var qp = $("#pmQty"); qp.value = Math.min(99, (parseInt(qp.value, 10) || 1) + 1);
+      if (t.dataset.color) {
+        state.selected.color = t.dataset.color;
+        t.parentNode.querySelectorAll(".opt").forEach(function (o) { o.classList.remove("is-active"); });
+        t.classList.add("is-active");
+        return;
       }
+      if (t.dataset.add) {
+        var inModal = !!t.closest("#productModal");
+        addToCart(t.dataset.add, inModal ? selectedOptions() : null);
+        return;
+      }
+      if (t.dataset.buy) { buyNow(t.dataset.buy); return; }
+      if (t.dataset.quick) { openProduct(t.dataset.quick); return; }
+      if (t.dataset.inc) { changeQty(t.dataset.inc, 1); return; }
+      if (t.dataset.dec) { changeQty(t.dataset.dec, -1); return; }
+      if (t.dataset.remove) { removeLine(t.dataset.remove); return; }
     });
 
-    // Keyboard on product cards
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") closeDialogs();
-      if ((e.key === "Enter" || e.key === " ") && e.target.classList && e.target.classList.contains("card")) {
-        e.preventDefault();
-        openProduct(e.target.getAttribute("data-id"));
+      if (e.key === "Enter" && e.target.classList && e.target.classList.contains("card")) {
+        openProduct(e.target.dataset.quick);
       }
     });
 
-    // Search
-    $("#searchForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      state.search = $("#searchInput").value;
-      state.category = "all";
-      renderCategories();
+    document.addEventListener("click", function (e) {
+      if (e.target.id === "qtyPlus" || e.target.id === "qtyMinus") {
+        state.selected.qty = Math.max(1, Math.min(99, state.selected.qty + (e.target.id === "qtyPlus" ? 1 : -1)));
+        var q = $("pmQty");
+        if (q) q.textContent = state.selected.qty;
+      }
+      if (e.target.id === "cartBrowse") { closeDialogs(); setCategory("all"); }
+      if (e.target.id === "logoutBtn") logout();
+    });
+
+    document.addEventListener("submit", function (e) {
+      if (e.target.id === "authForm") { e.preventDefault(); handleAuthSubmit(e.target); }
+    });
+
+    $("heroPrev").addEventListener("click", function () { goSlide(state.slide - 1); autoplay(); });
+    $("heroNext").addEventListener("click", function () { goSlide(state.slide + 1); autoplay(); });
+
+    $("searchForm").addEventListener("submit", function (e) { e.preventDefault(); renderGrid(); });
+    $("searchInput").addEventListener("input", function (e) { state.search = e.target.value; renderGrid(); });
+
+    $("colorFilter").addEventListener("change", function (e) { state.color = e.target.value; renderGrid(); });
+    $("sizeFilter").addEventListener("change", function (e) { state.size = e.target.value; renderGrid(); });
+    $("sortBy").addEventListener("change", function (e) { state.sort = e.target.value; renderGrid(); });
+    $("clearFilters").addEventListener("click", function () {
+      state.color = ""; state.size = ""; state.sort = "featured"; state.search = "";
+      $("colorFilter").value = ""; $("sizeFilter").value = ""; $("sortBy").value = "featured"; $("searchInput").value = "";
       renderGrid();
-      document.getElementById("catalog").scrollIntoView({ behavior: "smooth", block: "start" });
     });
-    $("#searchInput").addEventListener("input", function () {
-      if (!this.value) { state.search = ""; renderGrid(); }
-    });
-
-    // Filters
-    $("#colorFilter").addEventListener("change", function () { state.color = this.value; renderGrid(); });
-    $("#sizeFilter").addEventListener("change", function () { state.size = this.value; renderGrid(); });
-    $("#sortBy").addEventListener("change", function () { state.sort = this.value; renderGrid(); });
-    $("#clearFilters").addEventListener("click", function () {
-      state.color = state.size = "all";
-      state.sort = "featured";
-      state.search = "";
-      $("#colorFilter").value = "all";
-      $("#sizeFilter").value = "all";
-      $("#sortBy").value = "featured";
-      $("#searchInput").value = "";
-      renderGrid();
+    $("emptyShop").addEventListener("click", function () {
+      state.search = ""; $("searchInput").value = ""; setCategory("all");
     });
 
-    // Carousel
-    $("#carPrev").addEventListener("click", function () { goSlide(state.slide - 1); });
-    $("#carNext").addEventListener("click", function () { goSlide(state.slide + 1); });
-    var auto = setInterval(function () { goSlide(state.slide + 1); }, 7000);
-    $("#carousel").addEventListener("mouseenter", function () { clearInterval(auto); });
-
-    // Dialogs
-    $("#cartBtn").addEventListener("click", function () {
-      state.lastFocus = this;
-      renderCart();
-      showDialog($("#cartDrawer"));
-      $("#cartClose").focus();
+    $("cartBtn").addEventListener("click", function () { renderCart(); showDialog($("cartDrawer")); });
+    $("cartClose").addEventListener("click", closeDialogs);
+    $("checkoutBtn").addEventListener("click", checkout);
+    $("helpBtn").addEventListener("click", function () { showDialog($("helpModal")); });
+    $("helpClose").addEventListener("click", closeDialogs);
+    $("authBtn").addEventListener("click", function () { openAuth(state.user ? "login" : "signup"); });
+    $("authClose").addEventListener("click", closeDialogs);
+    $("pmClose").addEventListener("click", closeDialogs);
+    $("overlay").addEventListener("click", closeDialogs);
+    $("menuBtn").addEventListener("click", function () {
+      var open = $("mainNav").classList.toggle("is-open");
+      this.setAttribute("aria-expanded", open ? "true" : "false");
     });
-    $("#helpBtn").addEventListener("click", function () {
-      state.lastFocus = this;
-      showDialog($("#helpModal"));
-      $("#helpClose").focus();
-    });
-    $("#pmClose").addEventListener("click", closeDialogs);
-    $("#cartClose").addEventListener("click", closeDialogs);
-    $("#helpClose").addEventListener("click", closeDialogs);
-    $("#overlay").addEventListener("click", closeDialogs);
-    $("#checkoutBtn").addEventListener("click", checkout);
   }
 
-  /* ---------- INIT ---------- */
+  /* ----------------------- INIT ----------------------- */
   function init() {
-    $("#year").textContent = String(new Date().getFullYear());
+    state.user = store(CONFIG.userKey) || null;
+    renderHero();
+    autoplay();
     renderCategories();
     renderFilterOptions();
-    renderCarousel();
-    renderFeature();
+    renderSpotRating();
     renderGrid();
+    loadCart();
     renderCart();
+    refreshUserUi();
+    applyFallbacks(document);
     bind();
   }
 
-  document.addEventListener("DOMContentLoaded", init);
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
 })();

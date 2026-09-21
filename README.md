@@ -1,40 +1,135 @@
-# Winchester Graphics — Online Catalog
+# Winchester Graphics — online shop
 
-**Design Beyond Limits.** Product catalog for Winchester Graphics: printed t-shirts, South Sudan football and basketball jerseys, and laawah (traditional dress). Customers browse, open any item for a full preview, add to cart, and check out straight to our WhatsApp Business line.
+A static shop for **Winchester Graphics**: printed t-shirts, South Sudan football and basketball jerseys, and **laawah** (traditional dress worn by South Sudanese ladies). Customers browse, preview an item, add it to the cart, create an account, and check out to our **WhatsApp Business** number.
 
-- **WhatsApp checkout:** +254 793 669 941
-- **Stack:** plain HTML, CSS and vanilla JavaScript — no build step, no dependencies, no backend.
+- **WhatsApp Business:** +254 793 669 941
+- **Live site (GitHub Pages):** https://ayiikmabenykuot.github.io/winchester-graphics/
+- **Stack:** plain HTML, CSS and JavaScript. No build step, no dependencies.
 
 ---
 
 ## Files
 
-| File | Purpose |
+| File | What it holds |
 | --- | --- |
-| `index.html` | Page shell: header, search, category nav, hero carousel, filters, catalog, services, footer, modals |
-| `styles.css` | All styling. Palette locked to dark blue + white with a small red accent |
-| `app.js` | Product data, filtering, sorting, product preview modal, cart, WhatsApp checkout |
+| `index.html` | Page structure: utility bar, header, hero carousel, categories, spotlight, catalog, services, how-to-order, sign-up band, footer, modals |
+| `styles.css` | All styling and the colour palette |
+| `app.js` | Hero slides, product data, filters, product preview, cart, accounts, WhatsApp checkout |
 | `README.md` | This file |
-
-Put all four in the repository root, then add your photos:
-
-```
-/
-├─ index.html
-├─ styles.css
-├─ app.js
-├─ README.md
-└─ assets/img/products/     ← product photos go here
-```
 
 ---
 
-## How ordering works
+## Layout (modelled on the Dove homepage)
 
-1. Customer browses the catalog (category pills, search, colour/size/sort filters).
-2. Clicking any card opens the **product preview**: large photo, category, star rating and review count, price, full description, size and colour choices, quantity, and a **You may also like** row of four similar items.
-3. **Add to cart** stores the line in `localStorage`, so the cart survives a page reload.
-4. **Checkout on WhatsApp** opens `wa.me/254793669941` with a pre-filled order message:
+| Dove homepage | Winchester Graphics |
+| --- | --- |
+| Navy utility strip with brand links + “Find Dove Near You / Sign Up & Save” | Navy utility strip with brand links + “Find Us on WhatsApp / Sign Up & Save” |
+| White header: logo, nav, underlined search box | White header: logo, category nav, search, account, help, cart |
+| Split hero: photo left, copy right, italic serif line, rectangular CTA, arrows + dots | Same, rotating through three collections |
+| Grey “EXPLORE DOVE” band | Grey “EXPLORE WINCHESTER GRAPHICS” band |
+| Round category tiles | Football / Basketball / T-Shirts / Laawah tiles |
+| Featured product split panel | South Sudan FIBA World Cup Jersey spotlight |
+| Product range listing | Filterable product grid |
+| Brand purpose band | “Printed with care, made to last” |
+| Tips & articles | Our services + How to order |
+| Sign-up band | “Create an account for faster orders” |
+| Multi-column footer | Shop / Account & help / Contact |
+
+---
+
+## Images — add your own
+
+Every image falls back to a Winchester Graphics placeholder until you add a real photo, so the site never looks broken. Create this structure and drop your photos in:
+
+```
+assets/
+  img/
+    hero-1.jpg            # hero slide 1 (jerseys)
+    hero-2.jpg            # hero slide 2 (laawah)
+    hero-3.jpg            # hero slide 3 (t-shirts)
+    cat-football.jpg      # category tile
+    cat-basketball.jpg    # category tile
+    cat-tshirts.jpg       # category tile
+    cat-laawah.jpg        # category tile
+    ssd-fiba-wc.jpg       # featured spotlight photo
+    products/
+      ssd-fiba-wc.jpg
+      ssd-fiba-away.jpg
+      ssd-home-kit.jpg
+      ssd-away-kit.jpg
+      ssd-bball-tee-white.jpg
+      ssd-bball-tee-black.jpg
+      ssd-bball-tank-black.jpg
+      ssd-bball-tank-white.jpg
+      twic-east-tee.jpg
+      get-the-bag-tee.jpg
+      laawah-palm.jpg
+      laawah-custom.jpg
+```
+
+Square photos (1000×1000) work best for products; wide photos (1600×1200 or larger) for the hero slides.
+
+---
+
+## Editing the hero slides
+
+Top of `app.js`, in `SLIDES`:
+
+```js
+{
+  image: "assets/img/hero-1.jpg",
+  eyebrow: "New this season",
+  script: "Official kits",          // italic serif line
+  title: "South Sudan jerseys",
+  text: "Bright Stars football and basketball jerseys…",
+  ctaLabel: "Shop now",
+  cat: "basketball"                  // category the button opens
+}
+```
+
+The carousel rotates every 7 seconds and stops for visitors who prefer reduced motion.
+
+---
+
+## Editing products
+
+In `app.js`, edit the `PRODUCTS` array:
+
+```js
+{
+  id: "ssd-fiba-wc",                 // unique, no spaces
+  name: "South Sudan FIBA World Cup Jersey",
+  category: "basketball",            // football | basketball | tshirts | laawah
+  price: 1500,                       // Kenyan shillings
+  image: "ssd-fiba-wc.jpg",          // file inside assets/img/products/
+  badge: "New",                      // optional red pill
+  rating: 4.9, reviews: 67,
+  sizes: ["S","M","L","XL","2XL"],
+  colors: ["White"],
+  added: "2026-09-10",               // used by "Newest" sorting
+  featured: true,
+  description: "…"
+}
+```
+
+Prices and product names came from the shop screenshots — please confirm them, and edit the ratings and descriptions to match reality.
+
+---
+
+## Customer accounts
+
+- **Sign Up & Save** appears in the utility bar, the hero, the sign-up band, the footer and the account icon in the header.
+- Sign-up collects name, WhatsApp number, optional email, delivery town and a password.
+- Once signed in, the header shows “Hi, *name*”, and every WhatsApp order is pre-filled with the customer's name, phone and delivery town.
+- Accounts are stored in the visitor's **own browser** (`localStorage`) — this is a front-end convenience, not a server. For real accounts across devices, connect a backend such as Firebase Auth or Supabase and replace the functions in the *ACCOUNTS* section of `app.js`.
+
+---
+
+## Order flow
+
+1. Customer clicks an item → preview with description, price, star rating, sizes, colours and “You may also like”.
+2. Add to cart (saved in the browser between visits).
+3. **Check out on WhatsApp** opens a chat with `+254793669941` and a ready-written order:
 
 ```
 *New order — Winchester Graphics*
@@ -45,114 +140,45 @@ Put all four in the repository root, then add your photos:
 
 *Total: Kshs. 3,000*
 
-Name:
-Delivery location:
+Name: …
+Phone: …
+Delivery location: …
 ```
 
-The customer fills in name and location, hits send, and you confirm payment and delivery in chat. **Order on WhatsApp** inside the preview does the same thing for a single item, skipping the cart.
+4. We confirm price, payment and delivery on WhatsApp.
+
+To change the number, edit `CONFIG.whatsapp` at the top of `app.js` (digits only, with country code).
 
 ---
 
-## Adding and editing products
-
-Everything lives in the `PRODUCTS` array at the top of `app.js`. Copy a block and edit it:
-
-```js
-{
-  id: "ssd-fiba-wc",                       // unique, no spaces
-  name: "South Sudan FIBA World Cup Jersey",
-  category: "basketball",                   // football | basketball | tshirts | laawah
-  price: 1500,                              // number only, no "Kshs."
-  image: "ssd-fiba-wc.jpg",                 // file in assets/img/products/
-  badge: "NEW",                             // "" for no badge
-  featured: true,                            // shows first under "Featured" sort
-  added: "2026-09-10",                      // powers the "Newest" sort
-  colors: ["White"],                        // also builds the Colour filter
-  sizes: ["S","M","L","XL","2XL"],           // also builds the Size filter
-  rating: 4.9,
-  reviews: 67,
-  description: "..."                        // shown in the product preview
-}
-```
-
-Notes:
-
-- The **Colour** and **Size** dropdowns are generated from your products automatically — no separate list to maintain.
-- Laawah items use `sizes: ["One Size"]` plus an optional `sizeNote` (for example `"One size, full length"`).
-- If a photo is missing, a dark blue placeholder with the product name is drawn automatically, so the grid never shows a broken image.
-
-### Product photos
-
-Save them in `assets/img/products/` using the exact `image` file name. Square crops (1:1, about 800×800px) look best in the grid. Keep each file under ~300KB so the page stays fast on mobile data.
-
----
-
-## Changing the WhatsApp number
-
-One place, at the top of `app.js`:
-
-```js
-var CONFIG = {
-  whatsapp: "254793669941",   // country code, no + and no spaces
-  currency: "Kshs.",
-  ...
-};
-```
-
-Also update the two `wa.me` links in `index.html` (the floating button and the footer) if you change it.
-
----
-
-## Colour palette
-
-Defined as CSS variables in `styles.css` — change them once and the whole site follows.
+## Colours
 
 | Token | Value | Used for |
 | --- | --- | --- |
-| `--navy` | `#0A1E3C` | Buttons, headings, active pills, "How to order" band |
-| `--navy-2` | `#102D57` | Footer, hover states |
-| `--navy-3` | `#1B3E6F` | Borders and gradients on dark surfaces |
-| `--white` / `--surface` | `#FFFFFF` | Cards, header, modals |
-| `--wash` | `#F4F7FB` | Page background |
-| `--red` | `#D22B2B` | NEW badges, cart count, services banner — accent only |
+| `--navy` | `#001E60` | Headings, buttons, utility bar, bands |
+| `--navy-2` | `#0B3C8C` | Hover states |
+| `--blue-50` | `#EEF3FB` | Section washes, image wells |
+| `--white` | `#FFFFFF` | Page background |
+| `--red` | `#D0021B` | NEW badges, cart count, services banner |
 | `--wa` | `#128C4A` | WhatsApp buttons only |
-
-Red is deliberately limited to badges, the cart counter and the services banner. Green appears only on WhatsApp actions, where users expect it.
 
 ---
 
 ## Run locally
 
+Open `index.html` in a browser, or serve the folder:
+
 ```bash
 python3 -m http.server 8000
-# then open http://localhost:8000
+# then visit http://localhost:8000
 ```
-
-Opening `index.html` by double-clicking also works, since there is no build step.
 
 ## Deploy on GitHub Pages
 
-1. Commit the four files plus `assets/` to `main`.
-2. Repository **Settings → Pages → Source:** *Deploy from a branch* → `main` / `/ (root)`.
-3. Your site goes live at `https://ayiikmabenykuot.github.io/winchester-graphics/`.
+1. Commit `index.html`, `styles.css`, `app.js`, `README.md` and the `assets/` folder to the repository root.
+2. **Settings → Pages → Build and deployment → Deploy from a branch**, choose `main` and `/ (root)`.
+3. Your site publishes at `https://ayiikmabenykuot.github.io/winchester-graphics/`.
 
 ---
 
-## Features
-
-- Category pills: All Products, Football, Basketball, T-Shirts, Laawah
-- Search across product names, categories and descriptions
-- Filters for colour and size, plus sorting by Featured, Newest, Price, Top Rated
-- Auto-rotating hero carousel with a Featured This Week card
-- Product preview with description, price, star ratings, review count, size/colour options, quantity, and similar items
-- Cart drawer with quantity controls, remove, live subtotal, saved in `localStorage`
-- WhatsApp checkout with a formatted order message, plus a floating chat button
-- Responsive from desktop down to 390px phones; keyboard accessible cards, modals and options
-
-## Ideas for later
-
-- Multiple photos per product (front, back, detail)
-- Real customer reviews instead of static ratings
-- Stock status per size
-- Bulk-order pricing tiers for teams and associations
-- Shareable product links, for example `?item=ssd-fiba-wc`
+© 2026 Winchester Graphics — Design Beyond Limits

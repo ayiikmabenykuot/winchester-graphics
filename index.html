@@ -3,23 +3,37 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Winchester Graphics | Jerseys, T-Shirts &amp; Laawah</title>
-<meta name="description" content="Winchester Graphics — South Sudan football and basketball jerseys, printed t-shirts and laawah. Order on WhatsApp." />
-<meta name="theme-color" content="#0A1E3C" />
+<title>Winchester Graphics | South Sudan Jerseys, Printed T-Shirts &amp; Laawah</title>
+<meta name="description" content="Winchester Graphics — printed t-shirts, South Sudan football and basketball jerseys, and laawah traditional dress. Browse, add to cart and check out on WhatsApp." />
+<meta name="theme-color" content="#001E60" />
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<a class="skip-link" href="#catalog">Skip to products</a>
+<!-- ============ UTILITY BAR ============ -->
+<div class="utility">
+  <div class="wrap utility-inner">
+    <nav class="utility-left" aria-label="Brand">
+      <a class="is-current" href="#top">Winchester Graphics</a>
+      <a href="#services">Custom Printing</a>
+      <a href="#how">Bulk Orders</a>
+    </nav>
+    <div class="utility-right">
+      <a href="https://wa.me/254793669941" target="_blank" rel="noopener">Find Us on WhatsApp <span aria-hidden="true">›</span></a>
+      <button type="button" id="signupLink" data-auth="signup">Sign Up &amp; Save <span aria-hidden="true">›</span></button>
+      <button type="button" id="accountLink" data-auth="login" hidden>My Account <span aria-hidden="true">›</span></button>
+    </div>
+  </div>
+</div>
 
-<!-- ================= HEADER ================= -->
-<header class="site-header">
-  <div class="header-inner">
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="wrap header-inner">
     <a class="brand" href="#top" aria-label="Winchester Graphics home">
       <span class="brand-mark" aria-hidden="true">
-        <svg viewBox="0 0 44 32" width="40" height="29" focusable="false">
-          <path d="M2 3l7 24 6-15 3 8 3-8 6 15 7-24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M30 20c3.6 0 6.4-2.6 6.4-6" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/>
+        <svg viewBox="0 0 64 40" role="img" focusable="false">
+          <path d="M2 4 L14 34 L23 14 L32 34 L41 14 L50 34 L62 4" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </span>
       <span class="brand-text">
@@ -28,186 +42,311 @@
       </span>
     </a>
 
-    <form class="search" role="search" id="searchForm">
-      <label class="sr-only" for="searchInput">Search products</label>
-      <input id="searchInput" type="search" placeholder="Search jerseys, t-shirts, laawah..." autocomplete="off" />
-      <button type="submit" class="btn btn-dark">Search</button>
-    </form>
+    <nav class="main-nav" id="mainNav" aria-label="Primary">
+      <ul>
+        <li><button type="button" data-cat="all">Products</button></li>
+        <li><button type="button" data-cat="laawah">Laawah</button></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#how">How to order</a></li>
+      </ul>
+    </nav>
 
     <div class="header-actions">
-      <button class="icon-btn" id="helpBtn" aria-label="How ordering works" title="How ordering works">
-        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="9.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9.4 9.2a2.7 2.7 0 1 1 3.9 2.4c-.8.5-1.3 1-1.3 2v.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="17.4" r="1.15" fill="currentColor"/></svg>
+      <form class="search" id="searchForm" role="search">
+        <label class="sr-only" for="searchInput">Search products</label>
+        <input id="searchInput" type="search" placeholder="Search products..." autocomplete="off" />
+        <button class="search-btn" type="submit" aria-label="Search">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16.5 16.5 L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </form>
+      <button class="icon-btn" id="authBtn" type="button" aria-label="Sign up or log in">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8.4" r="3.6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.8 20c.9-3.6 3.8-5.6 7.2-5.6s6.3 2 7.2 5.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="avatar-dot" id="avatarDot" hidden></span>
       </button>
-      <button class="icon-btn cart-btn" id="cartBtn" aria-label="Open cart">
-        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 5h2.2l2 10.2h9.4l1.9-7.4H7.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg>
+      <button class="icon-btn" id="helpBtn" type="button" aria-label="Help and contact">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9.5 9.2a2.6 2.6 0 1 1 3.4 2.5c-.6.2-.9.8-.9 1.4v.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.15" fill="currentColor"/></svg>
+      </button>
+      <button class="icon-btn cart-btn" id="cartBtn" type="button" aria-label="Open cart">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h2.2l2 10.2h9.3l1.9-7.4H7.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="19" r="1.5" fill="currentColor"/><circle cx="17" cy="19" r="1.5" fill="currentColor"/></svg>
         <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
     </div>
   </div>
-
-  <nav class="cat-nav" aria-label="Product categories">
-    <div class="cat-nav-inner" id="categoryNav"><!-- pills injected by app.js --></div>
-  </nav>
 </header>
 
-<main id="top">
+<main id="main">
+  <span id="top"></span>
 
-  <!-- ================= HERO ================= -->
-  <section class="hero">
-    <div class="hero-grid">
-
-      <div class="carousel" id="carousel" aria-roledescription="carousel" aria-label="Featured collections">
-        <div class="slides" id="slides"><!-- slides injected by app.js --></div>
-        <button class="car-nav prev" id="carPrev" aria-label="Previous slide">&#8249;</button>
-        <button class="car-nav next" id="carNext" aria-label="Next slide">&#8250;</button>
-        <div class="dots" id="carDots" role="tablist" aria-label="Choose slide"></div>
-      </div>
-
-      <aside class="feature-card" id="featureCard" aria-label="Featured product">
-        <!-- injected by app.js -->
-      </aside>
+  <!-- ============ HERO CAROUSEL (split image / copy) ============ -->
+  <section class="hero" id="hero" aria-label="Featured collections" aria-roledescription="carousel">
+    <div class="hero-media">
+      <div class="hero-slides" id="heroSlides"></div>
     </div>
-
-    <a class="services-banner" href="#services">
-      <span class="sb-arrow" aria-hidden="true">&rsaquo;</span>
-      <span class="sb-title">Our Services</span>
-      <span class="sb-brand">Winchester Graphics</span>
-    </a>
-  </section>
-
-  <!-- ================= FILTERS ================= -->
-  <section class="filters" aria-label="Filter products">
-    <div class="filter-row">
-      <div class="field">
-        <label for="colorFilter">Color</label>
-        <select id="colorFilter"><option value="all">All Colors</option></select>
+    <div class="hero-panel">
+      <div class="hero-copy" id="heroCopy"></div>
+      <div class="hero-controls">
+        <button class="car-arrow" id="heroPrev" type="button" aria-label="Previous slide">‹</button>
+        <div class="dots" id="heroDots"></div>
+        <button class="car-arrow" id="heroNext" type="button" aria-label="Next slide">›</button>
       </div>
-      <div class="field">
-        <label for="sizeFilter">Size</label>
-        <select id="sizeFilter"><option value="all">All Sizes</option></select>
-      </div>
-      <div class="field">
-        <label for="sortBy">Sort by</label>
-        <select id="sortBy">
-          <option value="featured">Featured</option>
-          <option value="new">Newest</option>
-          <option value="price-asc">Price: Low to High</option>
-          <option value="price-desc">Price: High to Low</option>
-          <option value="rating">Top Rated</option>
-        </select>
-      </div>
-      <button class="btn btn-clear" id="clearFilters" type="button">Clear filters</button>
     </div>
   </section>
 
-  <!-- ================= CATALOG ================= -->
-  <section class="catalog" id="catalog">
-    <div class="catalog-head">
-      <h1 id="catalogTitle">All Products</h1>
-      <p id="resultCount" role="status"></p>
+  <!-- ============ EXPLORE BAND ============ -->
+  <div class="explore-band"><div class="wrap"><p>Explore Winchester Graphics</p></div></div>
+
+  <!-- ============ CATEGORY TILES ============ -->
+  <section class="section categories" aria-labelledby="catsTitle">
+    <div class="wrap">
+      <div class="section-head center">
+        <h2 id="catsTitle">Shop by category</h2>
+        <p class="sub">Four collections, one workshop. Every piece can be customised with names, numbers and crests.</p>
+      </div>
+      <div class="tiles">
+        <button class="tile" type="button" data-cat="football">
+          <span class="tile-media"><img src="assets/img/cat-football.jpg" alt="" data-fallback="Football" /></span>
+          <span class="tile-body"><strong>Football jerseys</strong><small>South Sudan home, away &amp; club kits</small></span>
+        </button>
+        <button class="tile" type="button" data-cat="basketball">
+          <span class="tile-media"><img src="assets/img/cat-basketball.jpg" alt="" data-fallback="Basketball" /></span>
+          <span class="tile-body"><strong>Basketball jerseys</strong><small>Bright Stars FIBA kits &amp; team sets</small></span>
+        </button>
+        <button class="tile" type="button" data-cat="tshirts">
+          <span class="tile-media"><img src="assets/img/cat-tshirts.jpg" alt="" data-fallback="T-Shirts" /></span>
+          <span class="tile-body"><strong>Printed t-shirts</strong><small>Tees, tanks, associations &amp; events</small></span>
+        </button>
+        <button class="tile" type="button" data-cat="laawah">
+          <span class="tile-media"><img src="assets/img/cat-laawah.jpg" alt="" data-fallback="Laawah" /></span>
+          <span class="tile-body"><strong>Laawah</strong><small>Traditional dress for weddings &amp; dowry</small></span>
+        </button>
+      </div>
     </div>
-    <div class="grid" id="productGrid"><!-- cards injected by app.js --></div>
-    <p class="empty" id="emptyState" hidden>No products match your filters. Try clearing them or searching something else.</p>
   </section>
 
-  <!-- ================= SERVICES ================= -->
-  <section class="services" id="services">
-    <h2>Our Services</h2>
-    <ul class="service-list">
-      <li><h3>Custom Jersey Printing</h3><p>Names, numbers and team crests on football and basketball kits. Minimum one piece.</p></li>
-      <li><h3>T-Shirt Branding</h3><p>DTF and screen printing for teams, churches, associations and events.</p></li>
-      <li><h3>Laawah &amp; Traditional Wear</h3><p>Custom printed laawah for weddings, dowry ceremonies and cultural events.</p></li>
-      <li><h3>Graphics &amp; Design</h3><p>Logos, posters, banners and social media artwork, designed in-house.</p></li>
-    </ul>
+  <!-- ============ FEATURED SPOTLIGHT ============ -->
+  <section class="section spotlight" aria-labelledby="spotTitle">
+    <div class="wrap spot-grid">
+      <div class="spot-media">
+        <img src="assets/img/ssd-fiba-wc.jpg" alt="South Sudan FIBA World Cup jersey" data-fallback="South Sudan FIBA World Cup Jersey" />
+      </div>
+      <div class="spot-copy">
+        <p class="eyebrow">Featured this week</p>
+        <h2 id="spotTitle">South Sudan FIBA World Cup Jersey</h2>
+        <div class="spot-rating" id="spotRating"></div>
+        <p>The Bright Stars home jersey in white, with SOUTH SUDAN chest print and the national flag badge. Premium breathable mesh, cut for movement — our most requested basketball piece.</p>
+        <p class="spot-price">Kshs. 1,500</p>
+        <div class="spot-cta">
+          <button class="btn btn-primary" type="button" data-quick="ssd-fiba-wc">View item</button>
+          <button class="btn btn-outline" type="button" data-buy="ssd-fiba-wc">Order on WhatsApp</button>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- ================= HOW TO ORDER ================= -->
-  <section class="how" id="how">
-    <h2>How to order</h2>
-    <ol class="steps">
-      <li><span>1</span><p>Browse the catalog and tap any item to see details, sizes and ratings.</p></li>
-      <li><span>2</span><p>Pick your size and colour, then add it to your cart.</p></li>
-      <li><span>3</span><p>Tap <strong>Checkout on WhatsApp</strong> — your order is sent to us as a ready message.</p></li>
-      <li><span>4</span><p>We confirm price, delivery and payment on WhatsApp. Countrywide delivery available.</p></li>
-    </ol>
+  <!-- ============ CATALOG ============ -->
+  <section class="section catalog" id="shop" aria-labelledby="catalogTitle">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="catalogTitle">All products</h2>
+        <p class="sub" id="resultCount">12 items</p>
+      </div>
+
+      <div class="pills" id="categoryNav" aria-label="Product categories"></div>
+
+      <div class="filters">
+        <div class="field">
+          <label for="colorFilter">Colour</label>
+          <select id="colorFilter"><option value="">All colours</option></select>
+        </div>
+        <div class="field">
+          <label for="sizeFilter">Size</label>
+          <select id="sizeFilter"><option value="">All sizes</option></select>
+        </div>
+        <div class="field">
+          <label for="sortBy">Sort by</label>
+          <select id="sortBy">
+            <option value="featured">Featured</option>
+            <option value="new">Newest</option>
+            <option value="price-asc">Price: low to high</option>
+            <option value="price-desc">Price: high to low</option>
+            <option value="rating">Top rated</option>
+          </select>
+        </div>
+        <button class="btn btn-clear" id="clearFilters" type="button">Clear filters</button>
+      </div>
+
+      <div class="grid" id="productGrid"></div>
+
+      <div class="empty" id="emptyState" hidden>
+        <h3>No items match that search</h3>
+        <p>Try another word, or clear the filters to see the full collection.</p>
+        <button class="btn btn-primary" id="emptyShop" type="button">Show all products</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROMISE BAND ============ -->
+  <section class="section promise" aria-labelledby="promiseTitle">
+    <div class="wrap">
+      <div class="section-head center light">
+        <h2 id="promiseTitle">Printed with care, made to last</h2>
+        <p class="sub">We print every order ourselves, so you can order one piece or five hundred and get the same finish.</p>
+      </div>
+      <div class="promise-grid">
+        <div class="promise-item"><strong>In-house printing</strong><p>DTF and screen printing done in our own workshop — no middlemen, no surprises on quality.</p></div>
+        <div class="promise-item"><strong>Minimum one piece</strong><p>Single custom jersey or a full team set. Names, numbers and crests are added at no extra hassle.</p></div>
+        <div class="promise-item"><strong>Countrywide delivery</strong><p>Nairobi same-day where possible, and courier delivery to any town in Kenya.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="section services" id="services" aria-labelledby="servicesTitle">
+    <div class="wrap">
+      <h2 class="sr-only" id="servicesTitle">Our services</h2>
+      <div class="services-banner">
+        <span class="sb-arrow" aria-hidden="true">›</span>
+        <span class="sb-title">Our services</span>
+        <span class="sb-brand">Winchester Graphics</span>
+      </div>
+      <div class="service-list">
+        <article class="service"><h3>Custom jersey printing</h3><p>Names, numbers and team crests on football and basketball kits for clubs, schools and associations.</p></article>
+        <article class="service"><h3>T-shirt branding</h3><p>DTF and screen printing for teams, churches, associations, campaigns and family events.</p></article>
+        <article class="service"><h3>Laawah &amp; traditional wear</h3><p>Custom printed laawah for weddings, dowry ceremonies and cultural celebrations.</p></article>
+        <article class="service"><h3>Graphics &amp; design</h3><p>Logos, posters, banners and social media artwork, designed in-house before we print.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW TO ORDER ============ -->
+  <section class="section how" id="how" aria-labelledby="howTitle">
+    <div class="wrap">
+      <div class="section-head center">
+        <h2 id="howTitle">How to order</h2>
+        <p class="sub">Four steps from browsing to delivery — the whole conversation happens on WhatsApp.</p>
+      </div>
+      <ol class="steps">
+        <li><span class="step-no">1</span><div><strong>Browse</strong><p>Tap any item to see the description, price, ratings, sizes and similar pieces.</p></div></li>
+        <li><span class="step-no">2</span><div><strong>Add to cart</strong><p>Pick your size and colour, choose a quantity, and add it to your cart.</p></div></li>
+        <li><span class="step-no">3</span><div><strong>Check out on WhatsApp</strong><p>Your order is sent to us as a ready-written message. Add your name and location.</p></div></li>
+        <li><span class="step-no">4</span><div><strong>We confirm &amp; deliver</strong><p>We confirm price, payment and delivery time, then print and ship your order.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ SIGN UP BAND ============ -->
+  <section class="section signup-band" aria-labelledby="signupTitle">
+    <div class="wrap signup-inner">
+      <div>
+        <p class="eyebrow">Sign up &amp; save</p>
+        <h2 id="signupTitle">Create an account for faster orders</h2>
+        <p>Save your name, size and delivery town once, and every WhatsApp order comes pre-filled. Members hear about new drops and bulk pricing first.</p>
+      </div>
+      <button class="btn btn-primary" type="button" data-auth="signup">Create your account</button>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT BAND ============ -->
+  <section class="section contact-band" aria-labelledby="contactTitle">
+    <div class="wrap contact-inner">
+      <div>
+        <h2 id="contactTitle">Have a design in mind?</h2>
+        <p>Send us the artwork, the team list or just an idea. We will quote you on WhatsApp the same day.</p>
+      </div>
+      <a class="btn btn-wa" href="https://wa.me/254793669941" target="_blank" rel="noopener">Message +254 793 669 941</a>
+    </div>
   </section>
 </main>
 
-<!-- ================= FOOTER ================= -->
+<!-- ============ FOOTER ============ -->
 <footer class="site-footer">
-  <div class="footer-inner">
-    <div>
-      <p class="f-brand">Winchester Graphics</p>
-      <p class="f-tag">Design Beyond Limits</p>
-      <p class="f-note">Printed t-shirts, South Sudan football &amp; basketball jerseys, and laawah.</p>
+  <div class="wrap footer-inner">
+    <div class="f-brand">
+      <strong>Winchester Graphics</strong>
+      <small>Design Beyond Limits</small>
+      <p>Printed t-shirts, South Sudan football and basketball jerseys, and laawah traditional dress.</p>
     </div>
-    <nav aria-label="Shop">
+    <nav class="f-col" aria-label="Shop">
       <h3>Shop</h3>
-      <a href="#catalog" data-jump="football">Football jerseys</a>
-      <a href="#catalog" data-jump="basketball">Basketball jerseys</a>
-      <a href="#catalog" data-jump="tshirts">T-shirts</a>
-      <a href="#catalog" data-jump="laawah">Laawah</a>
+      <ul>
+        <li><button type="button" data-cat="football">Football jerseys</button></li>
+        <li><button type="button" data-cat="basketball">Basketball jerseys</button></li>
+        <li><button type="button" data-cat="tshirts">T-shirts</button></li>
+        <li><button type="button" data-cat="laawah">Laawah</button></li>
+      </ul>
     </nav>
-    <nav aria-label="Help">
-      <h3>Help</h3>
-      <a href="#how">How to order</a>
-      <a href="#services">Our services</a>
-      <a href="https://wa.me/254793669941" target="_blank" rel="noopener">Chat on WhatsApp</a>
+    <nav class="f-col" aria-label="Account and help">
+      <h3>Account &amp; help</h3>
+      <ul>
+        <li><button type="button" data-auth="signup">Create an account</button></li>
+        <li><button type="button" data-auth="login">Log in</button></li>
+        <li><a href="#how">How to order</a></li>
+        <li><a href="https://wa.me/254793669941" target="_blank" rel="noopener">Chat on WhatsApp</a></li>
+      </ul>
     </nav>
-    <div>
+    <div class="f-col">
       <h3>Contact</h3>
-      <p class="f-note">WhatsApp &amp; calls<br /><a href="https://wa.me/254793669941" target="_blank" rel="noopener">+254 793 669 941</a></p>
-      <p class="f-note">Mon–Sat, 8:30am – 7:00pm</p>
+      <ul>
+        <li>WhatsApp &amp; calls</li>
+        <li><a href="tel:+254793669941">+254 793 669 941</a></li>
+        <li>Mon–Sat, 8:30am – 7:00pm</li>
+      </ul>
     </div>
   </div>
-  <p class="copyright">&copy; <span id="year">2026</span> Winchester Graphics. All rights reserved.</p>
+  <div class="wrap copyright"><p>&copy; 2026 Winchester Graphics. All rights reserved.</p></div>
 </footer>
 
-<!-- Floating WhatsApp button -->
-<a class="wa-float" href="https://wa.me/254793669941?text=Hello%20Winchester%20Graphics%2C%20I%20have%20a%20question" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
-  <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.7c1.9 1 4 1.6 6.2 1.6 7.2 0 13-5.8 13-13S23.2 3 16 3zm7.4 18.3c-.3.9-1.8 1.7-2.5 1.8-.7.1-1.5.1-2.4-.2-3.3-1.1-5.6-4.1-6.6-6-.5-1-.9-2.1-.9-3.1 0-1.1.6-1.9 1-2.3.3-.3.6-.4.9-.4h.6c.3 0 .5 0 .7.5l1 2.3c.1.3.1.5 0 .7l-.5.7c-.2.2-.3.4-.1.7.6 1.1 1.8 2.5 3.2 3.1.3.1.5.1.7-.1l.8-.9c.2-.2.4-.2.7-.1l2.2 1.1c.4.2.5.4.5.6s-.1.9-.5 1.3z"/></svg>
+<a class="wa-float" href="https://wa.me/254793669941" target="_blank" rel="noopener" aria-label="Chat with Winchester Graphics on WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.4 1.7 6.3L3 29l6.9-1.8c1.8 1 3.9 1.5 6.1 1.5 7.2 0 13-5.8 13-13S23.2 3 16 3zm0 23.6c-2 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.1 1.1-4-.3-.4c-1-1.6-1.6-3.6-1.6-5.6C5.3 10.1 10.1 5.3 16 5.3S26.7 10.1 26.7 16 21.9 26.6 16 26.6zm6-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.7c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.6l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-1.3 1.4-1.2 3.3.2 5.3a13 13 0 0 0 5.4 4.8c2.2.9 3 1 4.1.8.7-.1 1.9-.8 2.2-1.6.3-.8.3-1.4.2-1.6-.1-.1-.3-.2-.6-.3z"/></svg>
 </a>
 
-<!-- ================= PRODUCT MODAL ================= -->
 <div class="overlay" id="overlay" hidden></div>
 
+<!-- Product preview -->
 <div class="modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="pmTitle" hidden>
-  <button class="close-btn" id="pmClose" aria-label="Close product details">&times;</button>
-  <div class="modal-body" id="pmBody"><!-- injected by app.js --></div>
+  <button class="close-btn" id="pmClose" type="button" aria-label="Close preview">&times;</button>
+  <div class="modal-body" id="pmBody"></div>
 </div>
 
-<!-- ================= CART DRAWER ================= -->
+<!-- Account: sign up / log in -->
+<div class="modal modal-sm" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle" hidden>
+  <button class="close-btn" id="authClose" type="button" aria-label="Close">&times;</button>
+  <div class="modal-body pad" id="authBody"></div>
+</div>
+
+<!-- Cart -->
 <aside class="drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle" hidden>
   <div class="drawer-head">
     <h2 id="cartTitle">Your cart</h2>
-    <button class="close-btn" id="cartClose" aria-label="Close cart">&times;</button>
+    <button class="close-btn" id="cartClose" type="button" aria-label="Close cart">&times;</button>
   </div>
-  <div class="drawer-body" id="cartBody"><!-- injected by app.js --></div>
+  <div class="drawer-body" id="cartBody"></div>
   <div class="drawer-foot">
     <div class="totals"><span>Subtotal</span><strong id="cartTotal">Kshs. 0</strong></div>
     <p class="drawer-note">Delivery is confirmed on WhatsApp after you send your order.</p>
-    <button class="btn btn-wa btn-block" id="checkoutBtn">
-      <svg viewBox="0 0 32 32" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M16 3C8.8 3 3 8.8 3 16c0 2.3.6 4.5 1.7 6.4L3 29l6.8-1.7c1.9 1 4 1.6 6.2 1.6 7.2 0 13-5.8 13-13S23.2 3 16 3zm7.4 18.3c-.3.9-1.8 1.7-2.5 1.8-.7.1-1.5.1-2.4-.2-3.3-1.1-5.6-4.1-6.6-6-.5-1-.9-2.1-.9-3.1 0-1.1.6-1.9 1-2.3.3-.3.6-.4.9-.4h.6c.3 0 .5 0 .7.5l1 2.3c.1.3.1.5 0 .7l-.5.7c-.2.2-.3.4-.1.7.6 1.1 1.8 2.5 3.2 3.1.3.1.5.1.7-.1l.8-.9c.2-.2.4-.2.7-.1l2.2 1.1c.4.2.5.4.5.6s-.1.9-.5 1.3z"/></svg>
-      Checkout on WhatsApp
-    </button>
+    <button class="btn btn-wa btn-block" id="checkoutBtn" type="button">Check out on WhatsApp</button>
   </div>
 </aside>
 
-<!-- ================= HELP MODAL ================= -->
+<!-- Help -->
 <div class="modal modal-sm" id="helpModal" role="dialog" aria-modal="true" aria-labelledby="helpTitle" hidden>
-  <button class="close-btn" id="helpClose" aria-label="Close">&times;</button>
+  <button class="close-btn" id="helpClose" type="button" aria-label="Close help">&times;</button>
   <div class="modal-body pad">
-    <h2 id="helpTitle">Ordering in 3 steps</h2>
-    <ol class="help-list">
-      <li>Tap a product to see its description, price and ratings.</li>
-      <li>Choose size and colour, then <strong>Add to cart</strong>.</li>
-      <li>Open the cart and tap <strong>Checkout on WhatsApp</strong> — we reply with payment and delivery details.</li>
-    </ol>
-    <p class="muted">Prefer to talk first? Message us on <a href="https://wa.me/254793669941" target="_blank" rel="noopener">+254 793 669 941</a>.</p>
+    <h2 id="helpTitle">Need help?</h2>
+    <p>Everything is handled on WhatsApp — sizing advice, custom artwork, bulk pricing, payment and delivery.</p>
+    <ul class="help-list">
+      <li><strong>WhatsApp &amp; calls:</strong> +254 793 669 941</li>
+      <li><strong>Hours:</strong> Mon–Sat, 8:30am – 7:00pm</li>
+      <li><strong>Custom orders:</strong> send your artwork or team list and we will quote you.</li>
+    </ul>
+    <a class="btn btn-wa btn-block" href="https://wa.me/254793669941" target="_blank" rel="noopener">Chat with us now</a>
   </div>
 </div>
 
-<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="app.js"></script>
 </body>
