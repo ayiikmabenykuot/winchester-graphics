@@ -40,7 +40,7 @@
       cat: "laawah"
     },
     {
-      image: "assets/img/hero-3.jpg",
+      image: "assets/hero-2.jpeg",
       alt: "Printed t-shirts",
       eyebrow: "Teams & events",
       script: "From one piece",
