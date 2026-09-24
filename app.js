@@ -83,7 +83,7 @@
       id: "laawah",
       name: "Laawah",
       script: "Traditional",
-      image: "assets/img/cat-laawah.jpg",
+      image: "assets/laawah-01.jpeg",
       intro: "Traditional dress worn by South Sudanese ladies, printed to your colours and ceremony.",
       text: "Full-length laawah in flowing fabric, printed with the patterns, names or dates you choose. A favourite for weddings, dowry ceremonies and cultural celebrations."
     }
