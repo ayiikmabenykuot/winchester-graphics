@@ -34,7 +34,7 @@
       ctaHref: "category.html?cat=basketball"
     },
     {
-      image: "assets/img/hero-2.jpg",
+      image: "assets/img/hero-2.jpeg",
       eyebrow: "Printed t-shirts",
       script: "Your idea,",
       title: "on a tee in 24 hours",
@@ -43,7 +43,7 @@
       ctaHref: "category.html?cat=tshirts"
     },
     {
-      image: "assets/img/hero-3.jpg",
+      image: "assets/img/hero-3.jpeg",
       eyebrow: "Traditional wear",
       script: "Laawah for",
       title: "every celebration",
@@ -73,7 +73,7 @@
     },
     {
       id: "tshirts",
-      name: "Printed t-shirts",
+      name: "",
       script: "Everyday",
       image: "assets/img/cat-tshirts.jpg",
       intro: "Tees, tanks and event shirts printed with your artwork, slogan or association logo.",
@@ -121,7 +121,7 @@
 
   /* ------------------------------ PRODUCTS ---------------------------- */
   var PRODUCTS = [
-    { id: "ssd-fiba-wc", name: "South Sudan FIBA World Cup Jersey", category: "basketball", price: 1500, image: "ssd-fiba-wc.jpg", badge: "New", sizes: ["S","M","L","XL","2XL"], colors: ["White"], added: "2026-09-10", featured: true,
+    { id: "ssd-fiba-wc", name: "South Sudan FIBA World Cup Jersey", category: "basketball", price: 1500, image: "ssd-fiba-wc.jpg", badge: "", sizes: ["S","M","L","XL","2XL"], colors: ["White"], added: "2026-09-10", featured: true,
       desc: "The Bright Stars home jersey in white, with SOUTH SUDAN chest print and the national flag badge. Premium breathable mesh, cut for movement — our most requested basketball piece." },
     { id: "ssd-fiba-away", name: "South Sudan FIBA Away Jersey", category: "basketball", price: 1500, image: "ssd-fiba-away.jpg", badge: "", sizes: ["S","M","L","XL","2XL"], colors: ["Navy"], added: "2026-08-20", featured: false,
       desc: "Away colourway in deep navy with white lettering. Same breathable mesh and relaxed basketball cut as the home jersey." },
@@ -137,13 +137,13 @@
       desc: "Sleeveless training tank in black. Light, quick drying and good for warm-ups or the gym." },
     { id: "ssd-bball-tank-white", name: "SSD Basketball Tank — White", category: "tshirts", price: 1200, image: "ssd-bball-tank-white.jpg", badge: "", sizes: ["S","M","L","XL"], colors: ["White"], added: "2026-07-20", featured: false,
       desc: "White training tank with the team print. Pairs with the basketball shorts for a full practice set." },
-    { id: "twic-east-tee", name: "Twic East Girls Association Tee", category: "tshirts", price: 1200, image: "twic-east-tee.jpg", badge: "New", sizes: ["S","M","L","XL","2XL"], colors: ["White"], added: "2026-09-05", featured: false,
+    { id: "twic-east-tee", name: "Twic East Girls Association Tee", category: "tshirts", price: 1200, image: "twic-east-tee.jpg", badge: "", sizes: ["S","M","L","XL","2XL"], colors: ["White"], added: "2026-09-05", featured: false,
       desc: "Association tee printed for community events and fundraisers. We can swap in your own association artwork." },
     { id: "get-the-bag-tee", name: "Get The Bag Tee", category: "tshirts", price: 1200, image: "get-the-bag-tee.jpg", badge: "", sizes: ["S","M","L","XL","2XL"], colors: ["White"], added: "2026-06-28", featured: false,
       desc: "Statement slogan tee on a white cotton body. A simple print that reads clearly from across the room." },
     { id: "laawah-palm", name: "Laawah — Palm & River Print", category: "laawah", price: 3500, image: "laawah-palm.jpg", badge: "", sizes: ["One Size"], colors: ["White","Blue"], added: "2026-08-12", featured: true,
       desc: "Full-length laawah in flowing fabric with a palm and river print. One size, styled the traditional way." },
-    { id: "laawah-custom", name: "Laawah — Custom Ceremony Set", category: "laawah", price: 4000, image: "laawah-custom.jpg", badge: "New", sizes: ["One Size"], colors: ["White","Blue","Red"], added: "2026-09-08", featured: true,
+    { id: "laawah-custom", name: "Laawah — Custom Ceremony Set", category: "laawah", price: 4000, image: "laawah-custom.jpg", badge: "", sizes: ["One Size"], colors: ["White","Blue","Red"], added: "2026-09-08", featured: true,
       desc: "Made for weddings and dowry ceremonies. Choose your colours and we print names, dates or family patterns." }
   ];
 
