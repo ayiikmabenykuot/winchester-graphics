@@ -25,7 +25,7 @@
      Put your photos in assets/img/ with these names (or change them). */
   var SLIDES = [
     {
-      image: "assets/hero-1.jpg",
+      image: "assets/hero-7.jpeg",
       eyebrow: "New season",
       script: "Wear your",
       title: "South Sudan pride",
@@ -141,9 +141,13 @@
       desc: "Association tee printed for community events and fundraisers. We can swap in your own association artwork." },
     { id: "get-the-bag-tee", name: "Get The Bag Tee", category: "tshirts", price: 1200, image: "get-the-bag-tee.jpg", badge: "", sizes: ["S","M","L","XL","2XL"], colors: ["White"], added: "2026-06-28", featured: false,
       desc: "Statement slogan tee on a white cotton body. A simple print that reads clearly from across the room." },
-    { id: "laawah-palm", name: "Laawah — Palm & River Print", category: "laawah", price: 3500, image: "laawah-palm.jpg", badge: "", sizes: ["One Size"], colors: ["White","Blue"], added: "2026-08-12", featured: true,
+    { id: "laawah Butterfly", name: "Laawah — Palm & River Print", category: "laawah", price: 2500, image: "laawah-butterfly.jpg", badge: "", sizes: ["One Size"], colors: ["White","Blue"], added: "2026-08-12", featured: true,
       desc: "Full-length laawah in flowing fabric with a palm and river print. One size, styled the traditional way." },
-    { id: "laawah-custom", name: "Laawah — Custom Ceremony Set", category: "laawah", price: 4000, image: "laawah-custom.jpg", badge: "", sizes: ["One Size"], colors: ["White","Blue","Red"], added: "2026-09-08", featured: true,
+    { id: "laawah Coat of Arms", name: "Laawah — Custom Ceremony Set", category: "laawah", price: 2500, image: "laawah-coat of arms.jpg", badge: "", sizes: ["One Size"], colors: ["White","Blue","Red"], added: "2026-09-08", featured: true,
+      desc: "Made for weddings and dowry ceremonies. Choose your colours and we print names, dates or family patterns." },
+    { id: "laawah Dr.John Garang", name: "Laawah — Custom Ceremony Set", category: "laawah", price: 2500, image: "laawah-garang.jpg", badge: "", sizes: ["One Size"], colors: ["White","Blue","Red"], added: "2026-09-08", featured: true,
+      desc: "Made for weddings and dowry ceremonies. Choose your colours and we print names, dates or family patterns." },
+    { id: "laawah SSD Heart", name: "Laawah — Custom Ceremony Set", category: "laawah", price: 4000, image: "laawah-ssd heart.jpg", badge: "", sizes: ["One Size"], colors: ["White","Blue","Red"], added: "2026-09-08", featured: true,
       desc: "Made for weddings and dowry ceremonies. Choose your colours and we print names, dates or family patterns." }
   ];
 
