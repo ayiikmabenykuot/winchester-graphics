@@ -43,7 +43,7 @@
       ctaHref: "category.html?cat=tshirts"
     },
     {
-      image: "assets/hero-1.jpeg",
+      image: "assets/hero-8.jpeg",
       eyebrow: "Traditional wear",
       script: "Laawah for",
       title: "every celebration",
