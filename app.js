@@ -83,7 +83,7 @@
       id: "laawah",
       name: "Laawah",
       script: "Traditional",
-      image: "assets/laawah-01.jpeg",
+      image: "assets/laawah-01.jpg",
       intro: "Traditional dress worn by South Sudanese ladies, printed to your colours and ceremony.",
       text: "Full-length laawah in flowing fabric, printed with the patterns, names or dates you choose. A favourite for weddings, dowry ceremonies and cultural celebrations."
     }
@@ -147,7 +147,7 @@
       desc: "Made for weddings and dowry ceremonies. Choose your colours and we print names, dates or family patterns." },
     { id: "laawah Dr.John Garang", name: "Laawah — Custom Ceremony Set", category: "laawah", price: 2500, image: "laawah-garang.jpg", badge: "", sizes: ["One Size"], colors: ["White","Blue","Red"], added: "2026-09-08", featured: true,
       desc: "Made for weddings and dowry ceremonies. Choose your colours and we print names, dates or family patterns." },
-    { id: "laawah SSD Heart", name: "Laawah — Custom Ceremony Set", category: "laawah", price: 4000, image: "laawah-ssd heart.jpg", badge: "", sizes: ["One Size"], colors: ["White","Blue","Red"], added: "2026-09-08", featured: true,
+    { id: "laawah SSD Heart", name: "Laawah — Custom Ceremony Set", category: "laawah", price: 2500, image: "laawah-ssd heart.jpg", badge: "", sizes: ["One Size"], colors: ["White","Blue","Red"], added: "2026-09-08", featured: true,
       desc: "Made for weddings and dowry ceremonies. Choose your colours and we print names, dates or family patterns." }
   ];
 
