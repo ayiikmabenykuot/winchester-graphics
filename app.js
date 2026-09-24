@@ -34,7 +34,7 @@
       ctaHref: "category.html?cat=basketball"
     },
     {
-      image: "assets/hero-2.jpeg",
+      image: "assets/hero-6.jpeg",
       eyebrow: "Printed t-shirts",
       script: "Your idea,",
       title: "on a tee in 24 hours",
@@ -43,7 +43,7 @@
       ctaHref: "category.html?cat=tshirts"
     },
     {
-      image: "assets/hero-3.jpeg",
+      image: "assets/hero-1.jpeg",
       eyebrow: "Traditional wear",
       script: "Laawah for",
       title: "every celebration",
