@@ -95,7 +95,7 @@ button{font:inherit;color:inherit}
 .brand-text small{font-size:.66rem;color:var(--ink-2);letter-spacing:.09em;text-transform:uppercase}
 
 .main-nav{flex:1 1 auto;min-width:0}
-.main-nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0;justify-content:center;flex-wrap:nowrap}
+.main-nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;justify-content:center;flex-wrap:nowrap}
 .main-nav a{
   text-decoration:none;color:var(--ink);font-weight:600;font-size:.9rem;
   padding:8px 0;border-bottom:2px solid transparent;white-space:nowrap;
@@ -163,9 +163,43 @@ button{font:inherit;color:inherit}
 .dot{width:10px;height:10px;border-radius:50%;border:1px solid #fff;background:transparent;padding:0;cursor:pointer}
 .dot.is-on{background:#fff}
 
-/* ---------------------------- explore band -------------------------- */
-.explore-band{background:#fff;padding:26px 0 8px;text-align:center}
-.explore-band p{margin:0;font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,2.4vw,1.9rem);color:var(--navy)}
+/* ------------------------- explore service tiles -------------------- */
+.explore{background:#fff;padding:56px 0 60px;text-align:center}
+.explore-title{
+  margin:0 0 34px;font-family:var(--serif);font-style:italic;
+  font-size:clamp(1.3rem,2.4vw,1.9rem);color:var(--navy);
+}
+.explore-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:24px}
+.tile{text-decoration:none;color:var(--navy);display:block}
+.tile-media{display:block;aspect-ratio:1/1;background:var(--blue-50);border-radius:var(--radius);overflow:hidden}
+.tile-media img{width:100%;height:100%;object-fit:cover;transition:transform .25s ease}
+.tile:hover .tile-media img{transform:scale(1.04)}
+.tile-label{
+  display:inline-flex;align-items:center;gap:6px;margin-top:12px;
+  font-size:.92rem;font-weight:600;text-align:left;
+}
+.tile:hover .tile-label{text-decoration:underline}
+.tile-arrow{width:18px;height:18px;flex:0 0 auto}
+
+/* -------------------------- seasonal collection --------------------- */
+.seasonal{background:#fff;padding-top:8px}
+.seasonal .section-head h2 i{font-family:var(--serif);font-style:italic}
+.season-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.season-item{text-align:center}
+.season-media{position:relative;display:block;aspect-ratio:1/1;background:var(--blue-50);border-radius:var(--radius);overflow:hidden}
+.season-media img{width:100%;height:100%;object-fit:cover}
+.season-tag{
+  position:absolute;top:10px;left:10px;background:var(--navy);color:#fff;
+  font-size:.66rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+  padding:4px 10px;border-radius:999px;
+}
+.season-name{font-size:.95rem;margin:14px 0 6px}
+.season-name a{color:var(--navy-2);text-decoration:none}
+.season-name a:hover{text-decoration:underline}
+.stars{display:flex;align-items:center;justify-content:center;gap:6px;margin:0;color:#C3D2EC}
+.stars-row{display:inline-flex;gap:2px}
+.stars svg{width:15px;height:15px}
+.stars-count{font-size:.8rem;color:var(--ink-2)}
 
 /* --------------------- full-screen showcase sections ---------------- */
 .showcase{
@@ -174,9 +208,10 @@ button{font:inherit;color:inherit}
   min-height:100svh;
   display:flex;align-items:center;
   background:var(--navy);color:#fff;
-  margin-bottom:8px;
+  margin-bottom:34px;
   isolation:isolate;
 }
+#showcases{padding-bottom:6px}
 .showcase-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .showcase-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,30,96,.20),rgba(0,30,96,.62))}
 .showcase-inner{position:relative;z-index:2;display:flex;padding:96px 0 120px;width:min(100% - 32px,var(--wrap))}
@@ -208,7 +243,7 @@ button{font:inherit;color:inherit}
 .center-cta{text-align:center;margin:28px 0 0}
 
 /* --------------------------- seen on social ------------------------- */
-.social{background:var(--blue-50)}
+.social{background:#fff}
 .social-rail{
   display:grid;grid-template-columns:repeat(5,1fr);gap:16px;
 }
@@ -402,7 +437,8 @@ button{font:inherit;color:inherit}
 
 /* ============================ RESPONSIVE ============================ */
 @media (max-width:1240px){
-  .main-nav ul{gap:14px}
+  .main-nav ul{gap:18px}
+  .explore-grid{grid-template-columns:repeat(6,1fr);gap:18px}
   .search input{width:130px}
   .grid{grid-template-columns:repeat(3,1fr)}
 }
@@ -411,6 +447,7 @@ button{font:inherit;color:inherit}
   .service-list,.steps{grid-template-columns:repeat(2,1fr)}
   .footer-grid{grid-template-columns:1fr 1fr}
   .social-rail{grid-template-columns:repeat(3,1fr)}
+  .explore-grid{grid-template-columns:repeat(3,1fr)}
 }
 
 @media (max-width:980px){
@@ -434,6 +471,8 @@ button{font:inherit;color:inherit}
 
 @media (max-width:860px){
   .grid{grid-template-columns:repeat(2,1fr)}
+  .season-grid{grid-template-columns:repeat(2,1fr);gap:22px}
+  .showcase{margin-bottom:24px}
   .curve{border-bottom-left-radius:50% 46px;border-bottom-right-radius:50% 46px}
   .hero{min-height:min(76vh,600px)}
   .hero-inner{padding:64px 0 100px}
@@ -475,6 +514,12 @@ button{font:inherit;color:inherit}
   .btn-square{width:100%;max-width:280px}
 
   .grid{grid-template-columns:repeat(2,1fr);gap:14px}
+  .explore{padding:40px 0 44px}
+  .explore-title{margin-bottom:24px}
+  .explore-grid{grid-template-columns:repeat(2,1fr);gap:16px}
+  .tile-label{font-size:.86rem;margin-top:8px}
+  .season-grid{gap:16px}
+  .season-name{font-size:.88rem}
   .card-body{padding:12px}
   .card-title{font-size:.92rem}
   .card-actions{flex-direction:column}

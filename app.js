@@ -89,6 +89,29 @@
     }
   ];
 
+  /* ------------------------ EXPLORE SERVICE TILES ---------------------
+     Six small tiles under "Explore Winchester Graphics".
+     Images go in assets/img/services/ */
+  var SERVICES = [
+    { name: "Business cards", image: "assets/img/services/business-cards.jpg", ask: "Hi Winchester Graphics, I would like business cards printed." },
+    { name: "Poster design", image: "assets/img/services/poster-design.jpg", ask: "Hi Winchester Graphics, I need a poster designed and printed." },
+    { name: "Mug printing", image: "assets/img/services/mug-printing.jpg", ask: "Hi Winchester Graphics, I would like printed mugs." },
+    { name: "Uniform labelling", image: "assets/img/services/uniform-labelling.jpg", ask: "Hi Winchester Graphics, I need uniforms labelled." },
+    { name: "Bottles branding", image: "assets/img/services/bottles-branding.jpg", ask: "Hi Winchester Graphics, I would like branded bottles." },
+    { name: "Notebook branding", image: "assets/img/services/notebook-branding.jpg", ask: "Hi Winchester Graphics, I would like branded notebooks." }
+  ];
+
+  /* ------------------------ SEASONAL COLLECTION -----------------------
+     Four slots shown below "Featured this week". Ratings stay empty.
+     Images go in assets/img/seasonal/ . Set `href` to a product page
+     (product.html?id=...) once the piece exists in PRODUCTS. */
+  var SEASONAL = [
+    { name: "Summer Collection Tee", image: "assets/img/seasonal/summer-tee.jpg", tag: "Summer", href: "category.html?cat=tshirts" },
+    { name: "Spring Ceremony Laawah", image: "assets/img/seasonal/spring-laawah.jpg", tag: "Spring", href: "category.html?cat=laawah" },
+    { name: "Fall Team Hoodie Print", image: "assets/img/seasonal/fall-hoodie.jpg", tag: "Fall", href: "category.html?cat=tshirts" },
+    { name: "Holiday Gift Mug Set", image: "assets/img/seasonal/holiday-mugs.jpg", tag: "Holiday", href: "https://wa.me/254793669941" }
+  ];
+
   var CAT_LABEL = {
     football: "Football jerseys",
     basketball: "Basketball jerseys",
@@ -548,6 +571,14 @@
     "</article>";
   }
 
+  /* empty star row — no ratings collected yet */
+  function emptyStars() {
+    var star = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8L10 14.9 4.8 17.6l1-5.8L1.6 7.7l5.8-.8z" fill="currentColor"/></svg>';
+    return '<p class="stars" title="No ratings yet"><span class="stars-row" aria-hidden="true">' +
+      star + star + star + star + star + "</span>" +
+      '<span class="stars-count">(0)</span><span class="sr-only">No ratings yet</span></p>';
+  }
+
   /* ------------------------------- HOME ------------------------------- */
   function initHome() {
     /* hero carousel */
@@ -594,6 +625,37 @@
       });
       paint(0);
       restart();
+    }
+
+    /* explore service tiles */
+    var exploreHost = $("#exploreGrid");
+    if (exploreHost) {
+      exploreHost.innerHTML = SERVICES.map(function (s) {
+        return '<a class="tile" href="' + esc(waLink(s.ask)) + '" target="_blank" rel="noopener">' +
+          '<span class="tile-media"><img src="' + esc(s.image) + '" alt="" loading="lazy" data-fallback="' + esc(s.name) + '" /></span>' +
+          '<span class="tile-label">' + esc(s.name) +
+            ' <svg class="tile-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+          "</span>" +
+        "</a>";
+      }).join("");
+      guardAll(exploreHost);
+    }
+
+    /* seasonal collection */
+    var seasonHost = $("#seasonGrid");
+    if (seasonHost) {
+      seasonHost.innerHTML = SEASONAL.map(function (s) {
+        var ext = /^https?:/.test(s.href) ? ' target="_blank" rel="noopener"' : "";
+        return '<article class="season-item">' +
+          '<a class="season-media" href="' + esc(s.href) + '"' + ext + ' aria-label="' + esc(s.name) + '">' +
+            (s.tag ? '<span class="season-tag">' + esc(s.tag) + "</span>" : "") +
+            '<img src="' + esc(s.image) + '" alt="" loading="lazy" data-fallback="' + esc(s.name) + '" />' +
+          "</a>" +
+          '<h3 class="season-name"><a href="' + esc(s.href) + '"' + ext + ">" + esc(s.name) + "</a></h3>" +
+          emptyStars() +
+        "</article>";
+      }).join("");
+      guardAll(seasonHost);
     }
 
     /* full-screen category showcases */

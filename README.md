@@ -31,7 +31,13 @@ two new pages.
 5. **Clicking a product → `product.html?id=…`** with description, **“No ratings yet”**,
    size/colour choice, quantity, add to cart, WhatsApp order and **Similar products**.
 6. **Seen on social** — 5 video slots for your own clips.
-7. **Mobile** — everything re-flows for phones: hamburger menu, stacked sections,
+7. **Explore Winchester Graphics** — six service tiles on white (business cards,
+   poster design, mug printing, uniform labelling, bottles branding, notebook branding).
+8. **Seasonal collection** — below “Featured this week”: four slots on white with
+   names, empty star ratings and a **Shop the range** button.
+9. **Seen on social** now sits on a white background, and the four category
+   showcases have more breathing room between them.
+10. **Mobile** — everything re-flows for phones: hamburger menu, stacked sections,
    2-up product grid, swipeable social rail, full-width buttons.
 
 Ratings are shown as “No ratings yet” everywhere; there is no star rating and no
@@ -47,6 +53,13 @@ Anything missing shows a light blue placeholder instead of breaking the layout.
 - `limited-edition.jpg` — the limited edition t-shirt
 - `cat-football.jpg`, `cat-basketball.jpg`, `cat-tshirts.jpg`, `cat-laawah.jpg` — the four showcases
 - `ssd-fiba-wc.jpg` — featured-this-week photo
+
+**`assets/img/services/`** (square, 800×800) — the six Explore tiles
+`business-cards.jpg`, `poster-design.jpg`, `mug-printing.jpg`,
+`uniform-labelling.jpg`, `bottles-branding.jpg`, `notebook-branding.jpg`
+
+**`assets/img/seasonal/`** (square, 1000×1000) — the seasonal collection
+`summer-tee.jpg`, `spring-laawah.jpg`, `fall-hoodie.jpg`, `holiday-mugs.jpg`
 
 **`assets/img/products/`** (square, 1000×1000)
 `ssd-fiba-wc.jpg`, `ssd-fiba-away.jpg`, `ssd-home-kit.jpg`, `ssd-away-kit.jpg`,
@@ -68,6 +81,11 @@ Everything you edit lives at the top of `app.js`:
 - `CONFIG` — WhatsApp number (`254793669941`), currency, email.
 - `SLIDES` — the three hero slides (image, headline, text, button link).
 - `CATEGORIES` — the four full-screen showcases (photo, wording, Shop now link).
+- `SERVICES` — the six Explore tiles under the hero. Each opens WhatsApp with a
+  ready-written enquiry; change `ask` to change that message.
+- `SEASONAL` — the four seasonal slots below “Featured this week”. Ratings stay
+  empty (0) until you decide to collect them; point `href` at a product page
+  (`product.html?id=…`) once the item exists in `PRODUCTS`.
 - `PRODUCTS` — every product. To add one, copy a line and change the fields:
 
 ```js
