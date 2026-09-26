@@ -93,12 +93,12 @@
      Six small tiles under "Explore Winchester Graphics".
      Images go in assets/img/services/ */
   var SERVICES = [
-    { name: "Business cards", image: "assets/img/services/business-cards.jpg", ask: "Hi Winchester Graphics, I would like business cards printed." },
-    { name: "Poster design", image: "assets/img/services/poster-design.jpg", ask: "Hi Winchester Graphics, I need a poster designed and printed." },
-    { name: "Mug printing", image: "assets/img/services/mug-printing.jpg", ask: "Hi Winchester Graphics, I would like printed mugs." },
-    { name: "Uniform labelling", image: "assets/img/services/uniform-labelling.jpg", ask: "Hi Winchester Graphics, I need uniforms labelled." },
-    { name: "Bottles branding", image: "assets/img/services/bottles-branding.jpg", ask: "Hi Winchester Graphics, I would like branded bottles." },
-    { name: "Notebook branding", image: "assets/img/services/notebook-branding.jpg", ask: "Hi Winchester Graphics, I would like branded notebooks." }
+    { name: "Business cards", image: "assets/business-cards.jpg", ask: "Hi Winchester Graphics, I would like business cards printed." },
+    { name: "Poster design", image: "assets/poster-design.jpg", ask: "Hi Winchester Graphics, I need a poster designed and printed." },
+    { name: "Mug printing", image: "assets/mug-printing.jpg", ask: "Hi Winchester Graphics, I would like printed mugs." },
+    { name: "Uniform labelling", image: "assets/uniform-labelling.jpg", ask: "Hi Winchester Graphics, I need uniforms labelled." },
+    { name: "Bottles branding", image: "assets/bottles-branding.jpg", ask: "Hi Winchester Graphics, I would like branded bottles." },
+    { name: "Notebook branding", image: "assets/notebook-branding.jpg", ask: "Hi Winchester Graphics, I would like branded notebooks." }
   ];
 
   /* ------------------------ SEASONAL COLLECTION -----------------------
