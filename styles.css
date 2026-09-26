@@ -136,7 +136,7 @@ button{font:inherit;color:inherit}
 /* -------------------------------- hero ------------------------------ */
 .hero{
   position:relative;
-  min-height:min(82vh,720px);
+  min-height:min(100vh,720px);
   display:flex;align-items:center;
   background:var(--white);
   color:#fff;
