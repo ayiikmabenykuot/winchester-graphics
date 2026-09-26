@@ -67,7 +67,7 @@
       id: "basketball",
       name: "Basketball jerseys",
       script: "Bright Stars",
-      image: "assets/img/cat-basketball.jpg",
+      image: "assets/cat-basketball.jpg",
       intro: "FIBA-style South Sudan jerseys in home white and away navy, with matching shorts on request.",
       text: "Lightweight mesh with a clean SOUTH SUDAN chest print and flag badge. Built for the court, comfortable enough to wear all day."
     },
@@ -75,7 +75,7 @@
       id: "tshirts",
       name: "Printed T-Shirts",
       script: "Everyday",
-      image: "assets/img/cat-tshirts.jpg",
+      image: "assets/cat-tshirts.jpg",
       intro: "Tees, tanks and event shirts printed with your artwork, slogan or association logo.",
       text: "Soft cotton bodies with DTF or screen printing that survives the wash. Perfect for associations, churches, campaigns, reunions and giveaways."
     },
