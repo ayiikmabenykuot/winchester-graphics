@@ -25,7 +25,7 @@
      Put your photos in assets/img/ with these names (or change them). */
   var SLIDES = [
     {
-      image: "assets/img/hero-1.jpg",
+      image: "assets/hero-1.jpg",
       eyebrow: "New season",
       script: "Wear your",
       title: "South Sudan pride",
@@ -34,7 +34,7 @@
       ctaHref: "category.html?cat=basketball"
     },
     {
-      image: "assets/img/hero-2.jpg",
+      image: "assets/hero-2.jpg",
       eyebrow: "Printed t-shirts",
       script: "Your idea,",
       title: "on a tee in 24 hours",
@@ -43,7 +43,7 @@
       ctaHref: "category.html?cat=tshirts"
     },
     {
-      image: "assets/img/hero-3.jpg",
+      image: "assets/hero-3.jpg",
       eyebrow: "Traditional wear",
       script: "Laawah for",
       title: "every celebration",
@@ -59,7 +59,7 @@
       id: "football",
       name: "Football jerseys",
       script: "On the pitch",
-      image: "assets/img/cat-football.jpg",
+      image: "assets/cat-football.jpg",
       intro: "South Sudan home and away kits plus full club sets — names, numbers and crests printed in-house.",
       text: "Breathable match fabric cut for real play. We print player names, numbers and team crests for clubs, schools and county tournaments, from a single shirt to a full squad set."
     },
@@ -67,7 +67,7 @@
       id: "basketball",
       name: "Basketball jerseys",
       script: "Bright Stars",
-      image: "assets/img/cat-basketball.jpg",
+      image: "assets/cat-basketball.jpg",
       intro: "FIBA-style South Sudan jerseys in home white and away navy, with matching shorts on request.",
       text: "Lightweight mesh with a clean SOUTH SUDAN chest print and flag badge. Built for the court, comfortable enough to wear all day."
     },
@@ -75,7 +75,7 @@
       id: "tshirts",
       name: "Printed t-shirts",
       script: "Everyday",
-      image: "assets/img/cat-tshirts.jpg",
+      image: "assets/cat-tshirts.jpg",
       intro: "Tees, tanks and event shirts printed with your artwork, slogan or association logo.",
       text: "Soft cotton bodies with DTF or screen printing that survives the wash. Perfect for associations, churches, campaigns, reunions and giveaways."
     },
@@ -83,7 +83,7 @@
       id: "laawah",
       name: "Laawah",
       script: "Traditional",
-      image: "assets/img/cat-laawah.jpg",
+      image: "assets/cat-laawah.jpg",
       intro: "Traditional dress worn by South Sudanese ladies, printed to your colours and ceremony.",
       text: "Full-length laawah in flowing fabric, printed with the patterns, names or dates you choose. A favourite for weddings, dowry ceremonies and cultural celebrations."
     }
@@ -93,12 +93,12 @@
      Six small tiles under "Explore Winchester Graphics".
      Images go in assets/img/services/ */
   var SERVICES = [
-    { name: "Business cards", image: "assets/img/services/business-cards.jpg", ask: "Hi Winchester Graphics, I would like business cards printed." },
-    { name: "Poster design", image: "assets/img/services/poster-design.jpg", ask: "Hi Winchester Graphics, I need a poster designed and printed." },
-    { name: "Mug printing", image: "assets/img/services/mug-printing.jpg", ask: "Hi Winchester Graphics, I would like printed mugs." },
-    { name: "Uniform labelling", image: "assets/img/services/uniform-labelling.jpg", ask: "Hi Winchester Graphics, I need uniforms labelled." },
-    { name: "Bottles branding", image: "assets/img/services/bottles-branding.jpg", ask: "Hi Winchester Graphics, I would like branded bottles." },
-    { name: "Notebook branding", image: "assets/img/services/notebook-branding.jpg", ask: "Hi Winchester Graphics, I would like branded notebooks." }
+    { name: "Business cards", image: "assets/business-cards.jpg", ask: "Hi Winchester Graphics, I would like business cards printed." },
+    { name: "Poster design", image: "assets/poster-design.jpg", ask: "Hi Winchester Graphics, I need a poster designed and printed." },
+    { name: "Mug printing", image: "assets/mug-printing.jpg", ask: "Hi Winchester Graphics, I would like printed mugs." },
+    { name: "Uniform labelling", image: "assets/uniform-labelling.jpg", ask: "Hi Winchester Graphics, I need uniforms labelled." },
+    { name: "Bottles branding", image: "assets/bottles-branding.jpg", ask: "Hi Winchester Graphics, I would like branded bottles." },
+    { name: "Notebook branding", image: "assets/notebook-branding.jpg", ask: "Hi Winchester Graphics, I would like branded notebooks." }
   ];
 
   /* ------------------------ SEASONAL COLLECTION -----------------------
