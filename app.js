@@ -141,6 +141,8 @@
       desc: "Association tee printed for community events and fundraisers. We can swap in your own association artwork." },
     { id: "get-the-bag-tee", name: "Get The Bag Tee", category: "tshirts", price: 1200, image: "get-the-bag-tee.jpg", badge: "", sizes: ["S","M","L","XL","2XL"], colors: ["White"], added: "2026-06-28", featured: false,
       desc: "Statement slogan tee on a white cotton body. A simple print that reads clearly from across the room." },
+    { id: "birthday-tee", name: "Birthday T-Shirts", category: "tshirts", price: 1200, image: "assets/birthday-tee.jpg", badge: "", sizes: ["S","M","L","XL","2XL"], colors: ["White"], added: "2026-06-28", featured: false,
+      desc: "Statement slogan tee on a white cotton body. A simple print that reads clearly from across the room." },
     { id: "laawah-butterfly", name: "Laawah Butterfly Design", category: "laawah", price: 2500, image: "assets/laawah-butterfly.jpg", badge: "", sizes: ["One Size"], colors: ["White","Blue"], added: "2026-08-12", featured: true,
       desc: "Full-length laawah in flowing fabric with a palm and river print. One size, styled the traditional way." },
     { id: "laawah-coat of arms", name: "Laawah Coat of Arms Design", category: "laawah", price: 2500, image: "assets/laawah-coat of arms.jpg", badge: "", sizes: ["One Size"], colors: ["One Color"], added: "2026-09-08", featured: true,
