@@ -25,7 +25,7 @@
      Put your photos in assets/img/ with these names (or change them). */
   var SLIDES = [
     {
-      image: "assets/hero-1.jpeg",
+      image: "assets/img/hero-1.jpg",
       eyebrow: "New season",
       script: "Wear your",
       title: "South Sudan pride",
@@ -34,7 +34,7 @@
       ctaHref: "category.html?cat=basketball"
     },
     {
-      image: "assets/hero-2.jpeg",
+      image: "assets/img/hero-2.jpg",
       eyebrow: "Printed t-shirts",
       script: "Your idea,",
       title: "on a tee in 24 hours",
@@ -43,7 +43,7 @@
       ctaHref: "category.html?cat=tshirts"
     },
     {
-      image: "assets/hero-3.jpeg",
+      image: "assets/img/hero-3.jpg",
       eyebrow: "Traditional wear",
       script: "Laawah for",
       title: "every celebration",
@@ -59,7 +59,7 @@
       id: "football",
       name: "Football jerseys",
       script: "On the pitch",
-      image: "assets/cat-football.jpg",
+      image: "assets/img/cat-football.jpg",
       intro: "South Sudan home and away kits plus full club sets — names, numbers and crests printed in-house.",
       text: "Breathable match fabric cut for real play. We print player names, numbers and team crests for clubs, schools and county tournaments, from a single shirt to a full squad set."
     },
@@ -67,15 +67,15 @@
       id: "basketball",
       name: "Basketball jerseys",
       script: "Bright Stars",
-      image: "assets/cat-basketball.jpg",
+      image: "assets/img/cat-basketball.jpg",
       intro: "FIBA-style South Sudan jerseys in home white and away navy, with matching shorts on request.",
       text: "Lightweight mesh with a clean SOUTH SUDAN chest print and flag badge. Built for the court, comfortable enough to wear all day."
     },
     {
       id: "tshirts",
-      name: "Printed T-Shirts",
+      name: "Printed t-shirts",
       script: "Everyday",
-      image: "assets/cat-tshirts.jpg",
+      image: "assets/img/cat-tshirts.jpg",
       intro: "Tees, tanks and event shirts printed with your artwork, slogan or association logo.",
       text: "Soft cotton bodies with DTF or screen printing that survives the wash. Perfect for associations, churches, campaigns, reunions and giveaways."
     },
@@ -83,7 +83,7 @@
       id: "laawah",
       name: "Laawah",
       script: "Traditional",
-      image: "assets/laawah-01.jpg",
+      image: "assets/img/cat-laawah.jpg",
       intro: "Traditional dress worn by South Sudanese ladies, printed to your colours and ceremony.",
       text: "Full-length laawah in flowing fabric, printed with the patterns, names or dates you choose. A favourite for weddings, dowry ceremonies and cultural celebrations."
     }
@@ -93,12 +93,12 @@
      Six small tiles under "Explore Winchester Graphics".
      Images go in assets/img/services/ */
   var SERVICES = [
-    { name: "Business cards", image: "assets/business-cards.jpg", ask: "Hi Winchester Graphics, I would like business cards printed." },
-    { name: "Poster design", image: "assets/poster-design.jpg", ask: "Hi Winchester Graphics, I need a poster designed and printed." },
-    { name: "Mug printing", image: "assets/mug-printing.jpg", ask: "Hi Winchester Graphics, I would like printed mugs." },
-    { name: "Uniform labelling", image: "assets/uniform-labelling.jpg", ask: "Hi Winchester Graphics, I need uniforms labelled." },
-    { name: "Bottles branding", image: "assets/bottles-branding.jpg", ask: "Hi Winchester Graphics, I would like branded bottles." },
-    { name: "Notebook branding", image: "assets/notebook-branding.jpg", ask: "Hi Winchester Graphics, I would like branded notebooks." }
+    { name: "Business cards", image: "assets/img/services/business-cards.jpg", ask: "Hi Winchester Graphics, I would like business cards printed." },
+    { name: "Poster design", image: "assets/img/services/poster-design.jpg", ask: "Hi Winchester Graphics, I need a poster designed and printed." },
+    { name: "Mug printing", image: "assets/img/services/mug-printing.jpg", ask: "Hi Winchester Graphics, I would like printed mugs." },
+    { name: "Uniform labelling", image: "assets/img/services/uniform-labelling.jpg", ask: "Hi Winchester Graphics, I need uniforms labelled." },
+    { name: "Bottles branding", image: "assets/img/services/bottles-branding.jpg", ask: "Hi Winchester Graphics, I would like branded bottles." },
+    { name: "Notebook branding", image: "assets/img/services/notebook-branding.jpg", ask: "Hi Winchester Graphics, I would like branded notebooks." }
   ];
 
   /* ------------------------ SEASONAL COLLECTION -----------------------
@@ -106,7 +106,7 @@
      Images go in assets/img/seasonal/ . Set `href` to a product page
      (product.html?id=...) once the piece exists in PRODUCTS. */
   var SEASONAL = [
-    { name: "Winchester Graphics Tee", image: "assets/winchester graphics-tee.jpg", tag: "Summer", href: "category.html?cat=tshirts" },
+    { name: "Summer Collection Tee", image: "assets/img/seasonal/summer-tee.jpg", tag: "Summer", href: "category.html?cat=tshirts" },
     { name: "Spring Ceremony Laawah", image: "assets/img/seasonal/spring-laawah.jpg", tag: "Spring", href: "category.html?cat=laawah" },
     { name: "Fall Team Hoodie Print", image: "assets/img/seasonal/fall-hoodie.jpg", tag: "Fall", href: "category.html?cat=tshirts" },
     { name: "Holiday Gift Mug Set", image: "assets/img/seasonal/holiday-mugs.jpg", tag: "Holiday", href: "https://wa.me/254793669941" }
@@ -121,7 +121,7 @@
 
   /* ------------------------------ PRODUCTS ---------------------------- */
   var PRODUCTS = [
-    { id: "ssd-fiba-wc", name: "South Sudan FIBA World Cup Jersey", category: "basketball", price: 1500, image: "ssd-fiba-wc.jpg", badge: "", sizes: ["S","M","L","XL","2XL"], colors: ["White"], added: "2026-09-10", featured: true,
+    { id: "ssd-fiba-wc", name: "South Sudan FIBA World Cup Jersey", category: "basketball", price: 1500, image: "ssd-fiba-wc.jpg", badge: "New", sizes: ["S","M","L","XL","2XL"], colors: ["White"], added: "2026-09-10", featured: true,
       desc: "The Bright Stars home jersey in white, with SOUTH SUDAN chest print and the national flag badge. Premium breathable mesh, cut for movement — our most requested basketball piece." },
     { id: "ssd-fiba-away", name: "South Sudan FIBA Away Jersey", category: "basketball", price: 1500, image: "ssd-fiba-away.jpg", badge: "", sizes: ["S","M","L","XL","2XL"], colors: ["Navy"], added: "2026-08-20", featured: false,
       desc: "Away colourway in deep navy with white lettering. Same breathable mesh and relaxed basketball cut as the home jersey." },
@@ -137,17 +137,13 @@
       desc: "Sleeveless training tank in black. Light, quick drying and good for warm-ups or the gym." },
     { id: "ssd-bball-tank-white", name: "SSD Basketball Tank — White", category: "tshirts", price: 1200, image: "ssd-bball-tank-white.jpg", badge: "", sizes: ["S","M","L","XL"], colors: ["White"], added: "2026-07-20", featured: false,
       desc: "White training tank with the team print. Pairs with the basketball shorts for a full practice set." },
-    { id: "twic-east-tee", name: "Twic East Girls Association Tee", category: "tshirts", price: 1200, image: "twic-east-tee.jpg", badge: "", sizes: ["S","M","L","XL","2XL"], colors: ["White"], added: "2026-09-05", featured: false,
+    { id: "twic-east-tee", name: "Twic East Girls Association Tee", category: "tshirts", price: 1200, image: "twic-east-tee.jpg", badge: "New", sizes: ["S","M","L","XL","2XL"], colors: ["White"], added: "2026-09-05", featured: false,
       desc: "Association tee printed for community events and fundraisers. We can swap in your own association artwork." },
     { id: "get-the-bag-tee", name: "Get The Bag Tee", category: "tshirts", price: 1200, image: "get-the-bag-tee.jpg", badge: "", sizes: ["S","M","L","XL","2XL"], colors: ["White"], added: "2026-06-28", featured: false,
       desc: "Statement slogan tee on a white cotton body. A simple print that reads clearly from across the room." },
-    { id: "laawah Butterfly", name: "Laawah — Palm & River Print", category: "laawah", price: 2500, image: "laawah-butterfly.jpg", badge: "", sizes: ["One Size"], colors: ["White","Blue"], added: "2026-08-12", featured: true,
+    { id: "laawah-palm", name: "Laawah — Palm & River Print", category: "laawah", price: 3500, image: "laawah-palm.jpg", badge: "", sizes: ["One Size"], colors: ["White","Blue"], added: "2026-08-12", featured: true,
       desc: "Full-length laawah in flowing fabric with a palm and river print. One size, styled the traditional way." },
-    { id: "laawah Coat of Arms", name: "Laawah — Custom Ceremony Set", category: "laawah", price: 2500, image: "laawah-coat of arms.jpg", badge: "", sizes: ["One Size"], colors: ["White","Blue","Red"], added: "2026-09-08", featured: true,
-      desc: "Made for weddings and dowry ceremonies. Choose your colours and we print names, dates or family patterns." },
-    { id: "laawah Dr.John Garang", name: "Laawah — Custom Ceremony Set", category: "laawah", price: 2500, image: "laawah-garang.jpg", badge: "", sizes: ["One Size"], colors: ["White","Blue","Red"], added: "2026-09-08", featured: true,
-      desc: "Made for weddings and dowry ceremonies. Choose your colours and we print names, dates or family patterns." },
-    { id: "laawah SSD Heart", name: "Laawah — Custom Ceremony Set", category: "laawah", price: 2500, image: "laawah-ssd heart.jpg", badge: "", sizes: ["One Size"], colors: ["White","Blue","Red"], added: "2026-09-08", featured: true,
+    { id: "laawah-custom", name: "Laawah — Custom Ceremony Set", category: "laawah", price: 4000, image: "laawah-custom.jpg", badge: "New", sizes: ["One Size"], colors: ["White","Blue","Red"], added: "2026-09-08", featured: true,
       desc: "Made for weddings and dowry ceremonies. Choose your colours and we print names, dates or family patterns." }
   ];
 
@@ -476,10 +472,20 @@
 
     var menuBtn = $("#menuBtn");
     var nav = $("#mainNav");
-    if (menuBtn && nav) menuBtn.addEventListener("click", function () {
-      var open = nav.classList.toggle("is-open");
-      menuBtn.setAttribute("aria-expanded", String(open));
-    });
+    if (menuBtn && nav) {
+      menuBtn.addEventListener("click", function () {
+        var open = nav.classList.toggle("is-open");
+        menuBtn.setAttribute("aria-expanded", String(open));
+      });
+      /* close the drawer after any link/button inside it is used */
+      nav.addEventListener("click", function (e) {
+        if (!e.target.closest("a,button")) return;
+        nav.classList.remove("is-open");
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    }
+
+    guardAll(document);
 
     var q = $("#searchInput");
     if (q) q.value = param("q");
@@ -665,13 +671,13 @@
     /* full-screen category showcases */
     var showHost = $("#showcases");
     if (showHost) {
-      showHost.innerHTML = CATEGORIES.map(function (c, i) {
-        var side = i % 2 === 0 ? "align-right" : "align-left";
-        return '<section class="showcase curve" aria-labelledby="sc-' + c.id + '">' +
+      showHost.innerHTML = CATEGORIES.map(function (c) {
+        /* "stacked" = photo first, copy + Shop now underneath it */
+        return '<section class="showcase stacked" aria-labelledby="sc-' + c.id + '">' +
           '<img class="showcase-bg" src="' + esc(c.image) + '" alt="" loading="lazy" data-fallback="' + esc(c.name) + '" />' +
           '<div class="showcase-shade" aria-hidden="true"></div>' +
           '<div class="wrap showcase-inner">' +
-            '<div class="showcase-copy ' + side + '">' +
+            '<div class="showcase-copy">' +
               '<p class="script">' + esc(c.script) + "</p>" +
               '<h2 id="sc-' + c.id + '">' + esc(c.name) + "</h2>" +
               "<p>" + esc(c.text) + "</p>" +
