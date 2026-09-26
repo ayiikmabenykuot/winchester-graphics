@@ -136,13 +136,13 @@ button{font:inherit;color:inherit}
 /* -------------------------------- hero ------------------------------ */
 .hero{
   position:relative;
-  min-height:min(100vh,720px);
+  min-height:min(82vh,720px);
   display:flex;align-items:center;
-  background:var(--white);
+  background:var(--navy);
   color:#fff;
   isolation:isolate;
 }
-.hero-media{position:absolute;inset:0}
+.hero-media{position:absolute;inset:0;overflow:hidden}
 .hero-slides{position:absolute;inset:0}
 .hero-slide{position:absolute;inset:0;opacity:0;transition:opacity .7s ease}
 .hero-slide.is-on{opacity:1}
@@ -173,12 +173,12 @@ button{font:inherit;color:inherit}
 
 /* ------------------------- explore service tiles -------------------- */
 .explore{background:#fff;padding:56px 0 60px;text-align:center}
-/* dark blue rectangle, Arial */
+/* Arial, no box */
 .explore-title{
-  display:inline-block;margin:0 0 34px;
+  margin:0 0 34px;padding:0;background:none;
   font-family:Arial,"Helvetica Neue",Helvetica,sans-serif;font-style:normal;font-weight:700;
-  font-size:clamp(1.15rem,2.2vw,1.7rem);letter-spacing:.01em;line-height:1.25;
-  background:var(--navy);color:#fff;border-radius:0;padding:14px 30px;
+  font-size:clamp(1.25rem,2.4vw,1.85rem);letter-spacing:.01em;line-height:1.25;
+  color:var(--navy);
 }
 .explore-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:24px}
 .tile{text-decoration:none;color:var(--navy);display:block}
@@ -552,7 +552,8 @@ button{font:inherit;color:inherit}
 
   /* hero: photo first, copy underneath it */
   .hero{min-height:0;display:block;background:#fff;color:var(--ink)}
-  .hero-media{position:relative;inset:auto;width:100%;aspect-ratio:4/5;background:var(--navy)}
+  .hero-media{position:relative;inset:auto;width:100%;aspect-ratio:4/5;background:var(--navy);
+    border-bottom-left-radius:50% 46px;border-bottom-right-radius:50% 46px}
   .hero-shade{background:linear-gradient(180deg,rgba(0,20,64,0) 55%,rgba(0,20,64,.5) 100%)}
   .hero-inner{position:static;display:block;padding:24px 0 4px}
   .hero-copy{text-align:center;max-width:100%}
@@ -563,6 +564,8 @@ button{font:inherit;color:inherit}
   .hero-copy .btn-white{background:var(--navy);color:#fff}
   .hero-copy .btn-white:hover{background:var(--navy-2)}
   .hero-controls{bottom:14px}
+  /* featured this week: portrait photo on phones */
+  .spot-media{aspect-ratio:3/4}
 
   /* every showcase, limited edition included: photo first, copy underneath */
   .showcase{min-height:0;display:block;background:#fff;color:var(--ink);
@@ -584,7 +587,7 @@ button{font:inherit;color:inherit}
 
   .grid{grid-template-columns:repeat(2,1fr);gap:14px}
   .explore{padding:40px 0 44px}
-  .explore-title{margin-bottom:24px;padding:11px 20px;font-size:1.02rem}
+  .explore-title{margin-bottom:24px;font-size:1.12rem}
   .explore-grid{grid-template-columns:repeat(2,1fr);gap:16px}
   .tile-label{font-size:.86rem;margin-top:8px}
   .season-grid{gap:16px}
