@@ -25,7 +25,7 @@
      Put your photos in assets/img/ with these names (or change them). */
   var SLIDES = [
     {
-      image: "assets/hero-7.jpeg",
+      image: "assets/hero-1.jpeg",
       eyebrow: "New season",
       script: "Wear your",
       title: "South Sudan pride",
@@ -34,7 +34,7 @@
       ctaHref: "category.html?cat=basketball"
     },
     {
-      image: "assets/hero-6.jpeg",
+      image: "assets/hero-2.jpeg",
       eyebrow: "Printed t-shirts",
       script: "Your idea,",
       title: "on a tee in 24 hours",
@@ -43,7 +43,7 @@
       ctaHref: "category.html?cat=tshirts"
     },
     {
-      image: "assets/hero-8.jpeg",
+      image: "assets/hero-3.jpeg",
       eyebrow: "Traditional wear",
       script: "Laawah for",
       title: "every celebration",
