@@ -106,10 +106,10 @@
      Images go in assets/img/seasonal/ . Set `href` to a product page
      (product.html?id=...) once the piece exists in PRODUCTS. */
   var SEASONAL = [
-    { name: "Summer Collection Tee", image: "assets/img/seasonal/summer-tee.jpg", tag: "Summer", href: "category.html?cat=tshirts" },
-    { name: "Spring Ceremony Laawah", image: "assets/img/seasonal/spring-laawah.jpg", tag: "Spring", href: "category.html?cat=laawah" },
-    { name: "Fall Team Hoodie Print", image: "assets/img/seasonal/fall-hoodie.jpg", tag: "Fall", href: "category.html?cat=tshirts" },
-    { name: "Holiday Gift Mug Set", image: "assets/img/seasonal/holiday-mugs.jpg", tag: "Holiday", href: "https://wa.me/254793669941" }
+    { name: "Winchester Graphic Tee", image: "assets/winchester graphics-tee.jpg", tag: "", href: "category.html?cat=tshirts" },
+    { name: "Sicony Creative Tee", image: "assets/sicony-creative.jpg", tag: "", href: "category.html?cat=tshirts" },
+    { name: "Coat of Arms Laawah", image: "assets/coat of arms-laawah.jpg", tag: "", href: "category.html?cat=laawah" },
+    { name: "Branded Hoodie", image: "assets/branded hoodie.jpg", tag: "", href: "category.html?cat=tshirts" }
   ];
 
   var CAT_LABEL = {
@@ -121,9 +121,9 @@
 
   /* ------------------------------ PRODUCTS ---------------------------- */
   var PRODUCTS = [
-    { id: "ssd-fiba-wc", name: "South Sudan FIBA World Cup Jersey", category: "basketball", price: 1500, image: "ssd-fiba-wc.jpg", badge: "New", sizes: ["S","M","L","XL","2XL"], colors: ["White"], added: "2026-09-10", featured: true,
+    { id: "ssd-fiba-home-wc", name: "South Sudan FIBA World Cup Home Kit", category: "basketball", price: 1200, image: "ssd-fiba-home-wc.jpg", badge: "", sizes: ["M","L","XL","2XL","3XL"], colors: ["White"], added: "2026-09-10", featured: true,
       desc: "The Bright Stars home jersey in white, with SOUTH SUDAN chest print and the national flag badge. Premium breathable mesh, cut for movement — our most requested basketball piece." },
-    { id: "ssd-fiba-away", name: "South Sudan FIBA Away Jersey", category: "basketball", price: 1500, image: "ssd-fiba-away.jpg", badge: "", sizes: ["S","M","L","XL","2XL"], colors: ["Navy"], added: "2026-08-20", featured: false,
+    { id: "ssd-fiba-away-wc", name: "South Sudan FIBA Away Kit", category: "basketball", price: 1200, image: "ssd-fiba-away.jpg", badge: "", sizes: ["M","L","XL","2XL","3XL"], colors: ["Navy"], added: "2026-08-20", featured: false,
       desc: "Away colourway in deep navy with white lettering. Same breathable mesh and relaxed basketball cut as the home jersey." },
     { id: "ssd-home-kit", name: "South Sudan Home Kit", category: "football", price: 1200, image: "ssd-home-kit.jpg", badge: "", sizes: ["S","M","L","XL","2XL"], colors: ["White"], added: "2026-08-02", featured: true,
       desc: "White home football shirt with the national crest. Light match fabric, ready for your name and number at no extra hassle." },
@@ -141,9 +141,13 @@
       desc: "Association tee printed for community events and fundraisers. We can swap in your own association artwork." },
     { id: "get-the-bag-tee", name: "Get The Bag Tee", category: "tshirts", price: 1200, image: "get-the-bag-tee.jpg", badge: "", sizes: ["S","M","L","XL","2XL"], colors: ["White"], added: "2026-06-28", featured: false,
       desc: "Statement slogan tee on a white cotton body. A simple print that reads clearly from across the room." },
-    { id: "laawah-palm", name: "Laawah — Palm & River Print", category: "laawah", price: 3500, image: "laawah-palm.jpg", badge: "", sizes: ["One Size"], colors: ["White","Blue"], added: "2026-08-12", featured: true,
+    { id: "laawah-butterfly", name: "Laawah Butterfly Design", category: "laawah", price: 2500, image: "laawah-butterfly.jpg", badge: "", sizes: ["One Size"], colors: ["White","Blue"], added: "2026-08-12", featured: true,
       desc: "Full-length laawah in flowing fabric with a palm and river print. One size, styled the traditional way." },
-    { id: "laawah-custom", name: "Laawah — Custom Ceremony Set", category: "laawah", price: 4000, image: "laawah-custom.jpg", badge: "New", sizes: ["One Size"], colors: ["White","Blue","Red"], added: "2026-09-08", featured: true,
+    { id: "laawah-coat of arms", name: "Laawah Coat of Arms Design", category: "laawah", price: 2500, image: "laawah-coat of arms.jpg", badge: "", sizes: ["One Size"], colors: ["One Color"], added: "2026-09-08", featured: true,
+      desc: "Made for weddings and dowry ceremonies. Choose your colours and we print names, dates or family patterns." },
+    { id: "laawah-garang", name: "Laawah Dr. John Garang Design", category: "laawah", price: 2500, image: "laawah-garang.jpg", badge: "", sizes: ["One Size"], colors: ["One Color"], added: "2026-09-08", featured: true,
+      desc: "Made for weddings and dowry ceremonies. Choose your colours and we print names, dates or family patterns." },
+    { id: "laawah-ssd heart", name: "Laawah SSD Heart Design", category: "laawah", price: 2500, image: "laawah-ssd heart.jpg", badge: "", sizes: ["One Size"], colors: ["One Color"], added: "2026-09-08", featured: true,
       desc: "Made for weddings and dowry ceremonies. Choose your colours and we print names, dates or family patterns." }
   ];
 
