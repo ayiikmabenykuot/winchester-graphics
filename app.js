@@ -109,7 +109,7 @@
     { name: "Winchester Graphic Tee", image: "assets/winchester graphics-tee.jpg", tag: "", href: "category.html?cat=tshirts" },
     { name: "SSD Independence Day Tee", image: "assets/ssd-independence.jpg", tag: "", href: "category.html?cat=tshirts" },
     { name: "Coat of Arms Laawah", image: "assets/laawah-coat of arms.jpg", tag: "", href: "category.html?cat=laawah" },
-    { name: "Branded Hoodie", image: "assets/branded hoodie.jpg", tag: "", href: "category.html?cat=tshirts" }
+    { name: "Branded Hoodie", image: "assets/branded-hoodie.jpg", tag: "", href: "category.html?cat=tshirts" }
   ];
 
   var CAT_LABEL = {
