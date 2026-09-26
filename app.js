@@ -59,7 +59,7 @@
       id: "football",
       name: "Football jerseys",
       script: "On the pitch",
-      image: "assets/img/cat-football.jpg",
+      image: "assets/cat-football.jpg",
       intro: "South Sudan home and away kits plus full club sets — names, numbers and crests printed in-house.",
       text: "Breathable match fabric cut for real play. We print player names, numbers and team crests for clubs, schools and county tournaments, from a single shirt to a full squad set."
     },
