@@ -106,7 +106,7 @@
      Images go in assets/img/seasonal/ . Set `href` to a product page
      (product.html?id=...) once the piece exists in PRODUCTS. */
   var SEASONAL = [
-    { name: "Summer Collection Tee", image: "assets/img/seasonal/summer-tee.jpg", tag: "Summer", href: "category.html?cat=tshirts" },
+    { name: "Winchester Graphics Tee", image: "assets/winchester graphics-tee.jpg", tag: "Summer", href: "category.html?cat=tshirts" },
     { name: "Spring Ceremony Laawah", image: "assets/img/seasonal/spring-laawah.jpg", tag: "Spring", href: "category.html?cat=laawah" },
     { name: "Fall Team Hoodie Print", image: "assets/img/seasonal/fall-hoodie.jpg", tag: "Fall", href: "category.html?cat=tshirts" },
     { name: "Holiday Gift Mug Set", image: "assets/img/seasonal/holiday-mugs.jpg", tag: "Holiday", href: "https://wa.me/254793669941" }
