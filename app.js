@@ -29,7 +29,7 @@
       eyebrow: "New season",
       script: "Wear your",
       title: "South Sudan pride",
-      text: "Official-look football and basketball jerseys, printed and finished in our own workshop.",
+      text: "Official kit for FIBA World Cup giving glamourous looks.",
       ctaText: "Shop now",
       ctaHref: "category.html?cat=basketball"
     },
@@ -37,7 +37,7 @@
       image: "assets/hero-2.jpeg",
       eyebrow: "Printed t-shirts",
       script: "Your idea,",
-      title: "on a tee in 24 hours",
+      title: "on a tee in minutes",
       text: "Teams, churches, associations and family events. One piece or five hundred, same finish.",
       ctaText: "Shop now",
       ctaHref: "category.html?cat=tshirts"
@@ -69,7 +69,7 @@
       script: "Bright Stars",
       image: "assets/cat-basketball.jpg",
       intro: "FIBA-style South Sudan jerseys in home white and away navy, with matching shorts on request.",
-      text: "Lightweight mesh with a clean SOUTH SUDAN chest print and flag badge. Built for the court, comfortable enough to wear all day."
+      text: "Lightweight mesh with a clean South Sudan chest print and flag badge. Built for the court, comfortable enough to wear all day."
     },
     {
       id: "tshirts",
