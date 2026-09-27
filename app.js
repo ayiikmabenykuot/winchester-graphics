@@ -145,11 +145,11 @@
       desc: "Statement slogan tee on a white cotton body. A simple print that reads clearly from across the room." },
     { id: "laawah-palm", name: "Laawah — Palm & River Print", category: "laawah", price: 2500, image: "laawah-butterfly.jpg", badge: "", sizes: ["One Size"], colors: ["White","Blue"], added: "2026-08-12", featured: true,
       desc: "Full-length laawah in flowing fabric with a palm and river print. One size, styled the traditional way." },
-    { id: "laawah-coat of arms", name: "Laawah Coat of Arms Design", category: "laawah", price: 2500, image: "assets/laawah-coat of arms.jpg", badge: "", sizes: ["One Size"], colors: ["One Color"], added: "2026-09-08", featured: true,
+    { id: "laawah-coat of arms", name: "Laawah Coat of Arms Design", category: "laawah", price: 2500, image: "laawah-coat of arms.jpg", badge: "", sizes: ["One Size"], colors: ["One Color"], added: "2026-09-08", featured: true,
       desc: "Made for weddings and dowry ceremonies. Choose your colours and we print names, dates or family patterns." },
-    { id: "laawah-garang", name: "Laawah Dr. John Garang Design", category: "laawah", price: 2500, image: "assets/laawah-garang.jpg", badge: "", sizes: ["One Size"], colors: ["One Color"], added: "2026-09-08", featured: true,
+    { id: "laawah-garang", name: "Laawah Dr. John Garang Design", category: "laawah", price: 2500, image: "laawah-garang.jpg", badge: "", sizes: ["One Size"], colors: ["One Color"], added: "2026-09-08", featured: true,
       desc: "Made for weddings and dowry ceremonies. Choose your colours and we print names, dates or family patterns." },
-    { id: "laawah-ssd heart", name: "Laawah SSD Heart Design", category: "laawah", price: 2500, image: "assets/laawah-ssd heart.jpg", badge: "", sizes: ["One Size"], colors: ["One Color"], added: "2026-09-08", featured: true,
+    { id: "laawah-ssd heart", name: "Laawah SSD Heart Design", category: "laawah", price: 2500, image: "laawah-ssd heart.jpg", badge: "", sizes: ["One Size"], colors: ["One Color"], added: "2026-09-08", featured: true,
       desc: "Made for weddings and dowry ceremonies. Choose your colours and we print names, dates or family patterns." }
   ];
 
