@@ -279,7 +279,7 @@
         '<div class="wrap footer-grid">' +
           '<div class="footer-brand">' +
             '<strong>Winchester Graphics</strong>' +
-            '<p>Design beyond limits. Printed t-shirts, South Sudan football and basketball jerseys, and laawah — printed in our own workshop and delivered countrywide.</p>' +
+            '<p>Printed t-shirts, South Sudan football and basketball jerseys, and laawah printed in our own workshop and delivered countrywide.</p>' +
           "</div>" +
           '<nav class="footer-col" aria-label="Shop"><h3>Shop</h3><ul>' +
             '<li><a href="category.html?cat=football">Football jerseys</a></li>' +
@@ -296,10 +296,10 @@
           '<div class="footer-col"><h3>Talk to us</h3><ul>' +
             '<li><a href="https://wa.me/' + CONFIG.whatsapp + '" target="_blank" rel="noopener">WhatsApp ' + CONFIG.whatsappPretty + "</a></li>" +
             '<li><a href="mailto:' + CONFIG.email + '">' + CONFIG.email + "</a></li>" +
-            "<li>Nairobi, Kenya</li>" +
+            "<li>Nakuru, Kenya</li>" +
           "</ul></div>" +
         "</div>" +
-        '<div class="wrap footer-base"><p>&copy; ' + year + " Winchester Graphics. All rights reserved.</p><p>Prices in Kenyan Shillings. Orders are confirmed on WhatsApp.</p></div>" +
+        '<div class="wrap footer-base"><p>&copy; ' + year + " Winchester Graphics. All rights reserved.</p></div>" +
       "</footer>" +
 
       /* cart drawer */
@@ -727,7 +727,7 @@
     document.title = title + " | Winchester Graphics";
     $("#catTitle").textContent = title;
     $("#crumbNow").textContent = title;
-    $("#catIntro").textContent = meta ? meta.intro : "Every piece we print — jerseys, tees and laawah, ready to order on WhatsApp.";
+    $("#catIntro").textContent = meta ? meta.intro : "Every piece we print: jerseys, tees and laawah, ready to order on WhatsApp.";
 
     $$("[data-nav]").forEach(function (a) { a.classList.toggle("is-current", a.dataset.nav === cat); });
 
@@ -852,9 +852,8 @@
             '<button class="btn btn-wa" type="button" id="pdWa">Order on WhatsApp</button>' +
           "</div>" +
           '<ul class="pd-notes">' +
-            "<li>Printed in our own workshop in Nairobi.</li>" +
-            "<li>Names, numbers and crests added on request.</li>" +
-            "<li>Most orders ready in 24–48 hours, delivery countrywide.</li>" +
+            "<li>Printed in our own workshop in Nakuru.</li>" +
+            "<li>All orders ready within the same day, delivery countrywide.</li>" +
           "</ul>" +
         "</div>" +
       "</div>";
