@@ -93,12 +93,12 @@
      Six small tiles under "Explore Winchester Graphics".
      Images go in assets/img/services/ */
   var SERVICES = [
-    { name: "Business cards", image: "assets/img/business-cards.jpg", ask: "Hi Winchester Graphics, I would like business cards printed." },
+    { name: "Business cards", image: "assets/img/business-card.jpg", ask: "Hi Winchester Graphics, I would like business cards printed." },
     { name: "Birthday T-Shirts", image: "assets/img/birthday-tee.jpg", ask: "Hi Winchester Graphics, I need birthday t-shirts printed." },
     { name: "Mug printing", image: "assets/img/mug-printing.jpg", ask: "Hi Winchester Graphics, I would like printed mugs." },
     { name: "Uniform labelling", image: "assets/img/uniform-labelling.jpg", ask: "Hi Winchester Graphics, I need uniforms labelled." },
     { name: "Bottles branding", image: "assets/img/bottles-branding.jpg", ask: "Hi Winchester Graphics, I would like branded bottles." },
-    { name: "Notebook branding", image: "assets/imgnotebook-branding.jpg", ask: "Hi Winchester Graphics, I would like branded notebooks." }
+    { name: "Notebook branding", image: "assets/img/notebook-branding.jpg", ask: "Hi Winchester Graphics, I would like branded notebooks." }
   ];
 
   /* ------------------------ SEASONAL COLLECTION -----------------------
