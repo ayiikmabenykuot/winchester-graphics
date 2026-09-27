@@ -137,7 +137,7 @@
       desc: "Sleeveless training tank in black. Light, quick drying and good for warm-ups or the gym." },
     { id: "ssd-bball-tank-white", name: "SSD Basketball Tank — White", category: "tshirts", price: 1200, image: "ssd-bball-tank-white.jpg", badge: "", sizes: ["S","M","L","XL"], colors: ["White"], added: "2026-07-20", featured: false,
       desc: "White training tank with the team print. Pairs with the basketball shorts for a full practice set." },
-    { id: "twic-east-tee", name: "Twic East Girls Association Tee", category: "tshirts", price: 1200, image: "twic-east-tee.jpg", badge: "New", sizes: ["S","M","L","XL","2XL"], colors: ["White"], added: "2026-09-05", featured: false,
+    { id: "twic-east-tee", name: "Twic East Girls Association Tee", category: "tshirts", price: 1200, image: "assets/twic-east-tee.jpg", badge: "", sizes: ["S","M","L","XL","2XL"], colors: ["White"], added: "2026-09-05", featured: false,
       desc: "Association tee printed for community events and fundraisers. We can swap in your own association artwork." },
     { id: "get-the-bag-tee", name: "Get The Bag Tee", category: "tshirts", price: 1200, image: "get-the-bag-tee.jpg", badge: "", sizes: ["S","M","L","XL","2XL"], colors: ["White"], added: "2026-06-28", featured: false,
       desc: "Statement slogan tee on a white cotton body. A simple print that reads clearly from across the room." },
