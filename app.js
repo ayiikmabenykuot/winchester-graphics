@@ -26,6 +26,7 @@
   var SLIDES = [
     {
       image: "assets/img/hero-1.jpeg",
+      mobileImage: "assets/img/hero-1-mobile.jpg",
       eyebrow: "New season",
       script: "Wear your",
       title: "South Sudan pride",
@@ -35,6 +36,7 @@
     },
     {
       image: "assets/img/hero-2.jpeg",
+      mobileImage: "assets/img/hero-2-mobile.jpg",
       eyebrow: "Printed t-shirts",
       script: "Your idea,",
       title: "on a tee in minutes",
@@ -44,6 +46,7 @@
     },
     {
       image: "assets/img/hero-3.jpeg",
+      mobileImage: "assets/img/hero-3-mobile.jpg",
       eyebrow: "Traditional wear",
       script: "Laawah for",
       title: "every celebration",
@@ -60,6 +63,7 @@
       name: "Football jerseys",
       script: "On the pitch",
       image: "assets/img/cat-football.jpg",
+      mobileImage: "assets/img/cat-football-mobile.jpg",
       intro: "South Sudan home and away kits plus full club sets — names, numbers and crests printed in-house.",
       text: "Breathable match fabric cut for real play. We print player names, numbers and team crests for clubs, schools and county tournaments, from a single shirt to a full squad set."
     },
@@ -68,6 +72,7 @@
       name: "Basketball jerseys",
       script: "Bright Stars",
       image: "assets/img/cat-basketball.jpg",
+      mobileImage: "assets/img/cat-basketball-mobile.jpg",
       intro: "FIBA-style South Sudan jerseys in home white and away navy, with matching shorts on request.",
       text: "Lightweight mesh with a clean South Sudan chest print and flag badge. Built for the court, comfortable enough to wear all day."
     },
@@ -76,6 +81,7 @@
       name: "Printed t-shirts",
       script: "Everyday",
       image: "assets/img/cat-tshirts.jpg",
+      mobileImage: "assets/img/cat-tshirts-mobile.jpg",
       intro: "Tees, tanks and event shirts printed with your artwork, slogan or association logo.",
       text: "Soft cotton bodies with DTF or screen printing that survives the wash. Perfect for associations, churches, campaigns, reunions and giveaways."
     },
@@ -84,6 +90,7 @@
       name: "Laawah",
       script: "Traditional",
       image: "assets/img/cat-laawah.jpg",
+      mobileImage: "assets/img/cat-laawah-mobile.jpg",
       intro: "Traditional dress worn by South Sudanese ladies, printed to your colours and ceremony.",
       text: "Full-length laawah in flowing fabric, printed with the patterns, names or dates you choose. A favourite for weddings, dowry ceremonies and cultural celebrations."
     }
@@ -196,12 +203,40 @@
       "</svg>";
     return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
   }
+  /* Art-directed photos: the browser downloads the matching source only.
+     Phone images are optional; missing files fall back to the desktop photo.
+     Keep this breakpoint aligned with the phone layout in styles.css. */
+  var PHONE_MEDIA = "(max-width: 620px)";
+  function responsivePhoto(item, className, lazy, priority) {
+    return '<picture class="responsive-photo' + (className ? ' ' + className : '') + '">' +
+      (item.mobileImage ? '<source media="' + PHONE_MEDIA + '" srcset="' + esc(item.mobileImage) + '" />' : '') +
+      '<img src="' + esc(item.image) + '" alt="" decoding="async" ' +
+      (lazy ? 'loading="lazy" ' : 'loading="eager" ') +
+      (priority ? 'fetchpriority="high" ' : '') +
+      'data-fallback="' + esc(item.title || item.name) + '" />' +
+      '</picture>';
+  }
   function guardImage(img) {
     if (!img || img.dataset.guarded) return;
     img.dataset.guarded = "1";
     img.addEventListener("error", function () {
+      var picture = img.parentElement;
+      var phoneSource = picture && picture.tagName === "PICTURE"
+        ? picture.querySelector('source[media="' + PHONE_MEDIA + '"]') : null;
+      if (phoneSource && window.matchMedia(PHONE_MEDIA).matches &&
+          phoneSource.hasAttribute("srcset")) {
+        /* Removing srcset lets <img src> take over, without a second image
+           element or a desktop download when the phone photo exists. */
+        phoneSource.removeAttribute("srcset");
+        img.dataset.mobileFallback = "1";
+        return;
+      }
       if (img.dataset.failed) return;
       img.dataset.failed = "1";
+      if (picture && picture.tagName === "PICTURE") {
+        $$('source', picture).forEach(function (source) { source.removeAttribute("srcset"); });
+      }
+      img.removeAttribute("srcset");
       img.src = placeholder(img.dataset.fallback || img.alt);
       img.classList.add("is-placeholder");
     });
@@ -617,8 +652,8 @@
     var dotsHost = $("#heroDots");
     if (slidesHost) {
       slidesHost.innerHTML = SLIDES.map(function (s, i) {
-        return '<div class="hero-slide' + (i === 0 ? " is-on" : "") + '"><img src="' + esc(s.image) + '" alt="" ' +
-          (i === 0 ? '' : 'loading="lazy" ') + 'data-fallback="' + esc(s.title) + '" /></div>';
+        return '<div class="hero-slide' + (i === 0 ? " is-on" : "") + '">' +
+          responsivePhoto(s, "hero-picture", i !== 0, i === 0) + '</div>';
       }).join("");
       dotsHost.innerHTML = SLIDES.map(function (s, i) {
         return '<button type="button" class="dot' + (i === 0 ? " is-on" : "") + '" data-i="' + i + '" aria-label="Slide ' + (i + 1) + '"></button>';
@@ -694,7 +729,7 @@
       showHost.innerHTML = CATEGORIES.map(function (c) {
         /* "stacked" = photo first, copy + Shop now underneath it */
         return '<section class="showcase stacked" aria-labelledby="sc-' + c.id + '">' +
-          '<img class="showcase-bg" src="' + esc(c.image) + '" alt="" loading="lazy" data-fallback="' + esc(c.name) + '" />' +
+          responsivePhoto(c, "showcase-picture", true, false) +
           '<div class="showcase-shade" aria-hidden="true"></div>' +
           '<div class="wrap showcase-inner">' +
             '<div class="showcase-copy">' +
@@ -733,7 +768,16 @@
     var meta = CATEGORIES.filter(function (c) { return c.id === cat; })[0];
 
     var heroImg = $("#catHeroImg");
-    heroImg.src = meta ? meta.image : "assets/img/hero-1.jpg";
+    var heroPicture = document.createElement("picture");
+    heroPicture.className = "category-picture";
+    var heroSource = document.createElement("source");
+    heroSource.media = PHONE_MEDIA;
+    heroSource.srcset = meta ? meta.mobileImage : SLIDES[0].mobileImage;
+    heroImg.parentNode.insertBefore(heroPicture, heroImg);
+    heroPicture.appendChild(heroSource);
+    heroPicture.appendChild(heroImg);
+    heroImg.src = meta ? meta.image : SLIDES[0].image;
+    heroImg.decoding = "async";
     heroImg.setAttribute("data-fallback", meta ? meta.name : "Winchester Graphics");
     guardImage(heroImg);
 
